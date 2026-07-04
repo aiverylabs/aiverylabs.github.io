@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Approval Flow - Getting Started</title>
+<style>
+  :root {
+    --ink: #292f4c;
+    --muted: #676879;
+    --line: #e6e9ef;
+    --accent: #0073ea;
+    --bg: #ffffff;
+    --soft: #f6f7fb;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 72px;
+  }
+  h1 {
+    font-size: 30px;
+    line-height: 1.25;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .lede {
+    color: var(--muted);
+    font-size: 17px;
+    margin: 0 0 40px;
+  }
+  h2 {
+    font-size: 20px;
+    margin: 40px 0 12px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    letter-spacing: -0.01em;
+  }
+  h2:first-of-type { border-top: none; padding-top: 0; }
+  p { margin: 0 0 16px; }
+  ul { margin: 0 0 16px; padding-left: 22px; }
+  li { margin: 0 0 8px; }
+  strong { color: var(--ink); }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .step-num {
+    display: inline-block;
+    min-width: 26px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .imgnote {
+    display: block;
+    background: var(--soft);
+    border: 1px dashed var(--line);
+    border-radius: 8px;
+    color: var(--muted);
+    font-size: 14px;
+    padding: 14px 16px;
+    margin: 0 0 20px;
+    font-style: italic;
+  }
+  .callout {
+    background: var(--soft);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin: 24px 0;
+  }
+  .callout ul { margin-bottom: 0; }
+  .footer {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 15px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="index.html" style="display:inline-block;margin-bottom:24px;font-size:14px;color:var(--accent);text-decoration:none;">Back to Approval Flow</a>
+
+  <h1>Getting started with Approval Flow</h1>
+  <p class="lede">Approval Flow turns any monday board into a working approval system. You set the rules once, and the app routes every item to the right people, tracks where each one stands, and keeps a record of what happened. Setting up your first flow takes about five minutes.</p>
+
+  <h2>Before you start</h2>
+  <p>There are two things you need in place:</p>
+  <ul>
+    <li>You should be an owner of the board you want to add approvals to.</li>
+    <li>You need a board with items that you want reviewed and signed off, such as requests, contracts, or content.</li>
+  </ul>
+
+  <h2><span class="step-num">1</span>Add Approval Flow to your board</h2>
+  <p>Open the board you want to work with and go to the item view area. Add the Approval Flow view. Once it is added, it shows up as a tab on your items, ready to use.</p>
+  <span class="imgnote">[Add image here: the Approval Flow view being added to a board]</span>
+
+  <h2><span class="step-num">2</span>Open the app on an item</h2>
+  <p>Open any item on your board and go to the Approval Flow tab. Inside, you will find three sections: Stages, Tracking, and History. Most of your setup happens in Stages.</p>
+  <span class="imgnote">[Add image here: the three tabs, Stages, Tracking, and History]</span>
+
+  <h2><span class="step-num">3</span>Build your first flow</h2>
+  <p>A flow is made up of one or more stages that run in order. For each stage, you decide two things.</p>
+  <p><strong>Who approves.</strong> You can pick specific people, or point the stage at a People column on your board so the approver is taken from each item. The People column option is useful when the right approver changes from item to item, such as an assigned manager.</p>
+  <p><strong>How many need to approve.</strong> Choose Everyone, where all approvers in the stage have to sign off, or Anyone, where the first approval clears the stage.</p>
+  <p>If you need a chain of approvals, add more stages. Stage two only opens once stage one has been approved, and so on down the line.</p>
+  <span class="imgnote">[Add image here: a stage showing selected approvers and the Everyone or Anyone choice]</span>
+
+  <h2><span class="step-num">4</span>Add conditions (optional)</h2>
+  <p>This is where Approval Flow does more than a basic approval tool. You can put a condition on a stage so it only applies when an item matches. For example, you might require the finance lead only when an amount column goes over a number you set. Items that do not match simply skip that stage.</p>
+  <p>You can combine several conditions and choose whether all of them need to match or just one.</p>
+  <span class="imgnote">[Add image here: a condition set on a stage, such as amount greater than a value]</span>
+
+  <h2><span class="step-num">5</span>Turn on board tracking (optional)</h2>
+  <p>Go to the Tracking tab and switch on board tracking. The app creates an Approval Status column and keeps it up to date as items move through their stages, showing Pending, In Review, Approved, or Rejected. Anyone looking at the board can see where each item stands.</p>
+  <p>This step is optional. If you leave tracking off, the app still runs your approvals, it just will not write a status column to the board.</p>
+  <span class="imgnote">[Add image here: the Approval Status column on a board with a few different statuses]</span>
+
+  <h2><span class="step-num">6</span>Run an approval</h2>
+  <p>Once a flow is set up, approvers act right from the item. They approve, reject, or leave a comment. As each stage clears, the next one opens on its own, and the approvers for that stage get a notification in monday and by email letting them know it is their turn.</p>
+  <span class="imgnote">[Add image here: an approver approving or rejecting from the item]</span>
+
+  <h2>The History tab</h2>
+  <p>Every change to a flow is recorded in the History tab, including who changed what and when. Approval decisions are logged too, with the person, the time, and any comment they left. If you ever need to explain how an item was approved, the full record is there.</p>
+  <span class="imgnote">[Add image here: the History tab showing a list of changes and decisions]</span>
+
+  <div class="callout">
+    <h2 style="border:none;padding:0;margin:0 0 12px;">Good to know</h2>
+    <ul>
+      <li>The on and off toggle at the top pauses approvals for the whole board without losing any progress. Turn it back on and everything picks up where it left off.</li>
+      <li>Approval Flow works through the monday API rather than automations, so it does not use up the automation action quota on your plan, no matter how many approvals you run.</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    Need help? Email us at <a href="mailto:[SUPPORT EMAIL]">[SUPPORT EMAIL]</a> and we will help you out.
+  </div>
+
+</div>
+</body>
+</html>
