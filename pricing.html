@@ -5,42 +5,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Approval Flow – Pricing</title>
 <style>
-  :root { --ink:#292f4c;--muted:#676879;--line:#e6e9ef;--accent:#0073ea;--bg:#ffffff;--soft:#f6f7fb;--green:#00854d; }
-  * { box-sizing:border-box; }
-  body { margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;font-size:16px; }
-  .wrap { max-width:900px;margin:0 auto;padding:56px 24px 80px; }
-  a { color:var(--accent);text-decoration:none; }
-  a:hover { text-decoration:underline; }
-  .back { display:inline-block;margin-bottom:32px;font-size:14px; }
-  .page-title { font-size:34px;font-weight:700;margin:0 0 8px;letter-spacing:-0.015em; }
-  .page-sub { color:var(--muted);font-size:17px;margin:0 0 8px; }
-  .toggle-wrap { display:flex;align-items:center;gap:12px;margin:28px 0 32px; }
-  .toggle-label { font-size:15px;color:var(--muted);cursor:pointer;user-select:none; }
-  .toggle-label.active { color:var(--ink);font-weight:600; }
-  .toggle { position:relative;width:48px;height:26px;background:var(--accent);border-radius:13px;cursor:pointer;border:none;outline:none;transition:background 0.2s; }
-  .toggle::after { content:'';position:absolute;width:20px;height:20px;background:#fff;border-radius:50%;top:3px;left:3px;transition:transform 0.2s; }
-  .toggle.yearly::after { transform:translateX(22px); }
-  .save-badge { background:#e8f5e9;color:var(--green);font-size:12px;font-weight:600;padding:2px 8px;border-radius:12px; }
-  .tiers-outer { overflow-x:auto;margin:0 -24px;padding:12px 24px 20px;-webkit-overflow-scrolling:touch; }
-  .tiers-inner { display:flex;gap:12px;width:max-content; }
-  .tier { width:200px;flex-shrink:0;border:1px solid var(--line);border-radius:14px;padding:24px 20px 20px; }
-  .tier.free { border-color:var(--green); }
-  .tier-label { font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin:0 0 14px; }
-  .tier.free .tier-label { color:var(--green); }
-  .tier-price { display:flex;align-items:flex-end;gap:2px;margin:0 0 2px;line-height:1; }
-  .tier-dollar { font-size:18px;font-weight:600;color:var(--muted);padding-bottom:5px; }
-  .tier-num { font-size:42px;font-weight:700;letter-spacing:-0.02em; }
-  .tier-period { font-size:13px;color:var(--muted);padding-bottom:5px; }
-  .tier-billed { font-size:12px;color:var(--muted);min-height:16px;margin:4px 0 16px; }
-  .tier-seats { font-size:14px;font-weight:600;margin:0 0 14px; }
-  .tier-desc { font-size:13px;color:var(--muted);margin:0;line-height:1.5; }
-  .faq { margin-top:56px; }
-  .faq h2 { font-size:22px;margin:0 0 24px; }
-  .faq-item { border-top:1px solid var(--line);padding:18px 0; }
-  .faq-item:last-child { border-bottom:1px solid var(--line); }
-  .faq-q { font-weight:600;margin:0 0 6px; }
-  .faq-a { color:var(--muted);font-size:15px;margin:0; }
-  .footer { margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:15px; }
+  :root{--ink:#292f4c;--muted:#676879;--line:#e6e9ef;--accent:#0073ea;--bg:#ffffff;--soft:#f6f7fb;--green:#00854d;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;font-size:16px;}
+  .wrap{max-width:900px;margin:0 auto;padding:56px 24px 80px;}
+  a{color:var(--accent);text-decoration:none;}a:hover{text-decoration:underline;}
+  .back{display:inline-block;margin-bottom:32px;font-size:14px;}
+  .page-title{font-size:34px;font-weight:700;margin:0 0 8px;letter-spacing:-0.015em;}
+  .page-sub{color:var(--muted);font-size:17px;margin:0 0 8px;}
+  .toggle-wrap{display:flex;align-items:center;gap:12px;margin:28px 0 32px;}
+  .toggle-label{font-size:15px;color:var(--muted);cursor:pointer;user-select:none;}
+  .toggle-label.active{color:var(--ink);font-weight:600;}
+  .toggle{position:relative;width:48px;height:26px;background:var(--accent);border-radius:13px;cursor:pointer;border:none;outline:none;transition:background 0.2s;}
+  .toggle::after{content:'';position:absolute;width:20px;height:20px;background:#fff;border-radius:50%;top:3px;left:3px;transition:transform 0.2s;}
+  .toggle.yearly::after{transform:translateX(22px);}
+  .save-badge{background:#e8f5e9;color:var(--green);font-size:12px;font-weight:600;padding:2px 8px;border-radius:12px;}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch;}
+  @media(max-width:680px){.cards{grid-template-columns:1fr;}}
+  .plan{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:14px;padding:28px 24px 24px;position:relative;}
+  .plan.featured{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent);}
+  .plan-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:11px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;padding:3px 12px;border-radius:12px;white-space:nowrap;}
+  .plan-name{font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin:0 0 14px;}
+  .plan-price{display:flex;align-items:flex-end;gap:2px;margin:0 0 4px;line-height:1;}
+  .price-dollar{font-size:20px;font-weight:600;color:var(--muted);padding-bottom:5px;}
+  .price-num{font-size:46px;font-weight:700;letter-spacing:-0.02em;}
+  .price-period{font-size:14px;color:var(--muted);padding-bottom:6px;}
+  .plan-billing{font-size:12px;color:var(--muted);min-height:16px;margin:4px 0 20px;}
+  .plan-seats{font-size:15px;font-weight:600;margin:0 0 16px;}
+  .plan-divider{border:none;border-top:1px solid var(--line);margin:0 0 16px;}
+  .plan-features{list-style:none;padding:0;margin:0 0 24px;flex:1;}
+  .plan-features li{font-size:14px;color:var(--muted);padding:5px 0 5px 22px;position:relative;}
+  .plan-features li::before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:700;}
+  .plan-cta{display:block;text-align:center;padding:10px 16px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:opacity 0.15s;margin-top:auto;}
+  .plan-cta:hover{opacity:0.85;text-decoration:none;}
+  .cta-primary{background:var(--accent);color:#fff;}
+  .cta-outline{border:1px solid var(--line);color:var(--ink);}
+  .faq{margin-top:56px;}.faq h2{font-size:22px;margin:0 0 24px;}
+  .faq-item{border-top:1px solid var(--line);padding:18px 0;}
+  .faq-item:last-child{border-bottom:1px solid var(--line);}
+  .faq-q{font-weight:600;margin:0 0 6px;}.faq-a{color:var(--muted);font-size:15px;margin:0;}
+  .footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:15px;}
 </style>
 </head>
 <body>
@@ -54,8 +58,51 @@
     <span class="toggle-label" id="lbl-yearly">Yearly</span>
     <span class="save-badge" id="save-badge" style="display:none;">Save 9%</span>
   </div>
-  <div class="tiers-outer">
-    <div class="tiers-inner" id="tiers-inner"></div>
+  <div class="cards">
+    <div class="plan">
+      <p class="plan-name">Free</p>
+      <div class="plan-price"><span class="price-dollar">$</span><span class="price-num">0</span><span class="price-period">/month</span></div>
+      <p class="plan-billing">&nbsp;</p>
+      <p class="plan-seats">Up to 5 seats</p>
+      <hr class="plan-divider">
+      <ul class="plan-features">
+        <li>Unlimited approval flows</li>
+        <li>Multi-stage approvals</li>
+        <li>Conditional stages</li>
+        <li>Board status tracking</li>
+        <li>Full history log</li>
+        <li>Email support</li>
+      </ul>
+      <a href="how-to-use.html" class="plan-cta cta-outline">Get started free</a>
+    </div>
+    <div class="plan featured">
+      <div class="plan-badge">Most popular</div>
+      <p class="plan-name">Pro</p>
+      <div class="plan-price"><span class="price-dollar">$</span><span class="price-num" id="pro-price">9</span><span class="price-period">/month</span></div>
+      <p class="plan-billing" id="pro-billing">&nbsp;</p>
+      <p class="plan-seats">Up to 25 seats</p>
+      <hr class="plan-divider">
+      <ul class="plan-features">
+        <li>Everything in Free</li>
+        <li>Priority support</li>
+        <li>Priority feature requests</li>
+      </ul>
+      <a href="https://monday.com/marketplace" class="plan-cta cta-primary">Start free trial</a>
+    </div>
+    <div class="plan">
+      <p class="plan-name">Business</p>
+      <div class="plan-price"><span class="price-dollar">$</span><span class="price-num" id="biz-price">19</span><span class="price-period">/month</span></div>
+      <p class="plan-billing" id="biz-billing">&nbsp;</p>
+      <p class="plan-seats">Unlimited seats</p>
+      <hr class="plan-divider">
+      <ul class="plan-features">
+        <li>Everything in Pro</li>
+        <li>Unlimited team members</li>
+        <li>Priority support</li>
+        <li>Priority feature requests</li>
+      </ul>
+      <a href="https://monday.com/marketplace" class="plan-cta cta-outline">Start free trial</a>
+    </div>
   </div>
   <div class="faq">
     <h2>Common questions</h2>
@@ -68,34 +115,25 @@
   <div class="footer">Questions about pricing? Email us at <a href="mailto:support@aiverylabs.com">support@aiverylabs.com</a>.</div>
 </div>
 <script>
-  var tiers=[
-    {label:'Free',seats:'Up to 5 seats',monthly:0,yearly:0,billedYearly:'',free:true},
-    {label:'10 seats',seats:'Up to 10 seats',monthly:6,yearly:5,billedYearly:'billed $60/year'},
-    {label:'20 seats',seats:'Up to 20 seats',monthly:12,yearly:11,billedYearly:'billed $132/year'},
-    {label:'40 seats',seats:'Up to 40 seats',monthly:24,yearly:22,billedYearly:'billed $264/year'},
-    {label:'60 seats',seats:'Up to 60 seats',monthly:36,yearly:33,billedYearly:'billed $396/year'},
-    {label:'80 seats',seats:'Up to 80 seats',monthly:48,yearly:44,billedYearly:'billed $528/year'},
-    {label:'100 seats',seats:'Up to 100 seats',monthly:60,yearly:55,billedYearly:'billed $660/year'},
-    {label:'200 seats',seats:'Up to 200 seats',monthly:120,yearly:110,billedYearly:'billed $1,320/year'},
-    {label:'Unlimited',seats:'Unlimited seats',monthly:400,yearly:367,billedYearly:'billed $4,404/year'}
-  ];
-  var desc='Use the app without any limitations. Includes support and priority feature requests.';
-  var freeDesc='Use the app without any limitations for up to 5 team members. Includes support.';
-  var yearly=false;
-  var container=document.getElementById('tiers-inner');
-  function render(){
-    container.innerHTML=tiers.map(function(t){
-      return '<div class="tier'+(t.free?' free':'')+'"><p class="tier-label">'+t.label+'</p><div class="tier-price"><span class="tier-dollar">$</span><span class="tier-num">'+(yearly?t.yearly:t.monthly)+'</span><span class="tier-period">/mo</span></div><p class="tier-billed">'+(yearly&&!t.free?t.billedYearly:'&nbsp;')+'</p><p class="tier-seats">'+t.seats+'</p><p class="tier-desc">'+(t.free?freeDesc:desc)+'</p></div>';
-    }).join('');
-  }
-  render();
-  document.getElementById('billing-toggle').addEventListener('click',function(){
+  const toggle=document.getElementById('billing-toggle');
+  const proPrice=document.getElementById('pro-price');
+  const bizPrice=document.getElementById('biz-price');
+  const proBilling=document.getElementById('pro-billing');
+  const bizBilling=document.getElementById('biz-billing');
+  const lblMonthly=document.getElementById('lbl-monthly');
+  const lblYearly=document.getElementById('lbl-yearly');
+  const saveBadge=document.getElementById('save-badge');
+  let yearly=false;
+  toggle.addEventListener('click',()=>{
     yearly=!yearly;
-    this.classList.toggle('yearly',yearly);
-    document.getElementById('lbl-monthly').classList.toggle('active',!yearly);
-    document.getElementById('lbl-yearly').classList.toggle('active',yearly);
-    document.getElementById('save-badge').style.display=yearly?'inline':'none';
-    render();
+    toggle.classList.toggle('yearly',yearly);
+    proPrice.textContent=yearly?'7':'9';
+    bizPrice.textContent=yearly?'15':'19';
+    proBilling.textContent=yearly?'billed $84/year':'';
+    bizBilling.textContent=yearly?'billed $180/year':'';
+    lblMonthly.classList.toggle('active',!yearly);
+    lblYearly.classList.toggle('active',yearly);
+    saveBadge.style.display=yearly?'inline':'none';
   });
 </script>
 </body>
