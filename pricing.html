@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Approval Flow – Pricing</title>
+<style>
+  :root {
+    --ink: #292f4c;
+    --muted: #676879;
+    --line: #e6e9ef;
+    --accent: #0073ea;
+    --bg: #ffffff;
+    --soft: #f6f7fb;
+    --green: #00854d;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 56px 24px 80px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .back { display: inline-block; margin-bottom: 32px; font-size: 14px; }
+  .page-title { font-size: 34px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.015em; }
+  .page-sub { color: var(--muted); font-size: 17px; margin: 0 0 36px; }
+  .toggle-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 36px; }
+  .toggle-label { font-size: 15px; color: var(--muted); cursor: pointer; }
+  .toggle-label.active { color: var(--ink); font-weight: 600; }
+  .toggle {
+    position: relative; width: 48px; height: 26px;
+    background: var(--accent); border-radius: 13px;
+    cursor: pointer; border: none; transition: background 0.2s;
+  }
+  .toggle::after {
+    content: ''; position: absolute; width: 20px; height: 20px;
+    background: #fff; border-radius: 50%; top: 3px; left: 3px; transition: transform 0.2s;
+  }
+  .toggle.yearly::after { transform: translateX(22px); }
+  .save-badge { background: #e8f5e9; color: var(--green); font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 12px; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: start; }
+  @media (max-width: 680px) { .cards { grid-template-columns: 1fr; } }
+  .plan { border: 1px solid var(--line); border-radius: 14px; padding: 28px 24px 24px; position: relative; }
+  .plan.featured { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .plan-badge {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--accent); color: #fff; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase; padding: 3px 12px;
+    border-radius: 12px; white-space: nowrap;
+  }
+  .plan-name { font-size: 14px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 12px; }
+  .plan-price { display: flex; align-items: flex-end; gap: 4px; margin: 0 0 4px; }
+  .price-dollar { font-size: 22px; font-weight: 600; color: var(--muted); margin-bottom: 6px; }
+  .price-num { font-size: 48px; font-weight: 700; line-height: 1; letter-spacing: -0.02em; }
+  .price-period { font-size: 14px; color: var(--muted); margin-bottom: 6px; }
+  .plan-billing { font-size: 13px; color: var(--muted); margin: 0 0 20px; min-height: 18px; }
+  .plan-seats { font-size: 15px; font-weight: 600; margin: 0 0 16px; }
+  .plan-divider { border: none; border-top: 1px solid var(--line); margin: 0 0 16px; }
+  .plan-features { list-style: none; padding: 0; margin: 0 0 24px; }
+  .plan-features li { font-size: 14px; color: var(--muted); padding: 5px 0 5px 20px; position: relative; }
+  .plan-features li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+  .plan-cta { display: block; text-align: center; padding: 10px 16px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; transition: opacity 0.15s; }
+  .plan-cta:hover { opacity: 0.85; text-decoration: none; }
+  .cta-primary { background: var(--accent); color: #fff; }
+  .cta-outline { border: 1px solid var(--line); color: var(--ink); }
+  .faq { margin-top: 56px; }
+  .faq h2 { font-size: 22px; margin: 0 0 24px; }
+  .faq-item { border-top: 1px solid var(--line); padding: 18px 0; }
+  .faq-item:last-child { border-bottom: 1px solid var(--line); }
+  .faq-q { font-weight: 600; margin: 0 0 6px; }
+  .faq-a { color: var(--muted); font-size: 15px; margin: 0; }
+  .footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">← Back to Approval Flow</a>
+  <h1 class="page-title">Simple, transparent pricing</h1>
+  <p class="page-sub">Free for small teams. Pay as you grow.</p>
+  <div class="toggle-wrap">
+    <span class="toggle-label active" id="lbl-monthly">Monthly</span>
+    <button class="toggle" id="billing-toggle" aria-label="Toggle billing period"></button>
+    <span class="toggle-label" id="lbl-yearly">Yearly</span>
+    <span class="save-badge" id="save-badge" style="display:none;">Save 22%</span>
+  </div>
+  <div class="cards">
+    <div class="plan">
+      <p class="plan-name">Free</p>
+      <div class="plan-price">
+        <span class="price-dollar">$</span>
+        <span class="price-num">0</span>
+        <span class="price-period">/month</span>
+      </div>
+      <p class="plan-billing">&nbsp;</p>
+      <p class="plan-seats">Up to 5 seats</p>
+      <hr class="plan-divider">
+      <ul class="plan-features">
+        <li>Unlimited approval flows</li>
+        <li>Multi-stage approvals</li>
+        <li>Conditional stages</li>
+        <li>Board status tracking</li>
+        <li>Full history log</li>
+        <li>Email support</li>
+      </ul>
+      <a href="how-to-use.html" class="plan-cta cta-outline">Get started free</a>
+    </div>
+    <div class="plan featured">
+      <div class="plan-badge">Most popular</div>
+      <p class="plan-name">Pro</p>
+      <div class="plan-price">
+        <span class="price-dollar">$</span>
+        <span class="price-num" id="pro-price">9</span>
+        <span class="price-period">/month</span>
+      </div>
+      <p class="plan-billing" id="pro-billing">&nbsp;</p>
+      <p class="plan-seats">Up to 25 seats</p>
+      <hr class="plan-divider">
+      <ul class="plan-features">
+        <li>Everything in Free</li>
+        <li>Priority support</li>
+        <li>Priority feature requests</li>
+      </ul>
+      <a href="https://monday.com/marketplace" class="plan-cta cta-primary">Start free trial</a>
+    </div>
+    <div class="plan">
+      <p class="plan-name">Business</p>
+      <div class="plan-price">
+        <span class="price-dollar">$</span>
+        <span class="price-num" id="biz-price">19</span>
+        <span class="price-period">/month</span>
+      </div>
+      <p class="plan-billing" id="biz-billing">&nbsp;</p>
+      <p class="plan-seats">Unlimited seats</p>
+      <hr class="plan-divider">
+      <ul class="plan-features">
+        <li>Everything in Pro</li>
+        <li>Unlimited team members</li>
+        <li>Priority support</li>
+        <li>Priority feature requests</li>
+      </ul>
+      <a href="https://monday.com/marketplace" class="plan-cta cta-outline">Start free trial</a>
+    </div>
+  </div>
+  <div class="faq">
+    <h2>Common questions</h2>
+    <div class="faq-item">
+      <p class="faq-q">What counts as a seat?</p>
+      <p class="faq-a">A seat is a monday.com account that is assigned as an approver or that configures a flow. Viewers who only see board status columns do not count.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Is there a free trial for paid plans?</p>
+      <p class="faq-a">Yes. Every paid plan comes with a 14-day free trial. No credit card required to start.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Can I change plans later?</p>
+      <p class="faq-a">Yes. You can upgrade, downgrade, or cancel at any time from your monday.com account. Changes take effect at the next billing cycle.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Does Approval Flow use automation actions?</p>
+      <p class="faq-a">No. Approval Flow uses the monday.com API directly, so it never consumes automation actions from your plan quota.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">What happens if my team grows past the plan limit?</p>
+      <p class="faq-a">You will be prompted to upgrade. Existing flows and history are never deleted — upgrading restores full access immediately.</p>
+    </div>
+  </div>
+  <div class="footer">
+    Questions about pricing? Email us at <a href="mailto:support@aiverylabs.com">support@aiverylabs.com</a>.
+  </div>
+</div>
+<script>
+  const toggle = document.getElementById('billing-toggle');
+  const proPrice = document.getElementById('pro-price');
+  const bizPrice = document.getElementById('biz-price');
+  const proBilling = document.getElementById('pro-billing');
+  const bizBilling = document.getElementById('biz-billing');
+  const lblMonthly = document.getElementById('lbl-monthly');
+  const lblYearly = document.getElementById('lbl-yearly');
+  const saveBadge = document.getElementById('save-badge');
+  let yearly = false;
+  toggle.addEventListener('click', () => {
+    yearly = !yearly;
+    toggle.classList.toggle('yearly', yearly);
+    proPrice.textContent = yearly ? '7' : '9';
+    bizPrice.textContent = yearly ? '15' : '19';
+    proBilling.textContent = yearly ? 'billed $84/year' : '';
+    bizBilling.textContent = yearly ? 'billed $180/year' : '';
+    lblMonthly.classList.toggle('active', !yearly);
+    lblYearly.classList.toggle('active', yearly);
+    saveBadge.style.display = yearly ? 'inline' : 'none';
+  });
+</script>
+</body>
+</html>
