@@ -77,6 +77,14 @@
     margin: 0 0 20px;
     font-style: italic;
   }
+  .screenshot {
+    display: block;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    margin: 12px 0 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  }
   .callout {
     background: var(--soft);
     border-radius: 10px;
@@ -110,36 +118,36 @@
 
   <h2><span class="step-num">1</span>Add Approval Flow to your board</h2>
   <p>Open the board you want to work with and go to the item view area. Add the Approval Flow view. Once it is added, it shows up as a tab on your items, ready to use.</p>
-  <span class="imgnote">[Add image here: the Approval Flow view being added to a board]</span>
 
   <h2><span class="step-num">2</span>Open the app on an item</h2>
   <p>Open any item on your board and go to the Approval Flow tab. Inside, you will find three sections: Stages, Tracking, and History. Most of your setup happens in Stages.</p>
-  <span class="imgnote">[Add image here: the three tabs, Stages, Tracking, and History]</span>
+  <img class="screenshot" src="images/step2-open-item.png" alt="Approval Flow tab open on an item showing the Stages section">
 
   <h2><span class="step-num">3</span>Build your first flow</h2>
   <p>A flow is made up of one or more stages that run in order. For each stage, you decide two things.</p>
   <p><strong>Who approves.</strong> You can pick specific people, or point the stage at a People column on your board so the approver is taken from each item. The People column option is useful when the right approver changes from item to item, such as an assigned manager.</p>
+  <img class="screenshot" src="images/step3a-people-column.png" alt="Selecting a People column as the approver source for a stage">
   <p><strong>How many need to approve.</strong> Choose Everyone, where all approvers in the stage have to sign off, or Anyone, where the first approval clears the stage.</p>
   <p>If you need a chain of approvals, add more stages. Stage two only opens once stage one has been approved, and so on down the line.</p>
-  <span class="imgnote">[Add image here: a stage showing selected approvers and the Everyone or Anyone choice]</span>
+  <img class="screenshot" src="images/step3b-multi-stage.png" alt="A flow with multiple stages set up in sequence">
 
   <h2><span class="step-num">4</span>Add conditions (optional)</h2>
   <p>This is where Approval Flow does more than a basic approval tool. You can put a condition on a stage so it only applies when an item matches. For example, you might require the finance lead only when an amount column goes over a number you set. Items that do not match simply skip that stage.</p>
   <p>You can combine several conditions and choose whether all of them need to match or just one.</p>
-  <span class="imgnote">[Add image here: a condition set on a stage, such as amount greater than a value]</span>
+  <img class="screenshot" src="images/step4-conditions.png" alt="A condition set on a stage — amount greater than a value or priority is P1">
 
   <h2><span class="step-num">5</span>Turn on board tracking (optional)</h2>
   <p>Go to the Tracking tab and switch on board tracking. The app creates an Approval Status column and keeps it up to date as items move through their stages, showing Pending, In Review, Approved, or Rejected. Anyone looking at the board can see where each item stands.</p>
   <p>This step is optional. If you leave tracking off, the app still runs your approvals, it just will not write a status column to the board.</p>
-  <span class="imgnote">[Add image here: the Approval Status column on a board with a few different statuses]</span>
+  <img class="screenshot" src="images/step5-tracking.png" alt="The Tracking tab with the Show approval status on the board toggle turned on">
 
   <h2><span class="step-num">6</span>Run an approval</h2>
   <p>Once a flow is set up, approvers act right from the item. They approve, reject, or leave a comment. As each stage clears, the next one opens on its own, and the approvers for that stage get a notification in monday and by email letting them know it is their turn.</p>
-  <span class="imgnote">[Add image here: an approver approving or rejecting from the item]</span>
+  <img class="screenshot" src="images/step6-run-approval.png" alt="An approver approving or rejecting from the item panel">
 
   <h2>The History tab</h2>
   <p>Every change to a flow is recorded in the History tab, including who changed what and when. Approval decisions are logged too, with the person, the time, and any comment they left. If you ever need to explain how an item was approved, the full record is there.</p>
-  <span class="imgnote">[Add image here: the History tab showing a list of changes and decisions]</span>
+  <img class="screenshot" src="images/history-tab.png" alt="The History tab showing a log of flow changes and approval decisions">
 
   <div class="callout">
     <h2 style="border:none;padding:0;margin:0 0 12px;">Good to know</h2>
@@ -150,7 +158,7 @@
   </div>
 
   <div class="footer">
-    Need help? Email us at <a href="mailto:[SUPPORT EMAIL]">[SUPPORT EMAIL]</a> and we will help you out.
+    Need help? Email us at <a href="mailto:support@aiverylabs.com">support@aiverylabs.com</a> and we will help you out.
   </div>
 
 </div>
