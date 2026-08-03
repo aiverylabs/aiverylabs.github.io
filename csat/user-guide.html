@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSAT for monday - User Guide</title>
+<meta name="description" content="How to install, configure and read results from CSAT for monday, the customer satisfaction survey app for monday service.">
+<style>
+  :root {
+    --ink: #292f4c;
+    --muted: #676879;
+    --line: #e6e9ef;
+    --accent: #0073ea;
+    --bg: #ffffff;
+    --soft: #f6f7fb;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  .shell {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 40px 24px 72px;
+    display: grid;
+    grid-template-columns: 208px minmax(0, 1fr);
+    gap: 48px;
+    align-items: start;
+  }
+
+  .back { display: inline-block; margin-bottom: 24px; font-size: 14px; color: var(--accent); }
+
+  /* Contents rail */
+  .toc { position: sticky; top: 32px; font-size: 14px; }
+  .toc p {
+    margin: 0 0 14px;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .toc ol { list-style: none; margin: 0; padding: 0; }
+  .toc li { margin: 0 0 2px; }
+  .toc a {
+    display: block;
+    padding: 5px 12px;
+    border-left: 2px solid var(--line);
+    color: var(--muted);
+    line-height: 1.4;
+  }
+  .toc a:hover { color: var(--ink); text-decoration: none; }
+  .toc li.is-active a { border-left-color: var(--accent); color: var(--ink); font-weight: 600; }
+
+  /* Article */
+  h1 { font-size: 30px; line-height: 1.25; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .lede { color: var(--muted); font-size: 17px; margin: 0 0 40px; }
+  h2 {
+    font-size: 20px;
+    margin: 44px 0 12px;
+    padding-top: 26px;
+    border-top: 1px solid var(--line);
+    letter-spacing: -0.01em;
+    scroll-margin-top: 24px;
+  }
+  h2:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+  h3 { font-size: 17px; margin: 30px 0 10px; }
+  p { margin: 0 0 16px; }
+  ul, ol.plain { margin: 0 0 16px; padding-left: 22px; }
+  li { margin: 0 0 8px; }
+  strong { color: var(--ink); }
+  em { font-style: italic; }
+
+  .step-num {
+    display: inline-block;
+    min-width: 26px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .screenshot {
+    display: block;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    margin: 12px 0 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    background: var(--soft);
+    font-size: 14px;
+    color: var(--muted);
+    padding: 12px;
+  }
+  figure { margin: 0 0 24px; }
+  figcaption { font-size: 13px; color: var(--muted); }
+  .callout {
+    background: var(--soft);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin: 24px 0;
+  }
+  .callout h3 { margin: 0 0 8px; font-size: 15px; }
+  .callout p:last-child, .callout ul:last-child { margin-bottom: 0; }
+  .todo {
+    background: #fff4d6;
+    border-bottom: 1px solid #e0a92a;
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: #7a5406;
+    font-size: 15px;
+  }
+  .footer {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 15px;
+  }
+
+  @media (max-width: 900px) {
+    .shell { grid-template-columns: 1fr; gap: 0; }
+    .toc { position: static; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+    .toc ol { display: flex; flex-wrap: wrap; gap: 4px 0; }
+    .toc a { border-left: none; border-bottom: 2px solid var(--line); padding: 4px 12px 4px 0; margin-right: 14px; }
+    .toc li.is-active a { border-left: none; border-bottom-color: var(--accent); }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <nav class="toc" aria-label="Contents">
+    <p>Contents</p>
+    <ol>
+      <li><a href="#start">Before you begin</a></li>
+      <li><a href="#install">1. Install CSAT</a></li>
+      <li><a href="#authorize">2. Authorize access</a></li>
+      <li><a href="#configure">3. Build your first survey</a></li>
+      <li><a href="#sending">4. How surveys get sent</a></li>
+      <li><a href="#customer">5. What your customer sees</a></li>
+      <li><a href="#results">6. Read your results</a></li>
+      <li><a href="#visibility">Who can see what</a></li>
+      <li><a href="#privacy">Privacy in brief</a></li>
+      <li><a href="#help">Get help</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <a class="back" href="./">Back to CSAT for monday</a>
+
+    <h1>Getting started with CSAT</h1>
+    <p class="lede">CSAT sends a short satisfaction survey when a ticket reaches the status you choose, then collects the ratings and comments where your team can read them. This guide takes you from installing the app to reading your first results. Setup runs about ten minutes, and most of that is deciding what to ask rather than clicking through screens.</p>
+
+    <h2 id="start">Before you begin</h2>
+    <p>CSAT works alongside a service board you already run. Three things need to be true before it can do anything useful.</p>
+    <ul>
+      <li><strong>Admin rights on a monday.com account with monday service.</strong> Only account admins can install apps.</li>
+      <li><strong>A status column that marks work as finished.</strong> Most service boards already have one, usually with a label like Done or Resolved.</li>
+      <li><strong>A field holding the customer's email address.</strong> Normally an email column, or the requester on tickets that arrive by form or email intake.</li>
+    </ul>
+    <p>If the third one is missing, set it up first. CSAT has no way to reach a customer whose address it cannot find, and it will not guess.</p>
+
+    <h2 id="install"><span class="step-num">1</span>Install CSAT</h2>
+    <p>In monday.com, click the apps icon in the top right and open the Apps marketplace. Search for CSAT for monday, open the app page, then click Install and confirm which account you are installing into.</p>
+    <figure>
+      <img class="screenshot" src="../images/csat/01-marketplace-install.png" alt="The CSAT listing in the monday.com apps marketplace with the Install button visible">
+      <figcaption>The app page in the marketplace.</figcaption>
+    </figure>
+    <figure>
+      <img class="screenshot" src="../images/csat/02-install-confirm.png" alt="The monday.com install dialog asking which account to install CSAT into">
+      <figcaption>Choosing the account and confirming the install.</figcaption>
+    </figure>
+    <p>Installing adds CSAT to your account and nothing else. No survey reaches anyone until you build a configuration and switch it on, which happens in step 3.</p>
+
+    <h2 id="authorize"><span class="step-num">2</span>Authorize access</h2>
+    <p>The first time you open CSAT, monday.com shows you exactly what the app is asking for. CSAT requests the narrowest set of permissions that lets it work. It reads board and item data so it can tell when a ticket changed status and who the customer is, and it writes back so results appear where you expect them.</p>
+    <figure>
+      <img class="screenshot" src="../images/csat/03-authorize.png" alt="The monday.com authorization screen listing the permission scopes CSAT requests">
+      <figcaption>The authorization screen with the full scope list.</figcaption>
+    </figure>
+    <div class="callout">
+      <h3>Worth a moment</h3>
+      <p>Read the list before approving. If anything on it looks wider than what is described here, stop and write to us rather than approving and asking afterwards.</p>
+    </div>
+    <p>Click Authorize and you land back in CSAT, ready to build a survey. If you later revoke this authorization, CSAT stops working straight away and begins removing your data.</p>
+
+    <h2 id="configure"><span class="step-num">3</span>Build your first survey</h2>
+    <p>This is the part worth slowing down for. Everything that follows depends on these choices. Open CSAT and click <span class="todo">[create button label]</span>.</p>
+    <figure>
+      <img class="screenshot" src="../images/csat/04-empty-state.png" alt="CSAT with no configurations yet, showing the button to create the first survey">
+      <figcaption>The empty state, before any survey exists.</figcaption>
+    </figure>
+
+    <h3>Pick the board</h3>
+    <p>One configuration covers one board. If you run several service boards, set each one up separately. That is more clicks, but it lets each team ask its own questions.</p>
+    <figure>
+      <img class="screenshot" src="../images/csat/05-board-picker.png" alt="Choosing which monday service board the survey applies to">
+      <figcaption>Board selection.</figcaption>
+    </figure>
+
+    <h3>Pick the trigger status</h3>
+    <p>Choose the status that means the ticket is finished <em>from the customer's point of view</em>. For most teams that is Done or Resolved.</p>
+    <p>Think twice about statuses like Waiting on customer or Pending review. A survey arriving at that moment reads as though you consider the matter closed when the customer does not.</p>
+    <figure>
+      <img class="screenshot" src="../images/csat/06-trigger-status.png" alt="The status dropdown open with the trigger status being selected">
+      <figcaption>Picking the status that fires the survey.</figcaption>
+    </figure>
+
+    <h3>Point CSAT at the email address</h3>
+    <p>Tell CSAT which field holds the customer's address. Depending on how your board is built, this is an email column or the requester on the ticket.</p>
+    <p>When that field is empty on a ticket, CSAT skips it quietly. Nothing sends and nothing errors. If a survey you expected never appeared, an empty address field is the first thing to check.</p>
+    <figure>
+      <img class="screenshot" src="../images/csat/07-email-mapping.png" alt="Mapping the board field that contains the customer email address">
+      <figcaption>Mapping the email field.</figcaption>
+    </figure>
+
+    <h3>Write the questions</h3>
+    <p>Every survey opens with a one to five star rating. That question is fixed, because it is the number every report is built from.</p>
+    <p>Below it you can add a few follow up questions. Keep the list short. Response rates fall away quickly past two or three questions, and a rating with no comment is still useful while an abandoned survey is not. A pattern that works well is one rating, then one open text box asking what would have made the experience better.</p>
+    <figure>
+      <img class="screenshot" src="../images/csat/08-questions.png" alt="The question editor showing the fixed star rating and one follow up question">
+      <figcaption>The question editor.</figcaption>
+    </figure>
+
+    <h3>Write the email</h3>
+    <p>Your customer receives an email inviting them to rate the ticket. You control <span class="todo">[subject, greeting, sign off, per the fields in the app]</span>.</p>
+    <p>Write it the way someone on your team would write it, because from the customer's side that is what happened. Name the ticket so they remember which conversation you mean, and keep it to a few lines.</p>
+    <figure>
+      <img class="screenshot" src="../images/csat/09-email-editor.png" alt="The editor for the survey invitation email">
+      <figcaption>The email content editor.</figcaption>
+    </figure>
+
+    <h3>Set exclusions</h3>
+    <p>Some addresses should never receive a survey. Internal staff who file tickets for other people, shared inboxes, monitoring systems, and any customer who has asked you to stop. Add those addresses to the exclusion list for this board, and CSAT checks the list before every send.</p>
+    <div class="callout">
+      <h3>How to treat this list</h3>
+      <p>Addresses on the exclusion list are stored as you typed them, not scrambled, so the list itself counts as customer data. Add addresses you are already holding for other reasons, and nothing more.</p>
+    </div>
+    <figure>
+      <img class="screenshot" src="../images/csat/10-exclusions.png" alt="The per board exclusion list with a few sample addresses">
+      <figcaption>The exclusion list.</figcaption>
+    </figure>
+
+    <h3>Test once, then switch it on</h3>
+    <p>Nothing sends while the configuration is off. Before you turn it on, run a single test. Put your own address on a ticket that belongs to you, move it into the trigger status, then watch the email arrive, click through, submit a rating, and confirm it lands on the dashboard. Five minutes there saves an awkward first impression with a real customer.</p>
+    <figure>
+      <img class="screenshot" src="../images/csat/11-activate.png" alt="The configuration switched to active">
+      <figcaption>The configuration, switched on.</figcaption>
+    </figure>
+
+    <h2 id="sending"><span class="step-num">4</span>How surveys get sent</h2>
+    <p>Once a configuration is active the sequence runs without anyone touching it. An agent moves a ticket into the trigger status, CSAT notices, finds the address, runs its checks, and sends. Agents have no button to press and nothing to remember. That is the point.</p>
+    <h3>When CSAT does not send</h3>
+    <p>CSAT holds back in five situations, each of them deliberate.</p>
+    <ul>
+      <li>The ticket has no email address in the mapped field.</li>
+      <li>The address is on this board's exclusion list.</li>
+      <li>The customer opted out of CSAT surveys previously.</li>
+      <li>This ticket was already surveyed recently. See <a href="#repeat">repeat protection</a> below.</li>
+      <li>Earlier mail to that address bounced, so CSAT stopped writing to a dead mailbox.</li>
+    </ul>
+    <p>Delivery is normally quick, though the message passes through an email provider and ordinary email delays apply.</p>
+
+    <h2 id="customer"><span class="step-num">5</span>What your customer sees</h2>
+    <p>They receive your email and click through to a plain page showing the ticket and the star rating. They choose a rating, answer your follow up questions, and submit. No account, no signup, nothing to install.</p>
+    <figure>
+      <img class="screenshot" src="../images/csat/12-email-received.png" alt="The survey invitation email as it appears in a mail client">
+      <figcaption>The invitation as it arrives.</figcaption>
+    </figure>
+    <figure>
+      <img class="screenshot" src="../images/csat/13-survey-page.png" alt="The survey page with the star rating and follow up question, before submitting">
+      <figcaption>The survey page before submission.</figcaption>
+    </figure>
+    <p>After they submit, a short confirmation appears and the link stops accepting answers, so a forwarded email cannot be used to rate the same ticket twice.</p>
+    <figure>
+      <img class="screenshot" src="../images/csat/14-thank-you.png" alt="The confirmation page shown after a customer submits a rating">
+      <figcaption>Confirmation after submission.</figcaption>
+    </figure>
+
+    <h3 id="repeat">Repeat protection</h3>
+    <p>CSAT records that a ticket has been surveyed, so reopening and re resolving it does not ask the same person the same question again. That record expires after roughly three months, which means a ticket reopened much later can be surveyed again as genuinely new work.</p>
+
+    <h3>Opting out</h3>
+    <p>Every survey email carries an unsubscribe link. A customer who uses it receives no further CSAT surveys from you, on any board.</p>
+    <figure>
+      <img class="screenshot" src="../images/csat/15-unsubscribe.png" alt="The confirmation page shown after a customer unsubscribes">
+      <figcaption>The unsubscribe confirmation.</figcaption>
+    </figure>
+
+    <h2 id="results"><span class="step-num">6</span>Read your results</h2>
+    <p>Open CSAT from the board to see the ratings collected there: the overall picture, how it is moving over time, and every individual response including whatever customers wrote.</p>
+    <figure>
+      <img class="screenshot" src="../images/csat/16-dashboard.png" alt="The CSAT dashboard showing overall satisfaction and the trend over time">
+      <figcaption>The dashboard.</figcaption>
+    </figure>
+    <p>The written comments are usually where the value sits. A score tells you something changed. A comment tells you what to do about it.</p>
+    <figure>
+      <img class="screenshot" src="../images/csat/17-response-detail.png" alt="A single customer response including the rating and written comment">
+      <figcaption>One response, with the comment the customer left.</figcaption>
+    </figure>
+    <p>Results can be read for the team as a whole and broken down by the agent who handled each ticket, so agents can see feedback on their own work.</p>
+    <figure>
+      <img class="screenshot" src="../images/csat/18-agent-breakdown.png" alt="Ratings broken down by the agent who handled each ticket">
+      <figcaption>Ratings by agent.</figcaption>
+    </figure>
+    <div class="callout">
+      <h3>Reading small numbers</h3>
+      <p>In the first weeks you will have few responses, and one unhappy customer swings the average hard. Treat early numbers as a signal that the mechanism works, not as a verdict on the team.</p>
+    </div>
+
+    <h2 id="visibility">Who can see what</h2>
+    <p>Decide this before you switch a configuration on rather than after, because it changes who inside your company sees customer contact details.</p>
+    <p><strong>Agents can see which customer left a given response.</strong> Where a display name exists, the display name appears. Where CSAT holds only an email address, the email address appears.</p>
+    <p>That is what makes per agent feedback useful, and it is also more exposure than some teams want. If it does not suit yours, raise it with us before rolling CSAT out to the whole desk.</p>
+
+    <h2 id="privacy">Privacy in brief</h2>
+    <p>CSAT handles your customers' email addresses and whatever they write in a survey, so here is the short version. The full detail, including every sub processor, retention period, and what happens when you uninstall, is in the <a href="#" class="todo">[privacy policy URL]</a>.</p>
+    <p>Survey data is stored outside monday.com in a managed Postgres database, encrypted at rest and in transit. Email is sent through a third party email provider.</p>
+    <p>Two points sit here rather than buried in the policy, because they tend to surprise people.</p>
+    <ul>
+      <li>Agents can see customer identities, including raw email addresses where no display name exists, as described above.</li>
+      <li>When someone unsubscribes, CSAT keeps a scrambled version of their address so it can keep honoring that request. Deleting it outright would mean forgetting that they asked you to stop.</li>
+    </ul>
+
+    <h2 id="help">Get help</h2>
+    <p>Email <a href="mailto:support@aiverylabs.com">support@aiverylabs.com</a>, or open a request at <a href="#" class="todo">[support portal URL]</a>.</p>
+    <p>Include your monday.com account name, the board, the ticket that did or did not behave as expected, and roughly when it happened. That is usually enough for us to find it.</p>
+
+    <div class="footer">
+      CSAT for monday is built by Aiverylabs. Questions? Email <a href="mailto:support@aiverylabs.com">support@aiverylabs.com</a> and we will help you out.
+    </div>
+  </main>
+</div>
+
+<script>
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+  var items = links.map(function (a) {
+    return { li: a.parentElement, target: document.querySelector(a.getAttribute('href')) };
+  }).filter(function (i) { return i.target; });
+
+  function sync() {
+    var line = window.scrollY + 130, current = items[0];
+    items.forEach(function (i) {
+      if (i.target.getBoundingClientRect().top + window.scrollY <= line) { current = i; }
+    });
+    items.forEach(function (i) { i.li.classList.toggle('is-active', i === current); });
+  }
+  sync();
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(function () { sync(); ticking = false; });
+  }, { passive: true });
+})();
+</script>
+</body>
+</html>
