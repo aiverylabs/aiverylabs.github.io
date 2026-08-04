@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Survey Flow - Terms of Service</title>
+<meta name="description" content="The terms that apply when you install and use Survey Flow, the automated feedback survey app for monday.com.">
+<style>
+  :root {
+    --ink: #292f4c;
+    --muted: #676879;
+    --line: #e6e9ef;
+    --accent: #0073ea;
+    --bg: #ffffff;
+    --soft: #f6f7fb;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+    font-size: 16px;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  .shell {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 40px 24px 72px;
+    display: grid;
+    grid-template-columns: 208px minmax(0, 1fr);
+    gap: 48px;
+    align-items: start;
+  }
+  .back { display: inline-block; margin-bottom: 24px; font-size: 14px; color: var(--accent); }
+
+  .toc { position: sticky; top: 32px; font-size: 14px; }
+  .toc p { margin: 0 0 14px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .toc ol { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+  .toc li { margin: 0 0 2px; counter-increment: s; }
+  .toc a { display: block; padding: 5px 12px; border-left: 2px solid var(--line); color: var(--muted); line-height: 1.4; }
+  .toc a::before { content: counter(s) ". "; }
+  .toc a:hover { color: var(--ink); text-decoration: none; }
+  .toc li.is-active a { border-left-color: var(--accent); color: var(--ink); font-weight: 600; }
+
+  h1 { font-size: 30px; line-height: 1.25; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .meta { color: var(--muted); font-size: 15px; margin: 0 0 8px; }
+  .lede { color: var(--muted); font-size: 17px; margin: 0 0 36px; }
+  h2 {
+    font-size: 20px; margin: 44px 0 12px; padding-top: 26px;
+    border-top: 1px solid var(--line); letter-spacing: -0.01em; scroll-margin-top: 24px;
+    counter-increment: sec;
+  }
+  h2::before { content: counter(sec) ". "; color: var(--muted); font-weight: 400; }
+  main { counter-reset: sec; }
+  h3 { font-size: 17px; margin: 28px 0 8px; }
+  p { margin: 0 0 16px; }
+  ul { margin: 0 0 16px; padding-left: 22px; }
+  li { margin: 0 0 8px; }
+  strong { color: var(--ink); }
+
+  .callout { background: var(--soft); border-radius: 10px; padding: 18px 20px; margin: 24px 0; }
+  .callout h3 { margin: 0 0 8px; font-size: 15px; }
+  .callout p:last-child, .callout ul:last-child { margin-bottom: 0; }
+
+  .footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; }
+
+  @media (max-width: 900px) {
+    .shell { grid-template-columns: 1fr; gap: 0; }
+    .toc { position: static; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+    .toc ol { display: flex; flex-wrap: wrap; gap: 4px 0; }
+    .toc a { border-left: none; border-bottom: 2px solid var(--line); padding: 4px 12px 4px 0; margin-right: 14px; }
+    .toc li.is-active a { border-left: none; border-bottom-color: var(--accent); }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <nav class="toc" aria-label="Contents">
+    <p>Contents</p>
+    <ol>
+      <li><a href="#agreement">This agreement</a></li>
+      <li><a href="#service">What Survey Flow does</a></li>
+      <li><a href="#eligibility">Who can use it</a></li>
+      <li><a href="#responsibilities">Your responsibilities</a></li>
+      <li><a href="#sending">Sending on a shared domain</a></li>
+      <li><a href="#prohibited">What you must not do</a></li>
+      <li><a href="#data">Your data and ours</a></li>
+      <li><a href="#contact-you">When we contact you</a></li>
+      <li><a href="#fees">Fees and billing</a></li>
+      <li><a href="#availability">Availability and support</a></li>
+      <li><a href="#suspension">Suspension and termination</a></li>
+      <li><a href="#warranties">Warranties</a></li>
+      <li><a href="#liability">Liability</a></li>
+      <li><a href="#indemnity">Indemnity</a></li>
+      <li><a href="#changes">Changes</a></li>
+      <li><a href="#general">General</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <a class="back" href="./">Back to Survey Flow</a>
+
+    <h1>Terms of Service</h1>
+    <p class="meta">Survey Flow, operated by AIVERY LABS PTY LTD. Last updated 5 August 2026.</p>
+    <p class="lede">These terms cover what you can expect from Survey Flow and what we expect from you. The most important part is section 4, because Survey Flow emails your customers on your behalf, and that carries obligations you take on rather than us.</p>
+
+    <h2 id="agreement">This agreement</h2>
+    <p>This agreement is between you, meaning the monday.com account that installs Survey Flow and everyone using it under that account, and <strong>AIVERY LABS PTY LTD</strong>, ABN 89 696 967 209 and ACN 696 967 209, a company incorporated in Western Australia, Australia.</p>
+    <p>Installing or using Survey Flow means you accept these terms. If you are accepting on behalf of a company, you confirm you have authority to bind it.</p>
+    <p>Our <a href="privacy.html">privacy policy</a> forms part of this agreement. Where the two documents overlap, the privacy policy governs how we handle personal data.</p>
+    <p>Your use of monday.com itself is governed by your agreement with monday.com, not by us. Nothing here changes that.</p>
+
+    <h2 id="service">What Survey Flow does</h2>
+    <p>Survey Flow watches a board you nominate. When an item reaches the status you choose, it emails the address in the field you mapped, inviting that person to rate the work from one to five stars and answer any follow up questions you configured. Responses appear on a dashboard in your monday.com account, broken down by agent, and can be written back onto the item.</p>
+    <p>The <a href="user-guide.html">user guide</a> describes the current feature set. Features change over time, and section 15 covers how.</p>
+
+    <h2 id="eligibility">Who can use it</h2>
+    <p>You need a monday.com account and administrator rights on it to install Survey Flow. You must be able to form a binding contract in your jurisdiction, and you must not be barred from receiving our services under any applicable law or sanctions regime.</p>
+    <p>You are responsible for everyone who uses Survey Flow under your account, and for keeping your monday.com access secure.</p>
+
+    <h2 id="responsibilities">Your responsibilities</h2>
+    <p>Survey Flow sends email to people who have no relationship with us. They know your company, not ours. That makes the following your obligations, not ours.</p>
+
+    <h3>You decide who is contacted</h3>
+    <p>You choose the board, the trigger status, the conditions and the field holding the address. We send to whoever that produces. You must have a lawful basis to email those people, and a genuine business relationship with them of the kind that makes a satisfaction survey a reasonable thing to send.</p>
+
+    <h3>You comply with email and privacy law</h3>
+    <p>You are responsible for complying with the law that applies to you and to your recipients, including the Australian Spam Act 2003, the United States CAN-SPAM Act, Canada's CASL, the GDPR and the UK GDPR, and any equivalent law in your recipients' jurisdictions.</p>
+
+    <h3>You own what the survey says</h3>
+    <p>The subject line, the greeting, the questions, the sign off, your sender name and your logo are yours. You are responsible for their content, for their accuracy, and for making sure they do not infringe anyone's rights.</p>
+
+    <h3>You handle the responses</h3>
+    <p>Answers to your surveys are your data. You decide who on your team can see them, and you are responsible for what your people do with them. Section 4 of the privacy policy explains who inside your account can see recipient identities, and it is worth reading before you switch a configuration on.</p>
+
+    <h2 id="sending">Sending on a shared domain</h2>
+    <p>All Survey Flow customers send through the same email domain. This makes setup simple, and it means one customer's sending affects everyone else's deliverability. Two consequences follow, and both are conditions of using the service.</p>
+    <p><strong>The suppression list is shared.</strong> When an address unsubscribes, hard bounces, or reports a message as spam, it is suppressed for every Survey Flow customer, not just yours. We cannot honor a complaint against our sending domain selectively. This means an address you have never emailed may already be suppressed, and we will not tell you which, because that would reveal another customer's data.</p>
+    <p><strong>We can throttle or suspend sending that puts the domain at risk.</strong> If your sending produces a bounce or complaint rate that threatens deliverability for other customers, we may rate limit or pause your sending. We will tell you and explain why, and we will work with you to fix it before taking anything further.</p>
+
+    <h2 id="prohibited">What you must not do</h2>
+    <ul>
+      <li>Send to purchased, rented, scraped or otherwise acquired address lists, or to anyone with whom you have no prior business relationship.</li>
+      <li>Use Survey Flow as a general mailing tool. It exists to survey people about work you did for them, and it is not a newsletter, a marketing platform, or a bulk sender.</li>
+      <li>Send anything unlawful, deceptive, harassing, or designed to look like it came from someone other than you.</li>
+      <li>Attempt to gain unauthorised access to the service, other customers' data, or our infrastructure. This includes probing, scanning and load testing without our written agreement.</li>
+      <li>Reverse engineer, decompile or attempt to derive the source of the service, except where the law expressly permits it.</li>
+      <li>Resell, sublicense or make the service available to anyone outside your own organisation.</li>
+      <li>Circumvent rate limits or plan restrictions, or use the service in a way that degrades it for others.</li>
+    </ul>
+
+    <h2 id="data">Your data and ours</h2>
+    <p><strong>Your data stays yours.</strong> Your configuration, your survey responses, your comments and your board content belong to you. We claim no ownership. We use them only to run the service for you and to support you, as set out in the privacy policy.</p>
+    <p><strong>The service stays ours.</strong> Survey Flow, its software, its design and its name remain our property. Installing it gives you a limited, non exclusive, non transferable right to use it while this agreement is in force, and nothing more.</p>
+    <p><strong>Feedback.</strong> If you send us suggestions, we may use them to improve the product without owing you anything for it. This does not give us any right to your data.</p>
+    <p><strong>Aggregate statistics.</strong> We may use anonymous, aggregated information about how the service is used, such as counts of surveys sent or average response rates across all customers, to operate and improve it. This never identifies you, your customers, or any individual response.</p>
+
+    <h2 id="contact-you">When we contact you</h2>
+    <p>monday.com asks us to be explicit about this, and it is worth being explicit about anyway, because Survey Flow sends two very different kinds of email.</p>
+    <p><strong>Surveys we send to your customers.</strong> These go out on your behalf, at your instruction, with your sender name on them. We do not add anything of our own to them, and we never contact your customers for our own purposes.</p>
+    <p><strong>Service messages we send to you.</strong> While Survey Flow is installed, we may email the administrators of your account about things you need to know: delivery problems, suspension of sending, security incidents, material changes to these terms or to the privacy policy, and the end of a subscription. These are part of the service and you cannot opt out of them while you remain a customer.</p>
+    <p><strong>Product news.</strong> We may occasionally email you about new features or related products. Every such message carries an unsubscribe link, and opting out has no effect on the service or on the messages described above.</p>
+    <p>We do not sell your contact details, and we do not pass them to anyone for marketing.</p>
+
+    <h2 id="fees">Fees and billing</h2>
+    <p>Survey Flow is sold through the monday.com marketplace, and monday.com handles pricing, billing, payment and refunds. Your plan, its price and its limits are shown on the marketplace listing.</p>
+    <p>We do not process your payment details and never see them. Questions about a charge, a refund or a renewal go to monday.com in the first instance, and we will help where we can.</p>
+    <p>If your subscription lapses, the service stops working. Your data is not deleted immediately, and the deletion process described in the privacy policy runs when the app is uninstalled or authorization is revoked.</p>
+
+    <h2 id="availability">Availability and support</h2>
+    <p>We aim to keep Survey Flow available and working, but we do not commit to a specific uptime figure and there is no service level agreement attached to these terms. The service depends on monday.com, on our email providers and on other infrastructure we do not control.</p>
+    <p>Email delivery in particular is never guaranteed. A recipient's mail server may reject, delay or filter a message for reasons outside anyone's control, and we cannot promise that a survey will arrive or be seen.</p>
+    <p>Support is available at <a href="mailto:support@aiverylabs.com">support@aiverylabs.com</a> and through <a href="https://aiverylabs.atlassian.net/servicedesk/customer/portal">our support portal</a>. We answer as promptly as we reasonably can.</p>
+
+    <h2 id="suspension">Suspension and termination</h2>
+    <p><strong>You can leave at any time</strong> by uninstalling Survey Flow from your monday.com account. What happens to your data then is described in section 8 of the privacy policy, including the limited cases where some configuration survives.</p>
+    <p><strong>We may suspend or terminate</strong> if you breach these terms, if your use puts the shared sending domain or other customers at risk, if we are required to by law, or if your subscription ends. Except where the breach is serious or urgent, we will contact you first and give you a reasonable chance to put it right.</p>
+    <p>We may also discontinue Survey Flow entirely. If we do, we will give active customers at least 30 days notice so you can export your data and make other arrangements.</p>
+
+    <h2 id="warranties">Warranties</h2>
+    <p>Except as set out in these terms, and to the extent the law allows, Survey Flow is provided as it is, without warranties of any kind, whether express or implied, including any implied warranty of merchantability, fitness for a particular purpose, or non infringement.</p>
+    <div class="callout">
+      <h3>Australian Consumer Law</h3>
+      <p>Nothing in these terms excludes, restricts or modifies any guarantee, right or remedy you have under the Australian Consumer Law or any other law that cannot lawfully be excluded. Where our liability for breach of such a guarantee can be limited, we limit it to resupplying the service or paying the cost of having it resupplied.</p>
+    </div>
+
+    <h2 id="liability">Liability</h2>
+    <p>To the extent the law allows, neither party is liable to the other for indirect, incidental, special or consequential loss, or for loss of profits, revenue, goodwill, data or anticipated savings, however it arises.</p>
+    <p>Our total liability to you for all claims arising out of or relating to this agreement is limited to the fees you paid for Survey Flow in the twelve months before the event giving rise to the claim.</p>
+    <p>These limits do not apply to liability that cannot be limited by law, including under the Australian Consumer Law.</p>
+
+    <h2 id="indemnity">Indemnity</h2>
+    <p>You will indemnify us against claims, losses and reasonable costs arising from your use of Survey Flow in breach of these terms, and in particular from any claim brought by a person you surveyed relating to whether you had the right to email them or to the content of what you sent.</p>
+    <p>This reflects where control sits. You choose the recipients and write the message, and we cannot assess either on your behalf.</p>
+    <p>We will tell you promptly about any claim covered by this section, let you take over its defence, and cooperate with you at your expense.</p>
+
+    <h2 id="changes">Changes</h2>
+    <p><strong>To the service.</strong> We improve, change and occasionally remove features. Where a change materially reduces what the service does, we will tell active customers in advance.</p>
+    <p><strong>To these terms.</strong> Non material changes take effect when we update this page and the date at the top. Material changes are different: we will notify active customers by email at least 14 days before they take effect, and continuing to use Survey Flow after that means you accept them. If you do not, uninstall before the change takes effect.</p>
+
+    <h2 id="general">General</h2>
+    <p><strong>Governing law.</strong> This agreement is governed by the laws of Western Australia, Australia, and both parties submit to the non exclusive jurisdiction of the courts of that state.</p>
+    <p><strong>Assignment.</strong> You may not assign this agreement without our written consent. We may assign it to a successor in connection with a merger, acquisition or sale of assets.</p>
+    <p><strong>Severability.</strong> If any part of this agreement is found unenforceable, the rest continues in force.</p>
+    <p><strong>No waiver.</strong> If we do not enforce a right immediately, we have not given it up.</p>
+    <p><strong>Entire agreement.</strong> These terms and the privacy policy are the whole agreement between us about Survey Flow, and replace anything said before.</p>
+    <p><strong>Contact.</strong> AIVERY LABS PTY LTD, ABN 89 696 967 209 and ACN 696 967 209, Western Australia, Australia. Email <a href="mailto:support@aiverylabs.com">support@aiverylabs.com</a>.</p>
+
+    <div class="footer">
+      Survey Flow is built by Aiverylabs. See also the <a href="privacy.html">privacy policy</a> and the <a href="user-guide.html">user guide</a>.
+    </div>
+  </main>
+</div>
+
+<script>
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+  var items = links.map(function (a) {
+    return { li: a.parentElement, target: document.querySelector(a.getAttribute('href')) };
+  }).filter(function (i) { return i.target; });
+
+  function sync() {
+    var line = window.scrollY + 130, current = items[0];
+    items.forEach(function (i) {
+      if (i.target.getBoundingClientRect().top + window.scrollY <= line) { current = i; }
+    });
+    items.forEach(function (i) { i.li.classList.toggle('is-active', i === current); });
+  }
+  sync();
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(function () { sync(); ticking = false; });
+  }, { passive: true });
+})();
+</script>
+</body>
+</html>

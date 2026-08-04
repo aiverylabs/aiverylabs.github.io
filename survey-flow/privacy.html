@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Survey Flow - Privacy Policy</title>
+<meta name="description" content="How Survey Flow handles personal data: what is stored, where it lives, who can see it, how long it is kept, and what happens when you uninstall.">
+<style>
+  :root {
+    --ink: #292f4c;
+    --muted: #676879;
+    --line: #e6e9ef;
+    --accent: #0073ea;
+    --bg: #ffffff;
+    --soft: #f6f7fb;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+    font-size: 16px;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  .shell {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 40px 24px 72px;
+    display: grid;
+    grid-template-columns: 208px minmax(0, 1fr);
+    gap: 48px;
+    align-items: start;
+  }
+  .back { display: inline-block; margin-bottom: 24px; font-size: 14px; color: var(--accent); }
+
+  .toc { position: sticky; top: 32px; font-size: 14px; }
+  .toc p { margin: 0 0 14px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .toc ol { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+  .toc li { margin: 0 0 2px; counter-increment: s; }
+  .toc a { display: block; padding: 5px 12px; border-left: 2px solid var(--line); color: var(--muted); line-height: 1.4; }
+  .toc a::before { content: counter(s) ". "; }
+  .toc a:hover { color: var(--ink); text-decoration: none; }
+  .toc li.is-active a { border-left-color: var(--accent); color: var(--ink); font-weight: 600; }
+
+  h1 { font-size: 30px; line-height: 1.25; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .meta { color: var(--muted); font-size: 15px; margin: 0 0 8px; }
+  .lede { color: var(--muted); font-size: 17px; margin: 0 0 36px; }
+  h2 {
+    font-size: 20px; margin: 44px 0 12px; padding-top: 26px;
+    border-top: 1px solid var(--line); letter-spacing: -0.01em; scroll-margin-top: 24px;
+    counter-increment: sec;
+  }
+  h2::before { content: counter(sec) ". "; color: var(--muted); font-weight: 400; }
+  main { counter-reset: sec; }
+  h3 { font-size: 17px; margin: 28px 0 8px; }
+  p { margin: 0 0 16px; }
+  ul { margin: 0 0 16px; padding-left: 22px; }
+  li { margin: 0 0 8px; }
+  strong { color: var(--ink); }
+
+  table { width: 100%; border-collapse: collapse; margin: 0 0 20px; font-size: 15px; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); font-weight: 600; }
+
+  .callout { background: var(--soft); border-radius: 10px; padding: 18px 20px; margin: 24px 0; }
+  .callout h3 { margin: 0 0 8px; font-size: 15px; }
+  .callout p:last-child, .callout ul:last-child { margin-bottom: 0; }
+
+  .todo {
+    background: #fff4d6; border-bottom: 1px solid #e0a92a;
+    padding: 1px 5px; border-radius: 3px; color: #7a5406; font-size: 15px;
+  }
+
+  .footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; }
+
+  @media (max-width: 900px) {
+    .shell { grid-template-columns: 1fr; gap: 0; }
+    .toc { position: static; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+    .toc ol { display: flex; flex-wrap: wrap; gap: 4px 0; }
+    .toc a { border-left: none; border-bottom: 2px solid var(--line); padding: 4px 12px 4px 0; margin-right: 14px; }
+    .toc li.is-active a { border-left: none; border-bottom-color: var(--accent); }
+    table, th, td { font-size: 14px; }
+    th, td { padding: 8px 6px; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <nav class="toc" aria-label="Contents">
+    <p>Contents</p>
+    <ol>
+      <li><a href="#roles">Who is responsible</a></li>
+      <li><a href="#data">What we handle</a></li>
+      <li><a href="#why">Why we handle it</a></li>
+      <li><a href="#visibility">Who can see it</a></li>
+      <li><a href="#where">Where it is stored</a></li>
+      <li><a href="#security">How it is protected</a></li>
+      <li><a href="#retention">How long we keep it</a></li>
+      <li><a href="#uninstall">When you uninstall</a></li>
+      <li><a href="#rights">Your rights</a></li>
+      <li><a href="#cookies">Cookies and tracking</a></li>
+      <li><a href="#links">Links to other sites</a></li>
+      <li><a href="#changes">Changes</a></li>
+      <li><a href="#contact">Contact us</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <a class="back" href="./">Back to Survey Flow</a>
+
+    <h1>Privacy Policy</h1>
+    <p class="meta">Survey Flow, operated by AIVERY LABS PTY LTD. Last updated 5 August 2026.</p>
+    <p class="lede">Survey Flow sends satisfaction surveys to your customers and collects their answers, so it necessarily handles personal data. This policy sets out exactly what we hold, where it lives, who inside your company can see it, how long it stays, and what happens when you uninstall. Where something is retained rather than deleted, we say so and explain why.</p>
+
+    <h2 id="roles">Who is responsible for what</h2>
+    <p>Two different relationships run through this product, and they carry different responsibilities.</p>
+    <p><strong>You are the controller of your survey data.</strong> When you install Survey Flow on your monday.com account, you decide who receives a survey, what they are asked, and what happens to the answers. We process that data on your instructions and for no other purpose. We are your processor.</p>
+    <p><strong>We are the controller of the suppression list.</strong> Every Survey Flow customer sends through the same email domain, so when someone unsubscribes or their mailbox rejects our mail, honoring that is our own obligation rather than yours. That list is described in section 7, and it is the one place where data outlives your account by design.</p>
+    <p>Recipients of a survey are your customers, not ours. We hold no relationship with them and we never contact them for our own purposes.</p>
+    <p>We handle personal information in accordance with the Australian Privacy Act 1988 (Cth) and the Australian Privacy Principles, the EU General Data Protection Regulation (EU) 2016/679, and the monday.com marketplace developer terms.</p>
+
+    <h2 id="data">What we handle</h2>
+
+    <h3>About the people who receive surveys</h3>
+    <table>
+      <tr><th>Data</th><th>Where it comes from</th></tr>
+      <tr><td>Email address</td><td>The board column you nominate during setup</td></tr>
+      <tr><td>Display name, where one exists</td><td>The same source. Where no name exists, the email address is used as the label instead</td></tr>
+      <tr><td>Star rating, one to five</td><td>Submitted by the recipient</td></tr>
+      <tr><td>Written comments and answers to follow up questions</td><td>Submitted by the recipient. These are free text, so they contain whatever the writer chooses to include</td></tr>
+      <tr><td>Ticket title at the time the survey was sent</td><td>Your board. This is your content and may name a person or a situation</td></tr>
+      <tr><td>Delivery outcome, including bounces and complaints</td><td>Our email provider</td></tr>
+      <tr><td>Timestamps for send, response and link expiry</td><td>Generated by the app</td></tr>
+    </table>
+
+    <h3>About your team</h3>
+    <p>We store monday.com user identifiers for the agent assigned to each ticket, so that feedback can be attributed and shown to the right person. We read profile and time zone information from monday.com when rendering the dashboard, but we do not store your team members' names or email addresses.</p>
+    <p>Where you configure a low rating alert, we store the identifier of the person to be notified.</p>
+
+    <h3>Configuration you provide</h3>
+    <p>Board and item identifiers, your trigger status and conditions, your questions and email wording, your sender display name and logo, and your exclusion list.</p>
+    <div class="callout">
+      <h3>A note about the exclusion list</h3>
+      <p>Addresses you add to the exclusion list are stored as you typed them, in plain form, because the app has to show them back to you for editing. Treat that list as customer data.</p>
+    </div>
+
+    <h3>What we deliberately do not hold</h3>
+    <ul>
+      <li>We do not log recipient email addresses. Log entries carry a short irreversible tag instead, enough to trace a delivery through support without exposing the address.</li>
+      <li>Our job queue carries identifiers only. No address, no name, and no ticket title passes through it.</li>
+      <li>We do not read board data beyond the columns you nominate and the items that reach your trigger status.</li>
+    </ul>
+
+    <h2 id="why">Why we handle it</h2>
+    <p>Everything above exists to run the product you configured: deciding whether a survey should be sent, sending it, collecting the answer, showing it to you and to the agent who handled the work, and notifying someone when a rating falls below the threshold you set.</p>
+    <p>We do not sell personal data. We do not use it to train models. We do not use it for advertising, profiling, or any purpose of our own beyond operating and supporting the service.</p>
+    <p>For customers in the EEA and the UK, our lawful basis for processing on your behalf is the performance of our contract with you. You remain responsible for establishing the lawful basis on which you survey your own customers. Our own retention of suppression data rests on legitimate interests, specifically the interest in not repeatedly emailing people who have asked us to stop or whose mailbox has rejected our mail.</p>
+
+    <h2 id="visibility">Who can see it</h2>
+    <p>This section matters more than most, because it determines who inside your own company sees your customers' contact details. Read it before rolling Survey Flow out to a wide group.</p>
+    <p><strong>Agents can see who left a given response.</strong> The per agent dashboard shows each response alongside the recipient it came from. Where a display name exists, the display name appears. Where the app holds only an email address, the email address appears. This is what makes per agent feedback useful, and it is more exposure than some teams expect.</p>
+    <p><strong>Low rating alerts carry the same information.</strong> Whoever you nominate receives a monday.com notification identifying the ticket and the customer who left the rating, whether or not that person ever opens Survey Flow.</p>
+    <p>Beyond your own account, access is limited to us. A small number of our personnel can access survey data where it is necessary to operate or support the service, and our sub processors can access it only to the extent needed to provide their part of it.</p>
+    <p>We may also disclose personal information to our contractors and professional advisors where they need it to do work for us, to courts, regulators and law enforcement where the law requires it, and to a successor entity if our business or assets are transferred. We do not sell, rent or trade personal data, and we do not disclose it for any other purpose.</p>
+
+    <h2 id="where">Where it is stored, and who else is involved</h2>
+    <p>Survey data is stored outside monday.com, in a managed Postgres database. monday.com has confirmed in writing that this is acceptable for this app, subject to the security conditions described in section 6, in support ticket #5047188 dated 29 July 2026.</p>
+    <p>Configuration, per item survey state and uploaded logos are stored in monday.com's own storage, inside your account. Your monday.com access tokens are held in monday.com's encrypted secure storage and never leave our backend.</p>
+
+    <h3>Sub processors</h3>
+    <table>
+      <tr><th>Provider</th><th>Purpose</th><th>Location</th></tr>
+      <tr><td>Neon</td><td>Managed Postgres. Holds survey records, ratings, comments and recipient labels</td><td>AWS us-east-1</td></tr>
+      <tr><td>Resend</td><td>Sends the survey emails, and reports bounces and complaints. This is the active sending provider</td><td>Provider managed</td></tr>
+      <tr><td>Amazon SES</td><td>A second fully integrated sending path, selectable by configuration. It is not the sending provider today</td><td>us-east-1</td></tr>
+      <tr><td>Amazon SNS</td><td>Receives bounce and complaint notifications continuously, regardless of which provider sent the message. This lane is always active</td><td>us-east-1</td></tr>
+      <tr><td>Upstash QStash</td><td>Job queue between receiving a status change and sending the email. Carries identifiers only, no personal data</td><td>Pinned to our account region</td></tr>
+      <tr><td>monday.com</td><td>Application hosting, configuration storage, token storage</td><td>United States</td></tr>
+    </table>
+    <p>Both email lanes stay open at all times, because a message sent through one provider can bounce after a configuration change and losing that bounce would mean emailing an address that has already rejected us. AWS therefore receives recipient addresses and delivery outcomes continuously, and we describe it as an active recipient of personal data rather than a standby.</p>
+    <p>Our front end loads no third party service. There is no analytics tool, no tag manager, no external font or script host, and no error reporting vendor.</p>
+    <p>Data is stored and processed in the United States, and we are incorporated in Australia. If you are in the EEA, the UK or Switzerland, your data is therefore transferred outside your region, and we rely on an adequate transfer mechanism for that, including the EU standard contractual clauses where they apply.</p>
+    <p>If you need a signed data processing addendum consistent with Article 28 of the GDPR, ask us and we will provide one.</p>
+
+    <h2 id="security">How it is protected</h2>
+    <ul>
+      <li><strong>Encrypted at rest.</strong> Survey data is encrypted with AES-256. Keys are managed through AWS KMS with rotation, access to them is restricted and logged. Our database provider holds SOC 2 Type 1 and Type 2.</li>
+      <li><strong>Encrypted in transit.</strong> All traffic uses TLS 1.2 or 1.3. Our database connections additionally require TLS and bind authentication to the encrypted channel.</li>
+      <li><strong>Credentials.</strong> No secret is stored in our source code. All credentials live in monday.com's secret store and are read at runtime.</li>
+      <li><strong>Access tokens.</strong> Your monday.com tokens are held only in monday.com's encrypted secure storage, scoped per account, refreshed with rotation, never sent to any browser or third party, and never written to a log.</li>
+      <li><strong>Isolation.</strong> Every record is scoped to your account, and every query filters on it.</li>
+      <li><strong>Input handling.</strong> Database queries are parameterised throughout. Submitted ratings, comments and answers are validated and bounded. Text placed into outbound email is escaped, so a comment or ticket title cannot inject content into a message.</li>
+      <li><strong>Survey links.</strong> Each link carries a signed single use token bound to one survey, and expires after a number of days you choose, fourteen by default.</li>
+    </ul>
+    <p>No system is perfectly secure, and we cannot guarantee the security of information transmitted over the internet. If we become aware of a breach affecting your data, we will notify you without undue delay and in any event within 72 hours of becoming aware of it, and give you what you need to meet your own notification obligations.</p>
+
+    <h2 id="retention">How long we keep it</h2>
+    <p>While your installation is active, survey records are kept so your dashboard and reports continue to work. You can delete individual responses at any time, and uninstalling triggers the process described in section 8.</p>
+
+    <h3>Two things we keep on purpose</h3>
+    <p><strong>Suppression entries.</strong> When someone unsubscribes, or their mailbox hard bounces, or they report a message as spam, we record that against a one way cryptographic hash of their address. We keep it after you uninstall, and it is shared across all Survey Flow customers, because every customer sends through the same email domain and a complaint against that domain has to be honored for everyone. Deleting it would let a later installation email somebody who has already asked us to stop.</p>
+    <p>We want to be precise about what hashing does here. A hashed email address is pseudonymous data under the GDPR, not anonymous data. Somebody who already holds a candidate address can hash it and check for a match. Hashing means we cannot read the list to recover addresses, and it does not put the data outside the scope of data protection law. We do not claim otherwise.</p>
+    <p><strong>Completion markers.</strong> A small record noting that a given survey was answered, so the same person is not asked twice about the same ticket. It is stored against an opaque identifier, contains no personal data, and expires by itself within 92 days.</p>
+
+    <h2 id="uninstall">What happens when you uninstall</h2>
+    <p>We will not tell you that everything is deleted, because that would not be true in every case. The accurate answer has three parts.</p>
+
+    <h3>The normal case</h3>
+    <p>When you uninstall or revoke authorization, we receive a notification from monday.com and run a deletion sequence in a deliberate order.</p>
+    <ul>
+      <li>Survey records in our external database are deleted first, because that is the part held outside monday.com and it must not depend on anything that could fail.</li>
+      <li>Your configuration and per item state in monday.com storage are then swept, before the access token is revoked, because revoking first would make that storage permanently unreachable.</li>
+      <li>We confirm the result by searching for what remains rather than by counting successful delete calls, because a delete call reports success even for something that was never there.</li>
+      <li>The access token is revoked last, and our own copy is destroyed.</li>
+    </ul>
+    <p>Aside from the two items in section 7, this removes your data.</p>
+
+    <h3>One case where some configuration survives</h3>
+    <p>If your monday.com authorization has already expired or been revoked at the moment the uninstall notification arrives, we can no longer authenticate to the storage inside your account. When that happens:</p>
+    <ul>
+      <li>All survey records in our external database are still deleted in full.</li>
+      <li>Per item survey state expires by itself within 92 days.</li>
+      <li>Per board configuration remains in your monday.com account. That includes your exclusion list, which holds email addresses in plain form, and any logo you uploaded.</li>
+    </ul>
+    <p>The data in this case sits in monday.com's own storage inside your own account rather than on our systems, and we attempt the deletion regardless in case the stored token is still accepted. We would rather state this limitation plainly than describe deletion as complete when it is not.</p>
+
+    <h3>If you want deletion confirmed</h3>
+    <p>Write to us and we will run the deletion again and tell you what was found. See section 12.</p>
+
+    <h2 id="rights">Your rights, and the rights of the people you survey</h2>
+    <p>If you are a monday.com customer using Survey Flow, you can export your survey data, delete individual responses, or delete everything by uninstalling. Write to us if you would like help with any of these.</p>
+    <p>If you received a survey from a company using Survey Flow and want your data corrected or deleted, the company that surveyed you controls it and is best placed to act. Contact them first. If you cannot reach them, or you would rather come to us, write to us and we will help, and pass the request on where we need their instruction.</p>
+    <p>Every survey email carries an unsubscribe link, and using it stops further surveys from that sender immediately. Depending on where you live you may also have rights of access, correction, deletion, restriction, portability and objection.</p>
+    <p>We acknowledge any privacy request within 5 business days and respond substantively within 30 days, unless the request is complex enough to justify longer, in which case we will tell you.</p>
+    <p>If you think we have mishandled your personal information, please raise it with us first. You can also complain to a regulator: residents of Australia to the Office of the Australian Information Commissioner, and residents of the EEA or the UK to their national supervisory authority.</p>
+
+    <h2 id="cookies">Cookies and tracking</h2>
+    <p>Survey Flow sets no cookies. Not in the app, not on the survey page, not on the unsubscribe page. There is no analytics, no tracking pixel, no advertising technology, and no third party script of any kind.</p>
+    <p>Authentication inside monday.com uses a session token supplied by monday.com rather than a cookie. The survey page authenticates through a signed token in its own link.</p>
+    <p>Our emails contain no tracking pixel. We know that a message was delivered, bounced or reported as spam because the email provider tells us. We do not track whether it was opened.</p>
+
+    <h2 id="links">Links to other sites</h2>
+    <p>Our documentation, marketplace listing and app interface may link to websites we do not run. This policy does not cover them, and we are not responsible for how they handle your data.</p>
+
+    <h2 id="changes">Changes to this policy</h2>
+    <p>Non material changes, such as clarifications and corrections, are reflected in the date at the top of this page.</p>
+    <p>Material changes, such as adding a sub processor or changing what we retain, are different. We will tell active customers by email and update the marketplace listing, rather than relying on you to notice. An amended policy takes effect once we have notified you.</p>
+
+    <h2 id="contact">Contact us</h2>
+    <p>Email <a href="mailto:support@aiverylabs.com">support@aiverylabs.com</a>, or open a request at <a href="https://aiverylabs.atlassian.net/servicedesk/customer/portal">our support portal</a>.</p>
+    <p>Survey Flow is operated by <strong>AIVERY LABS PTY LTD</strong>, ABN 89 696 967 209 and ACN 696 967 209, a company incorporated in Western Australia, Australia.</p>
+    <p>Surveys are sent from <strong>noreply@survey.aiverylabs.com</strong>, which is the address to allow if your mail filtering is strict.</p>
+    <p>This policy describes how Survey Flow handles data. It does not replace or modify monday.com's own privacy policy, which separately governs the monday.com platform.</p>
+
+    <div class="footer">
+      Survey Flow is built by Aiverylabs. See also the <a href="user-guide.html">user guide</a>.
+    </div>
+  </main>
+</div>
+
+<script>
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+  var items = links.map(function (a) {
+    return { li: a.parentElement, target: document.querySelector(a.getAttribute('href')) };
+  }).filter(function (i) { return i.target; });
+
+  function sync() {
+    var line = window.scrollY + 130, current = items[0];
+    items.forEach(function (i) {
+      if (i.target.getBoundingClientRect().top + window.scrollY <= line) { current = i; }
+    });
+    items.forEach(function (i) { i.li.classList.toggle('is-active', i === current); });
+  }
+  sync();
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(function () { sync(); ticking = false; });
+  }, { passive: true });
+})();
+</script>
+</body>
+</html>
