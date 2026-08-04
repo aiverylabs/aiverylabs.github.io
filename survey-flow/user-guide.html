@@ -79,6 +79,14 @@
   li { margin: 0 0 8px; }
   strong { color: var(--ink); }
   em { font-style: italic; }
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 14px;
+    background: var(--soft);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1px 5px;
+  }
 
   .step-num {
     display: inline-block;
@@ -207,7 +215,7 @@
     <p>Click Authorize and you land back in Survey Flow, ready to build a survey. If you later revoke this authorization, Survey Flow stops working straight away and begins removing your data.</p>
 
     <h2 id="configure"><span class="step-num">3</span>Build your first survey</h2>
-    <p>This is the part worth slowing down for. Everything that follows depends on these choices. Open Survey Flow and click <span class="todo">[create button label]</span>.</p>
+    <p>This is the part worth slowing down for. Everything that follows depends on these choices. Open Survey Flow and click Set up surveys.</p>
     <figure>
       <img class="screenshot" src="../images/survey-flow/04-empty-state.png" alt="Survey Flow with no configurations yet, showing the button to create the first survey">
       <figcaption>The empty state, before any survey exists.</figcaption>
@@ -228,6 +236,15 @@
       <figcaption>Picking the status that fires the survey.</figcaption>
     </figure>
 
+    <h3>Narrow it down with conditions</h3>
+    <p>Not every resolved ticket deserves a survey. You can add up to three conditions, and only tickets matching all of them get one. Status, dropdown and people columns can all be used.</p>
+    <p>A common setup is to survey only tickets above a certain priority, or only real issues rather than routine requests, so you are not asking someone to rate a password reset.</p>
+    <p>Tickets that do not match are skipped entirely. Nothing is sent and nothing is recorded for them, so they never sit in your results as unanswered.</p>
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/19-conditions.png" alt="Two conditions limiting the survey to critical priority issues">
+      <figcaption>Conditions, and the button that opens the skip list.</figcaption>
+    </figure>
+
     <h3>Point Survey Flow at the email address</h3>
     <p>Tell Survey Flow which field holds the customer's address. Depending on how your board is built, this is an email column or the requester on the ticket.</p>
     <p>When that field is empty on a ticket, Survey Flow skips it quietly. Nothing sends and nothing errors. If a survey you expected never appeared, an empty address field is the first thing to check.</p>
@@ -244,16 +261,35 @@
       <figcaption>The question editor.</figcaption>
     </figure>
 
+    <h3>Choose what appears on the ticket</h3>
+    <p>Every answer is stored either way. This setting only decides what gets written back onto the ticket itself.</p>
+    <p>Writing the score onto the ticket is worth doing. It puts the rating next to the work it refers to, so an agent opening the ticket sees it without going anywhere, and your existing board reports can group by it. The comment sits beside it.</p>
+    <p>Survey Flow creates the columns if they are not there yet. The default names are CSAT score and CSAT comment, and you can point them at columns you already have instead.</p>
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/23-ticket-columns.png" alt="Choosing which board columns receive the score and the comment">
+      <figcaption>What gets written back to the ticket.</figcaption>
+    </figure>
+
     <h3>Write the email</h3>
-    <p>Your customer receives an email inviting them to rate the ticket. You control <span class="todo">[subject, greeting, sign off, per the fields in the app]</span>.</p>
+    <p>Your customer receives an email inviting them to rate the ticket. You write the subject, the greeting and intro, and the sign off.</p>
+    <p>Three placeholders are available and get filled in when the email is sent: <code>{{requester_name}}</code>, <code>{{ticket_title}}</code> and <code>{{ticket_number}}</code>. Type them exactly as shown, braces included. Use them the way you would write the sentence by hand, so the message names the ticket the customer actually had rather than asking about work in the abstract.</p>
     <p>Write it the way someone on your team would write it, because from the customer's side that is what happened. Name the ticket so they remember which conversation you mean, and keep it to a few lines.</p>
     <figure>
       <img class="screenshot" src="../images/survey-flow/09-email-editor.png" alt="The editor for the survey invitation email">
       <figcaption>The email content editor.</figcaption>
     </figure>
 
+    <h3>Set the sender and the logo</h3>
+    <p>The survey should look like it came from your team, not from a tool.</p>
+    <p>Display name is what the recipient sees as the sender, and it appears on the survey page too. It defaults to your monday account name, so check that the default reads the way you want a customer to see it. The logo sits at the top of the survey page and is optional. With no logo the page shows your name on its own.</p>
+    <p>Emails are sent from a fixed Survey Flow address, shown under the display name field. If your customers use strict spam filtering, that is the address to allow.</p>
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/20-branding.png" alt="The logo upload and sender display name fields">
+      <figcaption>Sender name and logo.</figcaption>
+    </figure>
+
     <h3>Set exclusions</h3>
-    <p>Some addresses should never receive a survey. Internal staff who file tickets for other people, shared inboxes, monitoring systems, and any customer who has asked you to stop. Add those addresses to the exclusion list for this board, and Survey Flow checks the list before every send.</p>
+    <p>Some addresses should never receive a survey. Internal staff who file tickets for other people, shared inboxes, monitoring systems, and any customer who has asked you to stop. Click Skip certain addresses in the conditions block above to add them, and Survey Flow checks the list before every send.</p>
     <div class="callout">
       <h3>How to treat this list</h3>
       <p>Addresses on the exclusion list are stored as you typed them, not scrambled, so the list itself counts as customer data. Add addresses you are already holding for other reasons, and nothing more.</p>
@@ -261,6 +297,23 @@
     <figure>
       <img class="screenshot" src="../images/survey-flow/10-exclusions.png" alt="The per board exclusion list with a few sample addresses">
       <figcaption>The exclusion list.</figcaption>
+    </figure>
+
+    <h3>How long the link stays valid</h3>
+    <p>A survey link expires a set number of days after it is sent, fourteen by default. After that the recipient sees a page telling them the survey has expired.</p>
+    <p>Fourteen days suits most teams. Shorter keeps the feedback close to the experience it refers to. Longer catches people who only clear their inbox occasionally, at the cost of ratings that arrive long after anyone remembers the ticket.</p>
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/21-link-expiry.png" alt="Setting how many days a survey link stays valid">
+      <figcaption>Link expiry, set to fourteen days.</figcaption>
+    </figure>
+
+    <h3>Get told about unhappy customers</h3>
+    <p>A low rating is worth knowing about while there is still time to do something. Turn this on, pick the threshold, then choose who gets notified inside monday.</p>
+    <p>Two stars or below is the usual choice. One star only catches the worst cases and misses the merely disappointed. Three or below will notify you often enough that people start ignoring it.</p>
+    <p>The person you pick receives a monday notification identifying the ticket and the customer who left the rating. Choose someone who should already have access to that, and read Who can see what below before pointing this at a wide group.</p>
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/22-low-rating-alert.png" alt="A rule notifying a named person when a rating is two stars or below">
+      <figcaption>The low rating alert.</figcaption>
     </figure>
 
     <h3>Test once, then switch it on</h3>
@@ -334,9 +387,10 @@
     <p>Decide this before you switch a configuration on rather than after, because it changes who inside your company sees customer contact details.</p>
     <p><strong>Agents can see which customer left a given response.</strong> Where a display name exists, the display name appears. Where Survey Flow holds only an email address, the email address appears.</p>
     <p>That is what makes per agent feedback useful, and it is also more exposure than some teams want. If it does not suit yours, raise it with us before rolling Survey Flow out to the whole desk.</p>
+    <p>The same applies to low rating alerts. Whoever you nominate receives the customer's identity in a monday notification, whether or not they ever open Survey Flow.</p>
 
     <h2 id="privacy">Privacy in brief</h2>
-    <p>Survey Flow handles your customers' email addresses and whatever they write in a survey, so here is the short version. The full detail, including every sub processor, retention period, and what happens when you uninstall, is in the <a href="#" class="todo">[privacy policy URL]</a>.</p>
+    <p>Survey Flow handles your customers' email addresses and whatever they write in a survey, so here is the short version. The full detail, including every sub processor, retention period, and what happens when you uninstall, is in the <a href="https://aiverylabs.github.io/survey-flow/privacy.html">privacy policy</a>.</p>
     <p>Survey data is stored outside monday.com in a managed Postgres database, encrypted at rest and in transit. Email is sent through a third party email provider.</p>
     <p>Two points sit here rather than buried in the policy, because they tend to surprise people.</p>
     <ul>
@@ -345,7 +399,7 @@
     </ul>
 
     <h2 id="help">Get help</h2>
-    <p>Email <a href="mailto:support@aiverylabs.com">support@aiverylabs.com</a>, or open a request at <a href="#" class="todo">[support portal URL]</a>.</p>
+    <p>Email <a href="mailto:support@aiverylabs.com">support@aiverylabs.com</a>, or open a request at <a href="https://aiverylabs.atlassian.net/servicedesk/customer/portal">our support portal</a>.</p>
     <p>Include your monday.com account name, the board, the ticket that did or did not behave as expected, and roughly when it happened. That is usually enough for us to find it.</p>
 
     <div class="footer">
