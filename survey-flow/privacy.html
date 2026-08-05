@@ -188,7 +188,7 @@
     </table>
     <p>Both email lanes stay open at all times, because a message sent through one provider can bounce after a configuration change and losing that bounce would mean emailing an address that has already rejected us. AWS therefore receives recipient addresses and delivery outcomes continuously, and we describe it as an active recipient of personal data rather than a standby.</p>
     <p>Our front end loads no third party service. There is no analytics tool, no tag manager, no external font or script host, and no error reporting vendor.</p>
-    <p>Data is stored and processed in the United States, and we are incorporated in Australia. If you are in the EEA, the UK or Switzerland, your data is therefore transferred outside your region, and we rely on an adequate transfer mechanism for that, including the EU standard contractual clauses where they apply.</p>
+    <p>Data is stored and processed in the United States, and we are incorporated in Australia. If you are in the EEA, the UK or Switzerland, your data is therefore transferred outside your region, and we rely on appropriate safeguards for that, including the EU standard contractual clauses where they apply.</p>
     <p>If you need a signed data processing addendum consistent with Article 28 of the GDPR, ask us and we will provide one.</p>
 
     <h2 id="security">How it is protected</h2>
@@ -206,10 +206,11 @@
     <h2 id="retention">How long we keep it</h2>
     <p>While your installation is active, survey records are kept so your dashboard and reports continue to work. You can delete individual responses at any time, and uninstalling triggers the process described in section 8.</p>
 
-    <h3>Two things we keep on purpose</h3>
+    <h3>Three things we keep on purpose</h3>
     <p><strong>Suppression entries.</strong> When someone unsubscribes, or their mailbox hard bounces, or they report a message as spam, we record that against a one way cryptographic hash of their address. We keep it after you uninstall, and it is shared across all Survey Flow customers, because every customer sends through the same email domain and a complaint against that domain has to be honored for everyone. Deleting it would let a later installation email somebody who has already asked us to stop.</p>
     <p>We want to be precise about what hashing does here. A hashed email address is pseudonymous data under the GDPR, not anonymous data. Somebody who already holds a candidate address can hash it and check for a match. Hashing means we cannot read the list to recover addresses, and it does not put the data outside the scope of data protection law. We do not claim otherwise.</p>
     <p><strong>Completion markers.</strong> A small record noting that a given survey was answered, so the same person is not asked twice about the same ticket. It is stored against an opaque identifier, contains no personal data, and expires by itself within 92 days.</p>
+    <p><strong>Usage records.</strong> A count of what you used against your plan allowance in a given billing period, held against your account identifier. We keep it so that reaching a monthly allowance cannot be undone by uninstalling and reinstalling. It holds an account identifier, a billing period and a count, and nothing else: no addresses, no names, no comments and no ticket identifiers. It contains no personal data, and it is scoped to a billing period rather than kept indefinitely.</p>
 
     <h2 id="uninstall">What happens when you uninstall</h2>
     <p>We will not tell you that everything is deleted, because that would not be true in every case. The accurate answer has three parts.</p>
@@ -229,7 +230,8 @@
     <ul>
       <li>All survey records in our external database are still deleted in full.</li>
       <li>Per item survey state expires by itself within 92 days.</li>
-      <li>Per board configuration remains in your monday.com account. That includes your exclusion list, which holds email addresses in plain form, and any logo you uploaded.</li>
+      <li>Per board configuration remains in your monday.com account, and it holds personal data in more than one place. Your exclusion list holds email addresses in plain form. The labels of any conditions you set on a people column are the names of your own staff. Where you configured a low rating alert, the identifier of the person nominated to receive it stays with the rest of the configuration.</li>
+      <li>Any logo you uploaded remains. We accept any image and do not inspect what is in it, so if you uploaded a team photo or a portrait of somebody, that is what survives, and we do not strip the metadata a photograph carries.</li>
     </ul>
     <p>The data in this case sits in monday.com's own storage inside your own account rather than on our systems, and we attempt the deletion regardless in case the stored token is still accepted. We would rather state this limitation plainly than describe deletion as complete when it is not.</p>
 
