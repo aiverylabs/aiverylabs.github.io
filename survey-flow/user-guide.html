@@ -266,7 +266,7 @@
       <figcaption>The question editor.</figcaption>
     </figure>
 
-    <h3>Choose what appears on the ticket</h3>
+    <h3 id="columns">Choose what appears on the ticket</h3>
     <p>Every answer is stored either way. This setting only decides what gets written back onto the ticket itself.</p>
     <p>Writing the score onto the ticket is worth doing. It puts the rating next to the work it refers to, so an agent opening the ticket sees it without going anywhere, and your existing board reports can group by it. The comment sits beside it.</p>
     <p>Survey Flow creates the columns if they are not there yet. The default names are CSAT score and CSAT comment, and you can point them at columns you already have instead.</p>
@@ -389,7 +389,8 @@
     </figure>
     <p>Delivery is the tab to open when you are chasing one particular survey rather than reading the numbers. Two actions live there, and both are limited to account admins and board owners.</p>
     <p>A survey nobody has answered can be resent. That is the one to reach for when the address was wrong at the time, or the mail never arrived.</p>
-    <p>A survey that has been answered can have its feedback deleted. That clears the rating, the comment and the answers from the dashboard, and clears the rating from the ticket. It returns the ticket to unsurveyed, so it can be surveyed again the next time it resolves.</p>
+    <p>A survey that has been answered can have its feedback deleted. That clears the rating, the comment and the answers from the dashboard and from the ticket, and it returns the ticket to unsurveyed, so it can be surveyed again the next time it resolves.</p>
+    <p>If one of those columns is no longer where the setup expects it, the delete still goes through and the dashboard is cleared, but some of what was written to the ticket may remain. The confirmation tells you when that has happened, so open the board and check, since an old column may still be holding the text. See <a href="#columns">Choose what appears on the ticket</a>, which covers the same missing column and how to stop it happening again.</p>
     <!-- SCREENSHOT NEEDED -->
     <figure>
       <img class="screenshot" src="../images/survey-flow/27-delivery-tab.png" alt="The Delivery tab listing sent surveys, with the resend and delete buttons on a row">
