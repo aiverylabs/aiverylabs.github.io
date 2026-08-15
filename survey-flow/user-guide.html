@@ -166,6 +166,7 @@
       <li><a href="#results">6. Read your results</a></li>
       <li><a href="#visibility">Who can see what</a></li>
       <li><a href="#privacy">Privacy in brief</a></li>
+      <li><a href="#uninstall">Before you uninstall</a></li>
       <li><a href="#help">Get help</a></li>
     </ol>
   </nav>
@@ -353,7 +354,9 @@
     </figure>
 
     <h3 id="repeat">Repeat protection</h3>
-    <p>Survey Flow records that a ticket has been surveyed, so reopening and re resolving it does not ask the same person the same question again. How long that holds depends on what became of the survey. If it was sent and never answered, the record expires after roughly three months, which means a ticket reopened much later can be surveyed again as genuinely new work. If it was answered, the ticket is never surveyed again, with no time limit at all.</p>
+    <p>Repeat protection starts when somebody rates. Until then there is none, and that is worth knowing before you design a workflow around it.</p>
+    <p>A ticket nobody has rated is surveyed again every time it reaches the trigger status. Move it from Done to Reopened and back to Done twice in an afternoon and the customer gets two emails. If your team reopens tickets often, either use a status that only gets set once or expect the extra sends.</p>
+    <p>Once a customer has rated, that ticket is never surveyed again, with no time limit at all.</p>
 
     <h3>Opting out</h3>
     <p>Every survey email carries an unsubscribe link. A customer who uses it receives no further surveys from you, on any board.</p>
@@ -385,7 +388,7 @@
 
     <h2 id="visibility">Who can see what</h2>
     <p>Decide this before you switch a configuration on rather than after, because it changes who inside your company sees customer contact details.</p>
-    <p><strong>Agents can see which customer left a given response.</strong> Where a display name exists, the display name appears. Where Survey Flow holds only an email address, the email address appears.</p>
+    <p><strong>Agents see which customer left a response on the tickets they handled.</strong> Account admins and board owners see it for the whole board. Where a display name exists, the display name appears. Where Survey Flow holds only an email address, the email address appears.</p>
     <p>That is what makes per agent feedback useful, and it is also more exposure than some teams want. If it does not suit yours, raise it with us before rolling Survey Flow out to the whole desk.</p>
     <p>The same applies to low rating alerts. Whoever you nominate receives the customer's identity in a monday notification, whether or not they ever open Survey Flow.</p>
 
@@ -394,9 +397,14 @@
     <p>Survey data is stored outside monday.com in a managed Postgres database, encrypted at rest and in transit. Email is sent through a third party email provider.</p>
     <p>Two points sit here rather than buried in the policy, because they tend to surprise people.</p>
     <ul>
-      <li>Agents can see customer identities, including raw email addresses where no display name exists, as described above.</li>
+      <li>Agents can see customer identities on their own tickets, and admins and board owners across the board, including raw email addresses where no display name exists, as described above.</li>
       <li>When someone unsubscribes, Survey Flow keeps a scrambled version of their address so it can keep honoring that request. Deleting it outright would mean forgetting that they asked you to stop.</li>
     </ul>
+
+    <h2 id="uninstall">Before you uninstall</h2>
+    <p>Uninstalling removes all Survey Flow data for the account, permanently. That means every rating, every comment and every survey record. There is no recovery and no grace period, and it happens as soon as the uninstall is processed.</p>
+    <p>If you want to keep your history, export it first. Open Survey Flow from the board and use the CSV export in the dashboard, and take the file before you uninstall rather than after.</p>
+    <p>One thing is not removed. A rating column written onto a board stays where it is, because the board is yours. Uninstalling clears what Survey Flow holds, not what it wrote to monday.</p>
 
     <h2 id="help">Get help</h2>
     <p>Email <a href="mailto:support@aiverylabs.com">support@aiverylabs.com</a>, or open a request at <a href="https://aiverylabs.atlassian.net/servicedesk/customer/portal">our support portal</a>.</p>
