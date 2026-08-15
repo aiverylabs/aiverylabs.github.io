@@ -148,6 +148,9 @@
 
     <h3>Configuration you provide</h3>
     <p>Board and item identifiers, your trigger status and conditions, your questions and email wording, your sender display name and logo, and your exclusion list.</p>
+    <h3>Surveys waiting to be sent</h3>
+    <p>When your account reaches its monthly plan allowance, tickets that resolve are held rather than sent, so the survey is not lost. A held record holds a board identifier, an item identifier and a timestamp. No address, no name and no comment.</p>
+
     <div class="callout">
       <h3>A note about the exclusion list</h3>
       <p>Addresses you add to the exclusion list are stored as you typed them, in plain form, because the app has to show them back to you for editing. Treat that list as customer data.</p>
@@ -174,7 +177,7 @@
 
     <h2 id="where">Where it is stored, and who else is involved</h2>
     <p>Survey data is stored outside monday.com, in a managed Postgres database. monday.com has confirmed in writing that this is acceptable for this app, subject to the security conditions described in section 6, in support ticket #5047188 dated 29 July 2026.</p>
-    <p>Configuration, per item survey state and uploaded logos are stored in monday.com's own storage, inside your account. Your monday.com access tokens are held in monday.com's encrypted secure storage and never leave our backend.</p>
+    <p>Your board configuration is held in the same database, alongside the survey records. Per item survey state and uploaded logos are stored in monday.com's own storage, inside your account. Your monday.com access tokens are held in monday.com's encrypted secure storage and never leave our backend.</p>
 
     <h3>Sub processors</h3>
     <table>
@@ -205,12 +208,13 @@
 
     <h2 id="retention">How long we keep it</h2>
     <p>While your installation is active, survey records are kept so your dashboard and reports continue to work. You can delete individual responses at any time, and uninstalling triggers the process described in section 8.</p>
+    <p>Held surveys are the one record type with a retention period rather than a lifetime. Everything else lives as long as your installation does and goes when you uninstall. A held record is kept for at least 60 days, and a daily sweep removes the ones past that point, so how long any single record lasts depends on when it crosses. Held records are also deleted with everything else if you uninstall before then.</p>
 
-    <h3>Three things we keep on purpose</h3>
+    <h3>Two things we keep on purpose</h3>
     <p><strong>Suppression entries.</strong> When someone unsubscribes, or their mailbox hard bounces, or they report a message as spam, we record that against a one way cryptographic hash of their address. We keep it after you uninstall, and it is shared across all Survey Flow customers, because every customer sends through the same email domain and a complaint against that domain has to be honored for everyone. Deleting it would let a later installation email somebody who has already asked us to stop.</p>
     <p>We want to be precise about what hashing does here. A hashed email address is pseudonymous data under the GDPR, not anonymous data. Somebody who already holds a candidate address can hash it and check for a match. Hashing means we cannot read the list to recover addresses, and it does not put the data outside the scope of data protection law. We do not claim otherwise.</p>
-    <p><strong>Completion markers.</strong> A small record noting that a given survey was answered, so the same person is not asked twice about the same ticket. It is stored against an opaque identifier, contains no personal data, and expires by itself within 92 days.</p>
-    <p><strong>Usage records.</strong> A count of what you used against your plan allowance in a given billing period, held against your account identifier. We keep it so that reaching a monthly allowance cannot be undone by uninstalling and reinstalling. It holds an account identifier, a billing period and a count, and nothing else: no addresses, no names, no comments and no ticket identifiers. It contains no personal data, and it is scoped to a billing period rather than kept indefinitely.</p>
+    <p><strong>Completion markers.</strong> A small record noting that a given survey was answered, so the same person is not asked twice about the same ticket. It is stored against an opaque identifier and expires by itself within 92 days.</p>
+    <p>We should be equally precise about what that marker holds. Almost always it holds the identifier and nothing else. The exception is when our database is unreachable at the moment somebody submits a rating. The marker then carries the rating itself, including the score, the comment and any answers, because for that period it is the only copy of what the person told you. It is shrunk back to the identifier once the record is written. So there are windows in which a completion marker does hold personal data, and we would rather describe them than call the marker empty and be wrong some of the time.</p>
 
     <h2 id="uninstall">What happens when you uninstall</h2>
     <p>We will not tell you that everything is deleted, because that would not be true in every case. The accurate answer has three parts.</p>
@@ -219,21 +223,22 @@
     <p>When you uninstall or revoke authorization, we receive a notification from monday.com and run a deletion sequence in a deliberate order.</p>
     <ul>
       <li>Survey records in our external database are deleted first, because that is the part held outside monday.com and it must not depend on anything that could fail.</li>
-      <li>Your configuration and per item state in monday.com storage are then swept, before the access token is revoked, because revoking first would make that storage permanently unreachable.</li>
+      <li>Per item state and any uploaded logo in monday.com storage are then swept, before the access token is revoked, because revoking first would make that storage permanently unreachable.</li>
       <li>We confirm the result by searching for what remains rather than by counting successful delete calls, because a delete call reports success even for something that was never there.</li>
       <li>The access token is revoked last, and our own copy is destroyed.</li>
     </ul>
-    <p>Aside from the three items in section 7, this removes your data.</p>
+    <p>Aside from the two items in section 7, this removes your data.</p>
 
-    <h3>One case where some configuration survives</h3>
-    <p>If your monday.com authorization has already expired or been revoked at the moment the uninstall notification arrives, we can no longer authenticate to the storage inside your account. When that happens:</p>
+    <h3>One case where a little survives</h3>
+    <p>If your monday.com authorization has already expired or been revoked at the moment the uninstall notification arrives, we can no longer authenticate to the storage inside your account. Rather less turns on that than it used to, because your board configuration now lives in our own database rather than in yours. When it happens:</p>
     <ul>
       <li>All survey records in our external database are still deleted in full.</li>
+      <li>Your board configuration is still deleted in full, using our own credentials. That covers your exclusion list, which holds email addresses in plain form, the labels of any conditions you set on a people column, which are the names of your own staff, and the identifier of anyone nominated for a low rating alert. None of it depends on your authorization still being valid.</li>
       <li>Per item survey state expires by itself within 92 days.</li>
-      <li>Per board configuration remains in your monday.com account, and it holds personal data in more than one place. Your exclusion list holds email addresses in plain form. The labels of any conditions you set on a people column are the names of your own staff. Where you configured a low rating alert, the identifier of the person nominated to receive it stays with the rest of the configuration.</li>
       <li>Any logo you uploaded remains. We accept any image and do not inspect what is in it, so if you uploaded a team photo or a portrait of somebody, that is what survives, and we do not strip the metadata a photograph carries.</li>
+      <li>A webhook registration record remains. It holds no personal data.</li>
     </ul>
-    <p>The data in this case sits in monday.com's own storage inside your own account rather than on our systems, and we attempt the deletion regardless in case the stored token is still accepted. We would rather state this limitation plainly than describe deletion as complete when it is not.</p>
+    <p>What is left in this case sits in monday.com's own storage inside your own account rather than on our systems, and we attempt the deletion regardless in case the stored token is still accepted. It is a shorter list than it once was, but we would still rather state the limitation plainly than describe deletion as complete when it is not.</p>
 
     <h3>If you want deletion confirmed</h3>
     <p>Write to us and we will run the deletion again and tell you what was found. See section 13.</p>
