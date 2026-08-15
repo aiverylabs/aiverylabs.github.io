@@ -164,6 +164,7 @@
       <li><a href="#sending">4. How surveys get sent</a></li>
       <li><a href="#customer">5. What your customer sees</a></li>
       <li><a href="#results">6. Read your results</a></li>
+      <li><a href="#plans">Plans and limits</a></li>
       <li><a href="#visibility">Who can see what</a></li>
       <li><a href="#privacy">Privacy in brief</a></li>
       <li><a href="#uninstall">Before you uninstall</a></li>
@@ -270,6 +271,12 @@
       <img class="screenshot" src="../images/survey-flow/23-ticket-columns.png" alt="Choosing which board columns receive the score and the comment">
       <figcaption>What gets written back to the ticket.</figcaption>
     </figure>
+    <p>If somebody later deletes one of those columns from the board, ratings carry on being collected but stop reaching the ticket. The setup screen shows a warning naming the column that went missing. Point the setting at a different column or leave it blank, and the warning clears.</p>
+    <!-- SCREENSHOT NEEDED -->
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/30-missing-column.png" alt="The setup screen warning that the column chosen for the score no longer exists on the board">
+      <figcaption>The warning shown when a column the setup points at has been deleted.</figcaption>
+    </figure>
 
     <h3>Write the email</h3>
     <p>Your customer receives an email inviting them to rate the ticket. You write the subject, the greeting and intro, and the sign off.</p>
@@ -301,7 +308,7 @@
     </figure>
 
     <h3>How long the link stays valid</h3>
-    <p>A survey link expires a set number of days after it is sent, fourteen by default. After that the recipient sees a page telling them the survey has expired.</p>
+    <p>A survey link expires a set number of days after it is sent, fourteen by default. You can set anything from 1 day to 90. After that the recipient sees a page telling them the survey has expired.</p>
     <p>Fourteen days suits most teams. Shorter keeps the feedback close to the experience it refers to. Longer catches people who only clear their inbox occasionally, at the cost of ratings that arrive long after anyone remembers the ticket.</p>
     <figure>
       <img class="screenshot" src="../images/survey-flow/21-link-expiry.png" alt="Setting how many days a survey link stays valid">
@@ -327,14 +334,10 @@
     <h2 id="sending"><span class="step-num">4</span>How surveys get sent</h2>
     <p>Once a configuration is active the sequence runs without anyone touching it. An agent moves a ticket into the trigger status, Survey Flow notices, finds the address, runs its checks, and sends. Agents have no button to press and nothing to remember. That is the point.</p>
     <h3>When Survey Flow does not send</h3>
-    <p>Survey Flow holds back in five situations, each of them deliberate.</p>
-    <ul>
-      <li>The ticket has no email address in the mapped field.</li>
-      <li>The address is on this board's exclusion list.</li>
-      <li>The customer opted out of surveys previously.</li>
-      <li>This ticket was already surveyed recently. See <a href="#repeat">repeat protection</a> below.</li>
-      <li>Earlier mail to that address bounced, so Survey Flow stopped writing to a dead mailbox.</li>
-    </ul>
+    <p>Survey Flow runs a few checks before every send, and each one is deliberate. When a survey you expected never arrived, this is the list to walk.</p>
+    <p><strong>Something about the ticket.</strong> It was deleted, or it moved to another board, or it does not match the conditions you set. A ticket that has already been rated is never surveyed again either, which is <a href="#repeat">repeat protection</a>.</p>
+    <p><strong>Something about the address.</strong> The mapped field is empty on that ticket, or the column you mapped no longer exists on the board at all. The address is on your exclusion list, or the customer unsubscribed. Earlier mail to that address bounced or was marked as spam, so Survey Flow stopped writing to it.</p>
+    <p><strong>Something about your plan.</strong> You reached your monthly response limit. This one behaves differently from the rest. The survey is held rather than skipped, and you can send it once there is room. See <a href="#plans">Plans and limits</a>.</p>
     <p>Delivery is normally quick, though the message passes through an email provider and ordinary email delays apply.</p>
 
     <h2 id="customer"><span class="step-num">5</span>What your customer sees</h2>
@@ -366,7 +369,7 @@
     </figure>
 
     <h2 id="results"><span class="step-num">6</span>Read your results</h2>
-    <p>Open Survey Flow from the board to see the ratings collected there: the overall picture, how it is moving over time, and every individual response including whatever customers wrote.</p>
+    <p>Open Survey Flow from the board to see the ratings collected there. It has four tabs. Overview is the overall score and how it is moving. Feedback is every individual response with what the customer wrote. Team breaks the ratings down by the agent who handled each ticket. Delivery lists every survey sent in the period, who it went to, and whether it was answered.</p>
     <figure>
       <img class="screenshot" src="../images/survey-flow/16-dashboard.png" alt="The Survey Flow dashboard showing overall satisfaction and the trend over time">
       <figcaption>The dashboard.</figcaption>
@@ -381,14 +384,71 @@
       <img class="screenshot" src="../images/survey-flow/18-agent-breakdown.png" alt="Ratings broken down by the agent who handled each ticket">
       <figcaption>Ratings by agent.</figcaption>
     </figure>
+    <p>Delivery is the tab to open when you are chasing one particular survey rather than reading the numbers. Two actions live there, and both are limited to account admins and board owners.</p>
+    <p>A survey nobody has answered can be resent. That is the one to reach for when the address was wrong at the time, or the mail never arrived.</p>
+    <p>A survey that has been answered can have its feedback deleted. That clears the rating, the comment and the answers from the dashboard and from the ticket, and it returns the ticket to unsurveyed, so it can be surveyed again the next time it resolves.</p>
+    <!-- SCREENSHOT NEEDED -->
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/27-delivery-tab.png" alt="The Delivery tab listing sent surveys, with the resend and delete buttons on a row">
+      <figcaption>The Delivery tab, with the resend and delete actions.</figcaption>
+    </figure>
+    <div class="callout">
+      <h3>Deleting feedback cannot be undone</h3>
+      <p>There is no recovery step. The rating and whatever the customer wrote are gone from the dashboard and from the ticket, and the only way to hear from that customer again is for the ticket to resolve and be surveyed afresh. Restricting it to account admins and board owners is the whole safeguard, so be sure before you confirm.</p>
+    </div>
+    <!-- SCREENSHOT NEEDED -->
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/28-delete-confirm.png" alt="The dialog asking for confirmation before feedback is deleted">
+      <figcaption>The confirmation shown before feedback is deleted.</figcaption>
+    </figure>
+    <p>The CSV export sits on the same tab. It is how you take your history out of Survey Flow, whether for a report of your own or before uninstalling.</p>
     <div class="callout">
       <h3>Reading small numbers</h3>
       <p>In the first weeks you will have few responses, and one unhappy customer swings the average hard. Treat early numbers as a signal that the mechanism works, not as a verdict on the team.</p>
     </div>
 
+    <h2 id="plans">Plans and limits</h2>
+    <p>Survey Flow is sold through monday, on four plans. What you are paying for is responses, not seats and not surveys sent. Starter includes 25 responses a month, Pro 150, Business 750, and Scale 3000. There is a 14 day trial, so you can watch real numbers for a fortnight before choosing.</p>
+    <p>The month is a UTC calendar month, and the count resets at midnight UTC on the first. That can sit a few hours away from the dates monday shows you elsewhere. If your allowance resets slightly earlier or later than you expected, that is why.</p>
+    <div class="callout">
+      <h3>Reaching the limit stops receiving, not just sending</h3>
+      <p>This is the part nobody expects. Hitting your monthly limit stops Survey Flow sending, which is no surprise. It also stops it accepting answers. A survey already sitting in a customer's inbox will not take their rating until the month rolls over or you upgrade. The customer sees a page thanking them, saying the survey is not accepting responses right now, and telling them the link stays valid so they can try again in a few days.</p>
+      <p>The link is not broken and nobody needs a new one. Nothing you have already collected is lost, there is nothing to repair by hand, and the same link starts working again on its own.</p>
+    </div>
+
+    <h3>Plan and usage</h3>
+    <p>The Plan and usage screen lives in your monday account settings rather than on a board, because it covers the whole account rather than one configuration. It shows how many responses you have used this period, when the count resets, which plan you are on, and anything currently held. When surveys have stopped and you want to know why, this is the screen to open.</p>
+    <!-- SCREENSHOT NEEDED -->
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/24-plan-usage.png" alt="The Plan and usage screen showing responses used this period, the reset date and the current plan">
+      <figcaption>Plan and usage, in the ordinary case.</figcaption>
+    </figure>
+
+    <h3>Held surveys</h3>
+    <p>Tickets that resolve after you reach the limit are not thrown away. They are held, and they are listed on the Plan and usage screen. Once there is room, because the month rolled over or because you upgraded, an admin can send them.</p>
+    <p>A held survey stays sendable for 7 days after the ticket resolved. After that it cannot be sent at all, because a survey arriving three weeks after the work is worse than no survey. The held record itself is kept for at least 60 days and then removed.</p>
+    <!-- SCREENSHOT NEEDED -->
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/25-held-surveys.png" alt="The Plan and usage screen listing surveys held because the monthly limit was reached">
+      <figcaption>Held surveys, waiting for room.</figcaption>
+    </figure>
+
+    <h3>The usage warning</h3>
+    <p>At 80 percent of your limit a warning appears on the board dashboards, so you hear about it with room to act rather than after sending has stopped. You can dismiss that one. At 100 percent it changes to say sending has stopped, and that one cannot be dismissed, because at that point something is actually wrong.</p>
+    <!-- SCREENSHOT NEEDED -->
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/26-usage-warning.png" alt="The warning banner on a board dashboard at 80 percent of the monthly response limit">
+      <figcaption>The warning at 80 percent, which can be dismissed.</figcaption>
+    </figure>
+
     <h2 id="visibility">Who can see what</h2>
     <p>Decide this before you switch a configuration on rather than after, because it changes who inside your company sees customer contact details.</p>
     <p><strong>Agents see which customer left a response on the tickets they handled.</strong> Account admins and board owners see it for the whole board. Where a display name exists, the display name appears. Where Survey Flow holds only an email address, the email address appears.</p>
+    <!-- SCREENSHOT NEEDED -->
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/29-agent-view.png" alt="The agent view, showing one agent the ratings and comments left on the tickets they handled">
+      <figcaption>What an agent sees of their own work.</figcaption>
+    </figure>
     <p>That is what makes per agent feedback useful, and it is also more exposure than some teams want. If it does not suit yours, raise it with us before rolling Survey Flow out to the whole desk.</p>
     <p>The same applies to low rating alerts. Whoever you nominate receives the customer's identity in a monday notification, whether or not they ever open Survey Flow.</p>
 
@@ -403,7 +463,7 @@
 
     <h2 id="uninstall">Before you uninstall</h2>
     <p>Uninstalling removes all Survey Flow data for the account, permanently. That means every rating, every comment and every survey record. There is no recovery and no grace period, and it happens as soon as the uninstall is processed.</p>
-    <p>If you want to keep your history, export it first. Open Survey Flow from the board and use the CSV export in the dashboard, and take the file before you uninstall rather than after.</p>
+    <p>If you want to keep your history, export it first. Open Survey Flow from the board and use the CSV export on the Delivery tab, and take the file before you uninstall rather than after.</p>
     <p>One thing is not removed. A rating column written onto a board stays where it is, because the board is yours. Uninstalling clears what Survey Flow holds, not what it wrote to monday.</p>
 
     <h2 id="help">Get help</h2>
