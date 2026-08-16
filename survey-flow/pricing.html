@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Survey Flow - Plans and Pricing</title>
+<meta name="description" content="Survey Flow plans, priced on responses collected. What a response is, what the trial includes, and what happens when you reach the monthly allowance.">
+<style>
+  :root {
+    --ink: #292f4c;
+    --muted: #676879;
+    --line: #e6e9ef;
+    --accent: #0073ea;
+    --bg: #ffffff;
+    --soft: #f6f7fb;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+    font-size: 16px;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  .shell { max-width: 920px; margin: 0 auto; padding: 40px 24px 72px; }
+  .back { display: inline-block; margin-bottom: 24px; font-size: 14px; color: var(--accent); }
+
+  h1 { font-size: 30px; line-height: 1.25; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .lede { color: var(--muted); font-size: 17px; margin: 0 0 32px; }
+  h2 {
+    font-size: 20px; margin: 44px 0 12px; padding-top: 26px;
+    border-top: 1px solid var(--line); letter-spacing: -0.01em;
+  }
+  p { margin: 0 0 16px; }
+  strong { color: var(--ink); }
+  h1, .lede, h2, p, .callout { max-width: 700px; }
+
+  /* Plans */
+  .plans { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 0 0 28px; max-width: none; }
+  .plan {
+    border: 1px solid var(--line); border-radius: 14px;
+    padding: 24px 20px 20px;
+  }
+  .plan-name {
+    font-size: 12px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.07em; color: var(--muted); margin: 0 0 12px;
+  }
+  .plan-price { display: flex; align-items: flex-end; gap: 2px; line-height: 1; margin: 0 0 12px; }
+  .plan-dollar { font-size: 18px; font-weight: 600; color: var(--muted); padding-bottom: 5px; }
+  .plan-num { font-size: 40px; font-weight: 700; letter-spacing: -0.02em; }
+  .plan-period { font-size: 13px; color: var(--muted); padding-bottom: 5px; }
+  .plan-included { font-size: 14px; font-weight: 600; margin: 0; }
+
+  .callout { background: var(--soft); border-radius: 10px; padding: 18px 20px; margin: 24px 0; }
+  .callout h3 { margin: 0 0 8px; font-size: 15px; }
+  .callout p:last-child { margin-bottom: 0; }
+
+  .footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; }
+
+  @media (max-width: 780px) {
+    .plans { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 430px) {
+    .plans { grid-template-columns: 1fr; }
+    .plan { padding: 20px 18px 18px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <main>
+    <a class="back" href="./">Back to Survey Flow</a>
+
+    <h1>Plans and pricing</h1>
+    <p class="lede">Survey Flow is sold through monday, on four plans. Every plan includes every feature. The only thing that changes between them is how many responses you can collect in a month.</p>
+
+    <div class="plans">
+      <div class="plan">
+        <p class="plan-name">Starter</p>
+        <p class="plan-price"><span class="plan-dollar">$</span><span class="plan-num">19</span><span class="plan-period">/month USD</span></p>
+        <p class="plan-included">25 responses a month</p>
+      </div>
+      <div class="plan">
+        <p class="plan-name">Pro</p>
+        <p class="plan-price"><span class="plan-dollar">$</span><span class="plan-num">39</span><span class="plan-period">/month</span></p>
+        <p class="plan-included">150 responses a month</p>
+      </div>
+      <div class="plan">
+        <p class="plan-name">Business</p>
+        <p class="plan-price"><span class="plan-dollar">$</span><span class="plan-num">149</span><span class="plan-period">/month</span></p>
+        <p class="plan-included">750 responses a month</p>
+      </div>
+      <div class="plan">
+        <p class="plan-name">Scale</p>
+        <p class="plan-price"><span class="plan-dollar">$</span><span class="plan-num">349</span><span class="plan-period">/month</span></p>
+        <p class="plan-included">3,000 responses a month</p>
+      </div>
+    </div>
+
+    <p>There is no feature grid here because there is nothing to compare. Conditions, follow up questions, the sender name and logo, low rating alerts, the agent breakdown, all four dashboard tabs and the CSV export work the same way on Starter as they do on Scale. The only question is how many responses you expect in a month.</p>
+
+    <h2>The trial</h2>
+    <p>Every install starts with a 14 day trial. It is metered against Starter's allowance, so 25 responses, and no card is required because billing runs through monday.</p>
+    <p>The 25 responses can run out before the 14 days do, and on a busy desk they usually will. A team closing thirty tickets in its first week reaches the allowance somewhere around day four, and the trial goes quiet for the remaining ten days. It is worth knowing that in advance rather than reading it as a fault.</p>
+
+    <h2>How a response is counted</h2>
+    <p>A response is counted when somebody rates. Sending costs nothing, so a month in which you send four hundred surveys and receive twenty answers counts as twenty.</p>
+    <p>The month is a UTC calendar month, and the count resets at midnight UTC on the first. That can sit a few hours away from the dates monday shows you elsewhere.</p>
+
+    <h2>Reaching the limit</h2>
+    <div class="callout">
+      <h3>Reaching the limit stops receiving, not just sending</h3>
+      <p>Hitting your monthly allowance stops Survey Flow sending, which is no surprise. It also stops it accepting answers. A survey already sitting in somebody's inbox goes quiet until the month resets or your plan changes.</p>
+      <p>Nothing you have already collected is lost. The link stays valid, the recipient is told to try again in a few days, and it starts accepting answers again on its own.</p>
+    </div>
+    <p>Tickets that resolve while you are at the limit are held rather than dropped. They are listed on the Plan and usage screen, and an admin can send them once there is room, for up to 7 days after the ticket resolved.</p>
+
+    <h2>Billing</h2>
+    <p>Billing runs through monday. Survey Flow appears on your monday invoice alongside everything else, and there is no separate payment method to set up. Pricing, payment and refunds are handled by monday, and the <a href="terms.html">terms of service</a> set out what that means in practice.</p>
+
+    <div class="footer">
+      Survey Flow is built by Aiverylabs. See also the <a href="user-guide.html">user guide</a>, the <a href="privacy.html">privacy policy</a> and the <a href="terms.html">terms of service</a>.
+    </div>
+  </main>
+</div>
+
+</body>
+</html>
