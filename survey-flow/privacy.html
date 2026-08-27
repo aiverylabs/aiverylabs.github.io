@@ -118,7 +118,7 @@
     <a class="back" href="./">Back to Survey Flow</a>
 
     <h1>Privacy Policy</h1>
-    <p class="meta">Survey Flow, operated by AIVERY LABS PTY LTD. Last updated 5 August 2026.</p>
+    <p class="meta">Survey Flow, operated by AIVERY LABS PTY LTD. Last updated 27 August 2026.</p>
     <p class="lede">Survey Flow sends satisfaction surveys to your customers and collects their answers, so it necessarily handles personal data. This policy sets out exactly what we hold, where it lives, who inside your company can see it, how long it stays, and what happens when you uninstall. Where something is retained rather than deleted, we say so and explain why.</p>
 
     <h2 id="roles">Who is responsible for what</h2>
@@ -183,7 +183,7 @@
     <table>
       <tr><th>Provider</th><th>Purpose</th><th>Location</th><th>Available transfer mechanism</th></tr>
       <tr><td>Neon</td><td>Managed Postgres. Holds survey records, ratings, comments and recipient labels</td><td>AWS us-east-1</td><td>Neon's own data processing agreement states it relies on the Data Privacy Framework, with the standard contractual clauses incorporated by reference if required</td></tr>
-      <tr><td>Resend</td><td>Sends the survey emails, and reports bounces and complaints. This is the active sending provider</td><td>Provider managed</td><td>EU and UK standard contractual clauses. Resend's own data processing agreement additionally claims Data Privacy Framework compliance</td></tr>
+      <tr><td>Resend</td><td>Sends the survey emails, and reports bounces and complaints. This is the active sending provider</td><td>United States. Resend's region setting controls where mail is sent from, not where data is stored</td><td>EU and UK standard contractual clauses. Resend's own data processing agreement additionally claims Data Privacy Framework compliance</td></tr>
       <tr><td>Amazon SES</td><td>A second fully integrated sending path, selectable by configuration. Not currently able to send, pending AWS production access</td><td>us-east-1</td><td>Standard contractual clauses, applied by the AWS Service Terms by default rather than on request. AWS is also covered by Amazon.com's Data Privacy Framework certification</td></tr>
       <tr><td>Amazon SNS</td><td>Carries bounce and complaint notifications for mail sent through SES. Receives data only while SES is the sending provider</td><td>us-east-1</td><td>Standard contractual clauses, applied by the AWS Service Terms by default rather than on request. AWS is also covered by Amazon.com's Data Privacy Framework certification</td></tr>
       <tr><td>Upstash QStash</td><td>Job queue. Carries board, item and monday account identifiers. No recipient address, no name, no survey content</td><td>Pinned to our account region</td><td>Upstash's own data processing agreement states it relies on the Data Privacy Framework, with the standard contractual clauses incorporated by reference if required</td></tr>
