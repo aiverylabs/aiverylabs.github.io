@@ -159,7 +159,7 @@
     <h3>What we deliberately do not hold</h3>
     <ul>
       <li>We do not log recipient email addresses. Log entries carry a short irreversible tag instead, enough to trace a delivery through support without exposing the address.</li>
-      <li>Our job queue carries identifiers only. No address, no name, and no ticket title passes through it.</li>
+      <li>Our job queue carries identifiers only. The table in section 5 lists exactly which identifiers, and what does not pass through it.</li>
       <li>We do not read board data beyond the columns you nominate and the items that reach your trigger status.</li>
     </ul>
 
@@ -187,7 +187,7 @@
       <tr><td>Amazon SES</td><td>A second fully integrated sending path, selectable by configuration. Not currently able to send, pending AWS production access</td><td>us-east-1</td><td>Standard contractual clauses, applied by the AWS Service Terms by default rather than on request. AWS is also covered by Amazon.com's Data Privacy Framework certification</td></tr>
       <tr><td>Amazon SNS</td><td>Carries bounce and complaint notifications for mail sent through SES. Receives data only while SES is the sending provider</td><td>us-east-1</td><td>Standard contractual clauses, applied by the AWS Service Terms by default rather than on request. AWS is also covered by Amazon.com's Data Privacy Framework certification</td></tr>
       <tr><td>Upstash QStash</td><td>Job queue. Carries board, item and monday account identifiers. No recipient address, no name, no survey content</td><td>Pinned to our account region</td><td>Upstash's own data processing agreement states it relies on the Data Privacy Framework, with the standard contractual clauses incorporated by reference if required</td></tr>
-      <tr><td>monday.com</td><td>Application hosting, configuration storage, token storage</td><td>United States</td><td>Not assessed for this policy. monday.com documents its own arrangements</td></tr>
+      <tr><td>monday.com</td><td>Application hosting, configuration storage, token storage</td><td>United States</td><td>You have a direct agreement with monday.com. The transfer mechanism for that processing sits in monday.com's own data processing addendum, not in this policy</td></tr>
     </table>
     <p>Both bounce and complaint routes stay mounted at all times, so that handling a rejection never depends on which provider sent the message. Resend and Amazon SES each report through their own separate lane, and Resend's is the lane carrying data today. Amazon SES cannot send until AWS grants production access, so it produces no bounces, Amazon SNS has nothing to deliver, and AWS receives no recipient addresses or delivery outcomes at present. What is unconditional is the route being mounted, not data arriving at it. That changes the moment production access is granted and one configuration value is switched, which requires no code change from us.</p>
     <p>Our front end loads no third party service. There is no analytics tool, no tag manager, no external font or script host, and no error reporting vendor.</p>
