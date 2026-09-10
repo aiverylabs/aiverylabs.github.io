@@ -263,7 +263,7 @@
     <p>When the seven days expire, the deletion sequence runs over whatever is still there, in a deliberate order.</p>
     <ul>
       <li>Survey records in our external database are deleted first, because that is the part held outside monday.com and it must not depend on anything that could fail.</li>
-      <li>Any uploaded logo in monday.com storage is swept next, so far as that storage is still reachable.</li>
+      <li>Any uploaded logo in monday.com storage is swept next.</li>
       <li>We confirm the result by searching for what remains rather than by counting successful delete calls, because a delete call reports success even for something that was never there.</li>
     </ul>
     <p>Aside from the suppression entries and completion markers described in section 8, and the follow-up items described next, this removes your data.</p>
