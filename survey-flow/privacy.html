@@ -101,6 +101,7 @@
       <li><a href="#roles">Who is responsible</a></li>
       <li><a href="#data">What we handle</a></li>
       <li><a href="#why">Why we handle it</a></li>
+      <li><a href="#ai">What we send to AI</a></li>
       <li><a href="#visibility">Who can see it</a></li>
       <li><a href="#where">Where it is stored</a></li>
       <li><a href="#security">How it is protected</a></li>
@@ -118,13 +119,13 @@
     <a class="back" href="./">Back to Survey Flow</a>
 
     <h1>Privacy Policy</h1>
-    <p class="meta">Survey Flow, operated by AIVERY LABS PTY LTD. Last updated 28 August 2026.</p>
-    <p class="lede">Survey Flow sends satisfaction surveys to your customers and collects their answers, so it necessarily handles personal data. This policy sets out exactly what we hold, where it lives, who inside your company can see it, how long it stays, and what happens when you uninstall. Where something is retained rather than deleted, we say so and explain why.</p>
+    <p class="meta">Survey Flow, operated by AIVERY LABS PTY LTD. Last updated 10 September 2026.</p>
+    <p class="lede">Survey Flow sends satisfaction surveys to your customers and collects their answers, so it necessarily handles personal data. This policy sets out exactly what we hold, where it lives, who inside your company can see it, how long it stays, and what happens when you uninstall. Where something is retained rather than deleted, we say so and explain why. The same goes for text that is sent to a model, and for content that is written onto one of your boards and stays there after you uninstall.</p>
 
     <h2 id="roles">Who is responsible for what</h2>
     <p>Two different relationships run through this product, and they carry different responsibilities.</p>
     <p><strong>You are the controller of your survey data.</strong> When you install Survey Flow on your monday.com account, you decide who receives a survey, what they are asked, and what happens to the answers. We process that data on your instructions and for no other purpose. We are your processor.</p>
-    <p><strong>We are the controller of the suppression list.</strong> Every Survey Flow customer sends through the same email domain, so when someone unsubscribes or their mailbox rejects our mail, honoring that is our own obligation rather than yours. That list is described in section 7, and it is the one place where data outlives your account by design.</p>
+    <p><strong>We are the controller of the suppression list.</strong> Every Survey Flow customer sends through the same email domain, so when someone unsubscribes or their mailbox rejects our mail, honoring that is our own obligation rather than yours. That list is described in section 8, and it is the one place where data outlives your account by design.</p>
     <p>Recipients of a survey are your customers, not ours. We hold no relationship with them and we never contact them for our own purposes.</p>
     <p>We handle personal information in accordance with the Australian Privacy Act 1988 (Cth) and the Australian Privacy Principles, the EU General Data Protection Regulation (EU) 2016/679, and the monday.com marketplace developer terms.</p>
 
@@ -144,6 +145,7 @@
 
     <h3>About your team</h3>
     <p>We store monday.com user identifiers for the agent assigned to each ticket, so that feedback can be attributed and shown to the right person. We read profile and time zone information from monday.com when rendering the dashboard, but we do not store your team members' names or email addresses.</p>
+    <p>That remains true of what we store. It is no longer the whole picture of what we disclose. When somebody asks one of our Sidekick skills for feedback, we resolve the assigned agent's monday.com display name at that moment and return it in the reply, next to the customer's comment. The name is not kept, but it does reach a chat surface that is not ours. Section 4 describes that path.</p>
     <p>Where you configure a low rating alert, we store the identifier of the person to be notified.</p>
 
     <h3>Configuration you provide</h3>
@@ -159,24 +161,53 @@
     <h3>What we deliberately do not hold</h3>
     <ul>
       <li>We do not log recipient email addresses. Log entries carry a short irreversible tag instead, enough to trace a delivery through support without exposing the address.</li>
-      <li>Our job queue carries identifiers only. The table in section 5 lists exactly which identifiers, and what does not pass through it.</li>
-      <li>We do not read board data beyond the columns you nominate and the items that reach your trigger status.</li>
+      <li>Our job queue carries identifiers only. The table in section 6 lists exactly which identifiers, and what does not pass through it.</li>
+      <li>We do not harvest board data. We read the columns you nominate and the items that reach your trigger status. There is one addition, and it is a lookup rather than a harvest: when somebody asks a Sidekick skill to find a ticket by name, we read item names on the boards you have configured, including items that never reached your trigger status, to work out which ticket is meant. No column value on those items is read, nothing from the lookup is stored, and what comes out of it is a single item identifier.</li>
     </ul>
 
     <h2 id="why">Why we handle it</h2>
     <p>Everything above exists to run the product you configured: deciding whether a survey should be sent, sending it, collecting the answer, showing it to you and to the agent who handled the work, and notifying someone when a rating falls below the threshold you set.</p>
     <p>We do not sell personal data. We do not use it to train models. We do not use it for advertising, profiling, or any purpose of our own beyond operating and supporting the service.</p>
+    <p>Some of that content is sent to a model to be read or written about, though never to train one. Section 4 sets out which features do it, what each one sends, what turns them on, and what monday.com says happens to the text afterwards.</p>
     <p>For customers in the EEA and the UK, our lawful basis for processing on your behalf is the performance of our contract with you. You remain responsible for establishing the lawful basis on which you survey your own customers. Our own retention of suppression data rests on legitimate interests, specifically the interest in not repeatedly emailing people who have asked us to stop or whose mailbox has rejected our mail.</p>
+
+    <h2 id="ai">What we send to AI, and when</h2>
+    <p>Some of what your customers write is sent to monday.com's AI to be read or written about. This section says which features do that, exactly what each one sends, and what we know and do not know about where it goes next.</p>
+    <p>Four paths lead to a model. Three of them, the ones in the table, are switched off until you switch them on: the AI question mode defaults to off, and labelling is off unless you turn it on. If you leave both alone, no comment and no answer is ever sent to a model by any of the three, and turning either one on is a decision to send what the table describes. The fourth path is not gated on anything, and it is set out after the table.</p>
+
+    <table>
+      <tr><th>Feature</th><th>When it runs</th><th>What is sent</th></tr>
+      <tr><td>Opening question</td><td>Before the customer has typed anything</td><td>The ticket title, how many days the ticket took to close, and the rating. There is no comment yet, so no comment is sent</td></tr>
+      <tr><td>Probe question</td><td>Live, while the customer is still answering</td><td>The ticket title, days to close, the rating, the comment exactly as written, and the conversation so far</td></tr>
+      <tr><td>Labelling</td><td>After the survey is submitted, with nobody present</td><td>The ticket title, days to close, the rating, the comment exactly as written, and every answer exactly as written</td></tr>
+    </table>
+
+    <p>Nothing is redacted, truncated or summarised first. We pass no recipient email address and no display name as a field of any of these requests. But a comment is free text, so if your customer types their own address or phone number into it, that goes verbatim with everything else, and a ticket title carries whatever your board carries.</p>
+
+    <h3>A fourth path, which no setting controls</h3>
+    <p>Survey Flow also publishes two skills to monday.com's Sidekick assistant. One finds feedback; the other creates a follow-up item from a response. The one that finds feedback returns, for each response it matches, the comment exactly as written, every follow-up answer run together, the CSAT score, the ticket title, a date, and the assigned agent's monday.com display name, which is one of your own staff. That reply is handed to Sidekick, which writes its answer out of it.</p>
+    <p>So customer comments reach a model here too, on a path of its own. Unlike the three features above, this one is not gated on any setting. Anyone who can invoke the skill, which means an admin or a board owner, reaches it. Section 5 covers where the answer then appears and who can read it.</p>
+
+    <h3>What happens to it once it leaves</h3>
+    <p>All four paths call monday.com's AI, so the text goes to monday.com first. monday.com states in its AI Trust Center that it does not use input or output to train models and does not allow anyone else to, and that it reaches large language models through managed APIs from Microsoft Azure and AWS Bedrock under zero retention policies. The text therefore does not stop at monday.com. It leaves monday.com's own infrastructure, and the monday.com row of the table in section 6 records that routing.</p>
+    <p>Two limits on that are worth stating rather than leaving you to assume they were checked.</p>
+    <ul>
+      <li>The AI Trust Center describes monday AI as a product. It says nothing specific about run_prompt, which is the call our app actually makes, or about the API generally. Reading it as covering that call is a reasonable inference and it is the one we have made in writing this section, but it is our inference and not something monday.com has stated.</li>
+      <li>A sixty day internal access window for AI data appears in search results about monday.com. We could not find it on the AI Trust Center itself, so we are not asserting it and we do not know whether it applies here. We would rather say that than repeat a figure we cannot source.</li>
+    </ul>
 
     <h2 id="visibility">Who can see it</h2>
     <p>This section matters more than most, because it determines who inside your own company sees your customers' contact details. Read it before rolling Survey Flow out to a wide group.</p>
     <p><strong>Agents can see who left a given response.</strong> The per agent dashboard shows each response alongside the recipient it came from. Where a display name exists, the display name appears. Where the app holds only an email address, the email address appears. This is what makes per agent feedback useful, and it is more exposure than some teams expect.</p>
     <p><strong>Low rating alerts carry the same information.</strong> Whoever you nominate receives a monday.com notification identifying the ticket and the customer who left the rating, whether or not that person ever opens Survey Flow.</p>
+    <p><strong>A follow-up item puts the response onto one of your boards.</strong> When a response is turned into a follow-up item, the update on that item carries the rating and the date it was given, the labels still outstanding, the comment exactly as written under the heading &ldquo;What the customer wrote&rdquo;, and every follow-up question that was answered, with its answer. The item's name is the label followed by the ticket title, so the ticket title itself turns up in board views, in search results and in notifications. No recipient email address is included anywhere in it; that was deliberately left out.</p>
+    <p>Who can read that is a different question from who can use Survey Flow, and the answer is wider. It is whoever can see the destination board, which is that board's membership on monday.com, set by whoever administers it, and unconnected to who can open the app. An item created from a response is legible to people the app itself would never show it to, so choose the destination board with that in mind. Section 9 explains what happens to these items when you uninstall, which is nothing.</p>
+    <p><strong>Sidekick answers land outside the app.</strong> When somebody asks a Sidekick skill for feedback, the answer is composed out of the comments, answers, scores, ticket titles and agent display names described in section 4, and it appears in a monday.com chat transcript. How long that transcript is kept, and who else can read it, is governed by monday.com rather than by us.</p>
     <p>Beyond your own account, access is limited to us. A small number of our personnel can access survey data where it is necessary to operate or support the service, and our sub processors can access it only to the extent needed to provide their part of it.</p>
     <p>We may also disclose personal information to our contractors and professional advisors where they need it to do work for us, to courts, regulators and law enforcement where the law requires it, and to a successor entity if our business or assets are transferred. We do not sell, rent or trade personal data, and we do not disclose it for any other purpose.</p>
 
     <h2 id="where">Where it is stored, and who else is involved</h2>
-    <p>Survey data is stored outside monday.com, in a managed Postgres database. monday.com has confirmed in writing that this is acceptable for this app, subject to the security conditions described in section 6, in support ticket #5047188 dated 29 July 2026.</p>
+    <p>Survey data is stored outside monday.com, in a managed Postgres database. monday.com has confirmed in writing that this is acceptable for this app, subject to the security conditions described in section 7, in support ticket #5047188 dated 29 July 2026.</p>
     <p>Your board configuration is held in the same database, alongside the survey records. Per item survey state and uploaded logos are stored in monday.com's own storage, inside your account. Your monday.com access tokens are held in monday.com's encrypted secure storage and never leave our backend.</p>
 
     <h3>Sub processors</h3>
@@ -187,7 +218,7 @@
       <tr><td>Amazon SES</td><td>A second fully integrated sending path, selectable by configuration. Not currently able to send, pending AWS production access</td><td>us-east-1</td><td>Standard contractual clauses, applied by the AWS Service Terms by default rather than on request. AWS is also covered by Amazon.com's Data Privacy Framework certification</td></tr>
       <tr><td>Amazon SNS</td><td>Carries bounce and complaint notifications for mail sent through SES. Receives data only while SES is the sending provider</td><td>us-east-1</td><td>Standard contractual clauses, applied by the AWS Service Terms by default rather than on request. AWS is also covered by Amazon.com's Data Privacy Framework certification</td></tr>
       <tr><td>Upstash QStash</td><td>Job queue. Carries board, item and monday account identifiers. No recipient address, no name, no survey content</td><td>AWS us-east-1</td><td>Upstash's own data processing agreement states it relies on the Data Privacy Framework, with the standard contractual clauses incorporated by reference if required</td></tr>
-      <tr><td>monday.com</td><td>Application hosting, configuration storage, token storage</td><td>United States</td><td>You have a direct agreement with monday.com. The transfer mechanism for that processing sits in monday.com's own data processing addendum, not in this policy</td></tr>
+      <tr><td>monday.com</td><td>Application hosting, configuration storage, token storage. Object storage for any logo you upload. AI processing: the requests described in section 4 are sent to monday.com's AI through run_prompt, and monday.com states that it routes them onward to large language models at Microsoft Azure and AWS Bedrock</td><td>United States</td><td>You have a direct agreement with monday.com. The transfer mechanism for that processing sits in monday.com's own data processing addendum, not in this policy. The same is true of the onward routing to Microsoft Azure and AWS Bedrock, which happens inside monday.com's supply chain rather than ours</td></tr>
     </table>
     <p>Both bounce and complaint routes stay mounted at all times, so that handling a rejection never depends on which provider sent the message. Resend and Amazon SES each report through their own separate lane, and Resend's is the lane carrying data today. Amazon SES cannot send until AWS grants production access, so it produces no bounces, Amazon SNS has nothing to deliver, and AWS receives no recipient addresses or delivery outcomes at present. What is unconditional is the route being mounted, not data arriving at it. That changes the moment production access is granted and one configuration value is switched, which requires no code change from us.</p>
     <p>Our front end loads no third party service. There is no analytics tool, no tag manager, no external font or script host, and no error reporting vendor.</p>
@@ -208,7 +239,7 @@
     <p>No system is perfectly secure, and we cannot guarantee the security of information transmitted over the internet. If we become aware of a breach affecting your data, we will notify you without undue delay and in any event within 72 hours of becoming aware of it, and give you what you need to meet your own notification obligations.</p>
 
     <h2 id="retention">How long we keep it</h2>
-    <p>While your installation is active, survey records are kept so your dashboard and reports continue to work. You can delete individual responses at any time, and uninstalling triggers the process described in section 8.</p>
+    <p>While your installation is active, survey records are kept so your dashboard and reports continue to work. You can delete individual responses at any time, and uninstalling triggers the process described in section 9.</p>
     <p>Held surveys are the one record type with a retention period rather than a lifetime. Everything else lives as long as your installation does and goes when you uninstall. A held record is kept for at least 60 days, and a daily sweep removes the ones past that point, so how long any single record lasts depends on when it crosses. Held records are also deleted with everything else if you uninstall before then.</p>
 
     <h3>Two things we keep on purpose</h3>
@@ -218,7 +249,7 @@
     <p>We should be equally precise about what that marker holds. Almost always it holds the identifier and nothing else. The exception is when our database is unreachable at the moment somebody submits a rating. The marker then carries the rating itself, including the score, the comment and any answers, because for that period it is the only copy of what the person told you. It is shrunk back to the identifier once the record is written. So there are windows in which a completion marker does hold personal data, and we would rather describe them than call the marker empty and be wrong some of the time.</p>
 
     <h2 id="uninstall">What happens when you uninstall</h2>
-    <p>We will not tell you that everything is deleted, because that would not be true in every case. The accurate answer has three parts.</p>
+    <p>We will not tell you that everything is deleted, because that would not be true in every case. The accurate answer has four parts.</p>
 
     <h3>The normal case</h3>
     <p>When you uninstall or revoke authorization, we receive a notification from monday.com and run a deletion sequence in a deliberate order.</p>
@@ -228,7 +259,12 @@
       <li>We confirm the result by searching for what remains rather than by counting successful delete calls, because a delete call reports success even for something that was never there.</li>
       <li>The access token is revoked last, and our own copy is destroyed.</li>
     </ul>
-    <p>Aside from the two items in section 7, this removes your data.</p>
+    <p>Aside from the two items in section 8, and the follow-up items described next, this removes your data.</p>
+
+    <h3>Follow-up items on your boards stay</h3>
+    <p>Nothing in the product deletes or archives a follow-up item. There is no delete call and no archive call anywhere in it. Items created from your responses stay on your board after you uninstall, with the comment, the answers, the rating and the ticket title in them, and they stay there permanently unless somebody on your team removes them. Deleting our own survey records, which we do, does not touch them, because the copy inside the item is a second copy and it lives on your board rather than on our systems.</p>
+    <p>That is a choice rather than an oversight, so here is the reasoning behind it. A follow-up item is work one of your admins created on your own board. It is the same kind of object as a task they wrote themselves, and once it exists it has its own life on your team's board: it may since have been assigned to somebody, commented on, moved, edited, or built into how you work. Deleting all of it at uninstall would destroy that work, without asking, on the way out. We would rather leave the item where its owner put it and tell you plainly that it is still there.</p>
+    <p>If you want them gone, they are yours to remove. They are ordinary monday.com items on a board you control, and what your customer wrote is in the item's updates.</p>
 
     <h3>One case where a little survives</h3>
     <p>If your monday.com authorization has already expired or been revoked at the moment the uninstall notification arrives, we can no longer authenticate to the storage inside your account. Rather less turns on that than it used to, because your board configuration now lives in our own database rather than in yours. When it happens:</p>
@@ -242,7 +278,7 @@
     <p>What is left in this case sits in monday.com's own storage inside your own account rather than on our systems, and we attempt the deletion regardless in case the stored token is still accepted. It is a shorter list than it once was, but we would still rather state the limitation plainly than describe deletion as complete when it is not.</p>
 
     <h3>If you want deletion confirmed</h3>
-    <p>Write to us and we will run the deletion again and tell you what was found. See section 13.</p>
+    <p>Write to us and we will run the deletion again and tell you what was found. See section 14.</p>
 
     <h2 id="rights">Your rights, and the rights of the people you survey</h2>
     <p>If you are a monday.com customer using Survey Flow, you can export your survey data, delete individual responses, or delete everything by uninstalling. Write to us if you would like help with any of these.</p>
