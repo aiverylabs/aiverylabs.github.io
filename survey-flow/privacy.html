@@ -150,6 +150,7 @@
 
     <h3>Configuration you provide</h3>
     <p>Board and item identifiers, your trigger status and conditions, your questions and email wording, your sender display name and logo, and your exclusion list.</p>
+    <p>A logo has to be a PNG, JPEG, GIF or WebP, identified by its actual bytes rather than by what the upload declares, and anything over 256 KB is refused. We strip the metadata before storing it, which for a photograph means the location it was taken, the camera serial number, timestamps and editing history. That is the whole of what stripping does. The picture is untouched, so if you upload a team photo or a portrait of somebody, that is what we hold and what your customers see.</p>
     <h3>Surveys waiting to be sent</h3>
     <p>When your account reaches its monthly plan allowance, tickets that resolve are held rather than sent, so the survey is not lost. A held record holds a board identifier, an item identifier and a timestamp. No address, no name and no comment.</p>
 
@@ -279,7 +280,6 @@
       <li>All survey records in our external database are still deleted in full.</li>
       <li>Your board configuration is still deleted in full, using our own credentials. That covers your exclusion list, which holds email addresses in plain form, the labels of any conditions you set on a people column, which are the names of your own staff, and the identifier of anyone nominated for a low rating alert. None of it depends on your authorization still being valid.</li>
       <li>Per item survey state expires by itself within 92 days.</li>
-      <li>Any logo you uploaded remains. We accept any image and do not inspect what is in it, so if you uploaded a team photo or a portrait of somebody, that is what survives, and we do not strip the metadata a photograph carries.</li>
       <li>A webhook registration record remains. It holds no personal data.</li>
     </ul>
     <p>What is left in this case sits in monday.com's own storage inside your own account rather than on our systems, and we attempt the deletion regardless in case the stored token is still accepted. It is a shorter list than it once was, but we would still rather state the limitation plainly than describe deletion as complete when it is not.</p>
