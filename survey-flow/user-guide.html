@@ -179,7 +179,7 @@
     <a class="back" href="./">Back to Survey Flow</a>
 
     <h1>Getting started with Survey Flow</h1>
-    <p class="meta">Last updated 10 September 2026.</p>
+    <p class="meta">Last updated 11 September 2026.</p>
     <p class="lede">Survey Flow sends a short satisfaction survey when a ticket reaches the status you choose, then collects the ratings and comments where your team can read them. This guide takes you from installing the app to reading your first results. Setup runs about ten minutes, and most of that is deciding what to ask rather than clicking through screens.</p>
 
     <div class="callout">
@@ -213,8 +213,6 @@
 
     <h2 id="authorize"><span class="step-num">2</span>Authorize access</h2>
     <p>The first time you open Survey Flow, monday.com shows you exactly what the app is asking for. Survey Flow requests the narrowest set of permissions that lets it work. It reads board and item data so it can tell when a ticket changed status and who the customer is, and it writes back so results appear where you expect them.</p>
-    <!-- STALE (CFM-162): recapture. The connect flow is now admin gated, so the route to this screen
-         changed and a non admin never reaches it. -->
     <figure>
       <img class="screenshot" src="../images/survey-flow/03-authorize.png" alt="The monday.com authorization screen listing the permission scopes Survey Flow requests">
       <figcaption>The authorization screen with the full scope list.</figcaption>
@@ -243,13 +241,12 @@
       <figcaption>The empty state, before any survey exists.</figcaption>
     </figure>
 
-    <h3>Pick the board</h3>
+    <h3>Which board it covers</h3>
+    <p>There is no board picker to hunt for. You open Survey Flow from the board it applies to, so the board is decided by where you are standing when you open it.</p>
     <p>One configuration covers one board. If you run several boards, set each one up separately. That is more clicks, but it lets each team ask its own questions.</p>
-    <!-- STALE? Recheck against the live app. The configuration screen was restructured on
-         2026-09-10 (CFM-154) and this capture predates it. -->
     <figure>
-      <img class="screenshot" src="../images/survey-flow/05-board-picker.png" alt="Choosing which board the survey applies to">
-      <figcaption>Board selection.</figcaption>
+      <img class="screenshot" src="../images/survey-flow/05-board-picker.png" alt="monday's add view menu open on a board, with Survey Flow listed under Installed">
+      <figcaption>Adding the Survey Flow view to a board.</figcaption>
     </figure>
 
     <h3>Pick the trigger status</h3>
@@ -280,16 +277,26 @@
     <h3>Write the questions</h3>
     <p>Every survey opens with a one to five star rating. That question is fixed, because it is the number every report is built from.</p>
     <p>Below it you can add a few follow up questions. Keep the list short. Response rates fall away quickly past two or three questions, and a rating with no comment is still useful while an abandoned survey is not. A pattern that works well is one rating, then one open text box asking what would have made the experience better.</p>
-    <!-- STALE? Recheck against the live app. The surrounding text was rewritten for the AI question
-         modes, and this capture predates them. -->
+    <p>Each follow up question is one of two kinds. A free text box takes whatever the customer wants to say. <em>Choose multiple</em> offers a fixed set of options, which you type as a comma separated list. Pick the fixed set when you already know the answers you are sorting between and want to count them; pick free text when you do not, because it is the only kind that can tell you something you had not thought to ask about.</p>
     <figure>
       <img class="screenshot" src="../images/survey-flow/08-questions.png" alt="The question editor showing the fixed star rating and one follow up question">
       <figcaption>The question editor.</figcaption>
     </figure>
 
-    <h3 id="ai">Or let AI ask them</h3>
-    <p>Instead of the questions you just wrote, Survey Flow can ask one generated for the ticket in front of the customer. It is off until an admin turns it on, and leaving it off is a perfectly good answer.</p>
-    <p>There are two moments it can do that, and they are not equally weighty. An <strong>opening question</strong> is generated before the customer has typed anything, out of the ticket title, how many days the ticket took to close, and the rating they have just given. No comment exists yet, so no comment is sent. A <strong>probe question</strong> is generated while they are still answering, so that the next question follows what they actually said. It sends the ticket title, the days to close, the rating, the comment exactly as written, and the conversation so far.</p>
+    <h3>Show a question only to some raters</h3>
+    <p>Each follow up question carries a <em>Show this question to</em> setting with three bands: Positive for four and five stars, Neutral for three, and Negative for one and two. Only raters in the bands you tick are asked it.</p>
+    <p>The obvious use is asking unhappy raters what went wrong without putting the same question to people who have just told you it went well.</p>
+    <p>It changes your reports as well as the survey, and this is the part worth remembering. A question shown to one band is scored against that band rather than against everyone, so its numbers are not comparable with a question every rater saw. That is the right behaviour, and it is easy to forget six weeks later when the two sit next to each other in the same view.</p>
+
+    <h3 id="ai">Add an AI question</h3>
+    <p>Survey Flow can also ask a question generated for the ticket in front of the customer. <strong>It adds a question. It never replaces yours.</strong> The follow up questions you wrote above are asked in every mode, at the end, whatever the survey asks before them.</p>
+    <p>It is off until an admin turns it on, and leaving it off is a perfectly good answer. There are three modes, and what separates them is what the customer is asked:</p>
+    <ul>
+      <li><strong>Off.</strong> The questions you wrote, and nothing else. Nothing is generated and nothing is sent to a model.</li>
+      <li><strong>A probe question.</strong> The customer leaves a comment, one question is generated from what they have just written, and then your questions follow.</li>
+      <li><strong>An opening question as well.</strong> A generated question before they have typed anything, then the probe as above, then your questions.</li>
+    </ul>
+    <p>The two generated questions do not send the same thing. An <strong>opening question</strong> is built from the ticket title, how many days the ticket took to close, and the rating they have just given; no comment exists yet, so no comment is sent. A <strong>probe question</strong> sends the ticket title, the days to close, the rating, the comment exactly as written, and the conversation so far.</p>
     <p>What you get is a survey that asks about the thing the person raised rather than the thing you guessed at in advance. What it costs is that their words leave your account while they are still typing them.</p>
     <p>Nothing is redacted, shortened or summarised first. No recipient address or display name is sent as a field, but free text is free text: a customer who types their own phone number into a comment sends it along with everything else. monday.com states that it does not use this input to train models, and that it reaches the model through managed services at Microsoft Azure and AWS Bedrock, so the text does not stop at monday.com. The <a href="https://aiverylabs.github.io/survey-flow/privacy.html#ai">privacy policy</a> records where that statement is firm and where it is our reading of it, which is the part worth five minutes if you are the person deciding.</p>
     <p>Labelling is a second AI switch, separate from this one and off by the same default. It runs after a survey is submitted rather than during it, and step 7 covers it.</p>
@@ -305,8 +312,6 @@
     <p>Every answer is stored either way. This setting only decides what gets written back onto the ticket itself.</p>
     <p>Writing the score onto the ticket is worth doing. It puts the rating next to the work it refers to, so an agent opening the ticket sees it without going anywhere, and your existing board reports can group by it. The comment sits beside it.</p>
     <p>Survey Flow creates the columns if they are not there yet. The default names are CSAT score and CSAT comment, and you can point them at columns you already have instead.</p>
-    <!-- STALE (CFM-154): recapture. This is inside the region restructured on 2026-09-10, and the
-         outstanding section next to it moved. -->
     <figure>
       <img class="screenshot" src="../images/survey-flow/23-ticket-columns.png" alt="Choosing which board columns receive the score and the comment">
       <figcaption>What gets written back to the ticket.</figcaption>
@@ -393,7 +398,7 @@
     <p>Delivery is normally quick, though the message passes through an email provider and ordinary email delays apply.</p>
 
     <h2 id="customer"><span class="step-num">5</span>What your customer sees</h2>
-    <p>They receive your email and click through to a plain page showing the ticket and the star rating. They choose a rating, answer your follow up questions, and submit. No account, no signup, nothing to install.</p>
+    <p>They receive your email and click through to a plain page showing the ticket and the star rating. They choose a rating, answer your follow up questions, and submit. Where you have turned on an AI question, one or two generated questions appear before yours. No account, no signup, nothing to install.</p>
     <figure>
       <img class="screenshot" src="../images/survey-flow/12-email-received.png" alt="The survey invitation email as it appears in a mail client">
       <figcaption>The invitation as it arrives.</figcaption>
@@ -427,8 +432,6 @@
       <figcaption>The dashboard.</figcaption>
     </figure>
     <p>The written comments are usually where the value sits. A score tells you something changed. A comment tells you what to do about it.</p>
-    <!-- STALE? Recheck against the live app. A response now carries outstanding labels and the
-         action that creates a follow up item; neither is in this capture. -->
     <figure>
       <img class="screenshot" src="../images/survey-flow/17-response-detail.png" alt="A single customer response including the rating and written comment">
       <figcaption>One response, with the comment the customer left.</figcaption>
