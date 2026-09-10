@@ -125,7 +125,7 @@
     <h2 id="roles">Who is responsible for what</h2>
     <p>Two different relationships run through this product, and they carry different responsibilities.</p>
     <p><strong>You are the controller of your survey data.</strong> When you install Survey Flow on your monday.com account, you decide who receives a survey, what they are asked, and what happens to the answers. We process that data on your instructions and for no other purpose. We are your processor.</p>
-    <p><strong>We are the controller of the suppression list.</strong> Every Survey Flow customer sends through the same email domain, so when someone unsubscribes or their mailbox rejects our mail, honoring that is our own obligation rather than yours. That list is described in section 8, and it is the one place where data outlives your account by design.</p>
+    <p><strong>We are the controller of the suppression list.</strong> Every Survey Flow customer sends through the same email domain, so when someone unsubscribes or their mailbox rejects our mail, honoring that is our own obligation rather than yours. That list is described in section 8. Three things outlive an uninstall: this list, the seven day window before deletion runs, which is also in section 8, and follow-up items on your own boards, which are in section 9. This is the one we keep indefinitely and for a purpose of our own.</p>
     <p>Recipients of a survey are your customers, not ours. We hold no relationship with them and we never contact them for our own purposes.</p>
     <p>We handle personal information in accordance with the Australian Privacy Act 1988 (Cth) and the Australian Privacy Principles, the EU General Data Protection Regulation (EU) 2016/679, and the monday.com marketplace developer terms.</p>
 
@@ -240,26 +240,31 @@
 
     <h2 id="retention">How long we keep it</h2>
     <p>While your installation is active, survey records are kept so your dashboard and reports continue to work. You can delete individual responses at any time, and uninstalling triggers the process described in section 9.</p>
-    <p>Held surveys are the one record type with a retention period rather than a lifetime. Everything else lives as long as your installation does and goes when you uninstall. A held record is kept for at least 60 days, and a daily sweep removes the ones past that point, so how long any single record lasts depends on when it crosses. Held records are also deleted with everything else if you uninstall before then.</p>
+    <p>Everything else lives as long as your installation does, and then for seven days longer. Uninstalling defers deletion rather than performing it, and reinstalling inside those seven days brings everything back. That window is the first of the three entries below, and section 9 describes what runs when it closes.</p>
+    <p>Held surveys are the one record type with a retention period of their own rather than a lifetime. A held record is kept for at least 60 days, and a daily sweep removes the ones past that point, so how long any single record lasts depends on when it crosses. Held records are deleted with everything else if you uninstall before then, though like everything else in our database that happens when the seven day window closes rather than at the moment you uninstall.</p>
 
-    <h3>Two things we keep on purpose</h3>
+    <h3>Three things we keep on purpose</h3>
+    <p><strong>Everything else, for seven days after you uninstall.</strong> Your settings and your survey responses, including the comments people wrote, stay in our database for seven days after an uninstall and are then deleted. Reinstall inside that window and all of it is still there. Let the window close and it is gone, and a later install starts from nothing.</p>
+    <p><strong>This is for your convenience, not because we need it.</strong> We do not use the data during that window: no surveys are sent, no dashboard is reachable, and existing survey links stop working until you reinstall. Uninstalling to troubleshoot, or uninstalling on the wrong account, would otherwise mean rebuilding your questions, your branding and your exclusion list from nothing, and that is the only reason the window exists.</p>
+    <p>If you want it gone sooner, ask us and we will delete it immediately. There is no in-product control we can point you at for this, because by then the app has been removed from your account, so the route is to write to us. See section 14.</p>
     <p><strong>Suppression entries.</strong> When someone unsubscribes, or their mailbox hard bounces, or they report a message as spam, we record that against a one way cryptographic hash of their address. We keep it after you uninstall, and it is shared across all Survey Flow customers, because every customer sends through the same email domain and a complaint against that domain has to be honored for everyone. Deleting it would let a later installation email somebody who has already asked us to stop.</p>
     <p>We want to be precise about what hashing does here. A hashed email address is pseudonymous data under the GDPR, not anonymous data. Somebody who already holds a candidate address can hash it and check for a match. Hashing means we cannot read the list to recover addresses, and it does not put the data outside the scope of data protection law. We do not claim otherwise.</p>
     <p><strong>Completion markers.</strong> A small record noting that a given survey was answered, so the same person is not asked twice about the same ticket. It is stored against an opaque identifier and expires by itself within 92 days.</p>
     <p>We should be equally precise about what that marker holds. Almost always it holds the identifier and nothing else. The exception is when our database is unreachable at the moment somebody submits a rating. The marker then carries the rating itself, including the score, the comment and any answers, because for that period it is the only copy of what the person told you. It is shrunk back to the identifier once the record is written. So there are windows in which a completion marker does hold personal data, and we would rather describe them than call the marker empty and be wrong some of the time.</p>
 
     <h2 id="uninstall">What happens when you uninstall</h2>
-    <p>We will not tell you that everything is deleted, because that would not be true in every case. The accurate answer has four parts.</p>
+    <p>We will not tell you that everything is deleted, because that would not be true in every case. The accurate answer has four parts, and the first thing to say is that none of it happens on the day you uninstall.</p>
 
     <h3>The normal case</h3>
-    <p>When you uninstall or revoke authorization, we receive a notification from monday.com and run a deletion sequence in a deliberate order.</p>
+    <p>When you uninstall or revoke authorization, we receive a notification from monday.com, record your account as due for deletion seven days later, and leave your data where it is until then. Nothing is deleted at that moment. If you reinstall inside those seven days the deletion is cancelled and everything comes back, which is the window described in section 8.</p>
+    <p>When the seven days expire, the deletion sequence runs in a deliberate order.</p>
     <ul>
       <li>Survey records in our external database are deleted first, because that is the part held outside monday.com and it must not depend on anything that could fail.</li>
       <li>Per item state and any uploaded logo in monday.com storage are then swept, before the access token is revoked, because revoking first would make that storage permanently unreachable.</li>
       <li>We confirm the result by searching for what remains rather than by counting successful delete calls, because a delete call reports success even for something that was never there.</li>
       <li>The access token is revoked last, and our own copy is destroyed.</li>
     </ul>
-    <p>Aside from the two items in section 8, and the follow-up items described next, this removes your data.</p>
+    <p>Aside from the suppression entries and completion markers described in section 8, and the follow-up items described next, this removes your data.</p>
 
     <h3>Follow-up items on your boards stay</h3>
     <p>Nothing in the product deletes or archives a follow-up item. There is no delete call and no archive call anywhere in it. Items created from your responses stay on your board after you uninstall, with the comment, the answers, the rating and the ticket title in them, and they stay there permanently unless somebody on your team removes them. Deleting our own survey records, which we do, does not touch them, because the copy inside the item is a second copy and it lives on your board rather than on our systems.</p>
@@ -267,7 +272,7 @@
     <p>If you want them gone, they are yours to remove. They are ordinary monday.com items on a board you control, and what your customer wrote is in the item's updates.</p>
 
     <h3>One case where a little survives</h3>
-    <p>If your monday.com authorization has already expired or been revoked at the moment the uninstall notification arrives, we can no longer authenticate to the storage inside your account. Rather less turns on that than it used to, because your board configuration now lives in our own database rather than in yours. When it happens:</p>
+    <p>If your monday.com authorization has already expired or been revoked by the time that sequence runs, we can no longer authenticate to the storage inside your account. Rather less turns on that than it used to, because your board configuration now lives in our own database rather than in yours. When it happens:</p>
     <ul>
       <li>All survey records in our external database are still deleted in full.</li>
       <li>Your board configuration is still deleted in full, using our own credentials. That covers your exclusion list, which holds email addresses in plain form, the labels of any conditions you set on a people column, which are the names of your own staff, and the identifier of anyone nominated for a low rating alert. None of it depends on your authorization still being valid.</li>
