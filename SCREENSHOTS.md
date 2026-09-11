@@ -84,20 +84,49 @@ itself rather than against what was requested. Where they differed, the words we
 renamed. A space in a filename does not fail loudly: the reference simply does not resolve and the
 page shows a broken image.
 
-## ⚠️ Pending a copy change — two recaptures, already identified
+## ✅ The copy change landed — both recaptures checked by looking
 
-The labelling hint **"It does not read the rating" is false** and is being fixed: the rating is sent
-to the model, it just does not decide. When the new wording lands, **two captures frame the old one**
-and both need retaking:
+`32` and `35` were retaken on 2026-09-11 and the pending item is cleared. The card now reads "The
+rating is sent to the AI with the comment and answers, but it does not decide which get marked: a
+five-star response can be marked, and an angry one-star may not be", and "are not labelled" in place
+of "are not read". `35` has scrolled past the card entirely.
 
-- **`32-followup-destination`** — the *Mark what is still outstanding* card is the main subject, and
-  the sentence is the second line of its description.
-- **`35-sidekick-skills`** — less obvious. The Sidekick panel is the subject, but the configuration
-  screen behind it shows the same card and the same sentence, in full, on the left of frame.
+**I checked every other capture shot on the configuration screen rather than reasoning about which
+could be affected**, since reasoning is how `35` was nearly missed the first time:
 
-⚠️ `35` is the one that would be missed. Nobody recapturing a copy change goes looking in a
-screenshot of a chat panel — the stale text is in the background of a picture taken for something
-else entirely. Noted here now, while both are known, rather than left to be found.
+- `39-config-groups` — **clean, and for a reason worth recording.** Its Act-on-what-comes-back
+  sections are collapsed to summary lines ("On, suggesting"), so no card description is in frame.
+  Collapsed sections are immune to copy changes; expanded ones are not. That is the test to apply
+  next time rather than opening every file.
+- `22-low-rating-alert`, `11-activate` — no labelling card in frame. Both turned up something else.
+
+## ⚠️ `32-followup-destination` is no longer what its name says
+
+The recapture is cropped to the **labelling card alone**. The *Where follow-up items go* block, which
+was the point of the original and the reason for the filename, is out of frame.
+
+- The figure has been **moved** out of §3's *Where follow up items go* and into §7's *Create them
+  automatically*, where its content — the rule box — is exactly the subject. Alt text and caption
+  rewritten to the card.
+- §3's *Where follow up items go* now carries no figure of its own. Not urgent: `39-config-groups`
+  is in the same section and frames the destination block in context. A tighter crop would be better
+  but nothing is broken.
+- ⚠️ **The filename now lies.** It says destination and shows labelling. Renaming it is the clean fix
+  and frees the name for a real destination capture — say the word. Left as-is rather than renamed
+  unasked, because a rename breaks any local copy or note that refers to it.
+
+## ⚠️ Two things found while looking, neither about the copy change
+
+**`22-low-rating-alert` publishes a real personal email address.** The rule's notify target is a named
+person with `phamphuoc311093@gmail.com` beneath it, legible at full size, on a public page. It is not
+customer data — it appears to be your own — but it is a live address on a site scrapers read, and the
+guide's own callouts tell readers to treat this kind of thing carefully. Recapture with a seeded
+account, or say to pull the figure and I will.
+
+**`11-activate` is stale.** It shows the app titled **"CSAT Surveys"**; `39` and `35` both show
+**"Surveys"**. It also sits in an *Unsaved changes* state with greyed steps in the How it runs strip.
+It was on the audited-and-correct list from 2026-09-10 — cleared before anyone knew the product name
+had moved, which is the same failure the rule above describes.
 
 ## ⚠️ Three prose errors the pictures caught
 Recorded here because it is the argument for taking them at all, not just for publishing them.
