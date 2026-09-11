@@ -40,8 +40,8 @@ Everything they were looking for was present. Nothing they were not looking for 
 **An audit against a stale understanding returns a confident clean result**, and a clean result is
 harder to revisit than no result, because the file now says somebody checked.
 
-**And it has now happened twice, which is why it is a pattern and not bad luck.** The second is
-`11-activate`, cleared by the same audit on the same day. The app is titled **"CSAT Surveys"** in it;
+**And it happened twice, which is why it is a pattern and not bad luck.** The second was
+`11-activate`, cleared by the same audit on the same day. The app was titled **"CSAT Surveys"** in it;
 it is **"Surveys"** in every capture taken since. Nobody comparing it knew the product had been
 renamed, so the title read as correct — the same failure as `17-response-detail` with a different
 missing fact. One was a feature the comparer had not met; the other was a rename nobody had
@@ -52,6 +52,11 @@ passed. The defence is to compare against *what changed since the capture*, name
 the release, and to re-audit anything whose feature area has moved since it was last looked at, even
 when it has a clean verdict against it.
 
+**Both instances are now resolved** — `17-response-detail` recaptured 2026-09-10, `11-activate`
+2026-09-11. They stay written up because the pattern is what is worth keeping, not the two files. A
+resolved instance is still evidence; deleting it would leave the rule sounding like a precaution
+rather than a description of something that happened here, twice, four weeks into a product.
+
 ⚠️ **Cheapest check first, before opening anything.** A collapsed section cannot carry stale copy; an
 expanded one can. `39-config-groups` survived the labelling copy change for exactly that reason, with
 its Act-on sections showing only summary lines. Sort captures by what is expanded in frame, and open
@@ -59,32 +64,22 @@ those. It is the one test here that costs nothing and rules things out rather th
 
 ---
 
-## ⚠️ Outstanding — 3
-
-### `11-activate.png` — RECAPTURE, wrongly cleared
-**Why:** the app is titled **CSAT Surveys** in it and **Surveys** in every capture taken since. It is
-also sitting in an *Unsaved changes* state with greyed steps in the How it runs strip, which is not
-the state the prose around it describes.
-**Shows:** the configuration saved and switched on — master toggle On, the title as it now reads, and
-the Saved button at rest rather than mid-edit.
-**Lands in:** §3, *Test once, then switch it on*. The figure is live in the page, so the file drops
-straight in; check the caption still fits.
-
-### `22-low-rating-alert.png` — RESHOOT with a seeded account
-Pulled for publishing a live personal address; see below. **Take it on a seeded account with a
-fabricated notify target**, then the figure goes back into §3, *Get told about unhappy customers*.
-No rush — the section reads fine without it.
+## ⚠️ Outstanding — 1
 
 ### `01-marketplace-install.png` — blocked, not your fault
-Blocked until the app is listed on the marketplace, because the listing is the subject.
+The only broken image on the published page. Blocked until the app is listed on the marketplace,
+because the listing is the subject. Nothing else is waiting on anything.
 
-⚠️ `37-next-vs-send` was recaptured on 2026-09-11 and **is now correct**: same question, same rating,
-empty box reading Next on the left, "not great" typed and the button reading Send on the right. The
-first attempt had Next in both panels. It is wired in.
+⚠️ `11-activate` and `22-low-rating-alert` were both recaptured on 2026-09-11 and checked by opening
+them. `11` now reads **Surveys** with a Live badge, the master toggle On, the Saved button at rest
+and the confirmation line — no *Unsaved changes*. `22` is reshot with a different account. Alt text
+and captions were rewritten for both rather than carried over: `22` had been out of the page for two
+commits, and `11`'s old alt said only "the configuration switched to active", which describes less
+than a third of what is now in frame.
 
 ---
 
-## Landed and wired — 14 of 15
+## Landed and wired — 16 of 17
 
 All of these are uncommented in the page, with alt text and captions checked against the image
 itself rather than against what was requested. Where they differed, the words were changed.
@@ -104,6 +99,8 @@ itself rather than against what was requested. Where they differed, the words we
 | `17-response-detail` | §6 | **both rewritten**; the figure was already live and described the old frame |
 | `33-followup-item` | §7, *Follow up items* | as written |
 | `35-sidekick-skills` | §8 | as written — both skills visible and toggled on |
+| `11-activate` | §3, *Test once, then switch it on* | rewritten after recapture — the old alt covered under a third of the frame |
+| `22-low-rating-alert` | §3, *Get told about unhappy customers* | rewritten after reshoot; see the note on its address below |
 
 ⚠️ **Two files have now arrived with a space before the extension** — `43-mode2-setting .png` and
 then `35-sidekick-skills .png`. Both renamed. This one does not fail loudly: the reference stops
@@ -142,19 +139,31 @@ now `32-outstanding-card.png`, and `32-followup-destination` is free for a real 
   filename instead of a sentence. A name that sounds accurate is worse than one that sounds vague,
   because nobody opens the file to check it.
 
-## `22-low-rating-alert` — pulled, awaiting a seeded reshoot
+## `22-low-rating-alert` — the address in it is deliberate
 
-It published a live personal email address as the notify target, legible at full size. The figure is
-removed from §3 and **the file is deleted from the repository**, not merely unreferenced: GitHub Pages
+⚠️ **The email address visible in this capture is a disused account belonging to the author, published
+on purpose. It is not a leak and does not need reporting.** Recorded here because it is exactly the
+kind of thing someone doing the right thing re-flags in three months, and the reflex to flag it is
+correct — the answer just already exists.
+
+The first version of this capture carried a different, live personal address and was pulled. What
+follows is that history, kept because the reasoning is worth more than the incident.
+
+### Why it was pulled the first time
+
+It published a live personal email address as the notify target, legible at full size. The figure was
+removed from §3 and **the file deleted from the repository**, not merely unreferenced: GitHub Pages
 serves any file in the folder at its own URL whether or not a page links to it, so unreferencing alone
 would have left the address fetchable.
 
 ⚠️ **It remains in git history**, which this cannot fix. If that matters, it needs a history rewrite,
 and that is a decision rather than a cleanup.
 
-*Test once, then switch it on* has no figure until the reshoot. That is fine and deliberate: a section
-without a picture costs a reader very little, and nothing should wait in a screenshot queue while a
-real address sits on a public page.
+⚠️ The old file **remains in git history**, which this does not fix. If that matters it needs a history
+rewrite, which is a decision rather than a cleanup.
+
+The section ran without a figure for two commits, which cost a reader very little — the right trade
+when the alternative is leaving a real address on a public page until a reshoot arrives.
 
 ## ⚠️ Three prose errors the pictures caught
 Recorded here because it is the argument for taking them at all, not just for publishing them.
@@ -180,6 +189,9 @@ the content. `12-email-received` and `14-thank-you` already exist and are fine.
 ## Audited and correct — do not reflag
 Compared against the live app on 2026-09-10: `23-ticket-columns`, `03-authorize`, `05-board-picker`
 (image), `08-questions`, `04-empty-state`, `16-dashboard`, `29-agent-view`.
+
+⚠️ Two of that day's clean verdicts have since been overturned, so read the date as the limit it is:
+these were compared against what was known on 2026-09-10 and nothing since.
 
 ⚠️ `17-response-detail` **was on this list and has been removed** — see item 11. It is the reason the
 list carries a date: a clean verdict is only as good as what the comparer knew to look for on the day,
