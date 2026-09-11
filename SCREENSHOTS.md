@@ -30,6 +30,21 @@ artifact entirely. Four comparisons spent disproving claims this file should not
 the code at the moment it was written. It is not evidence about a screenshot, a document, or anything
 else downstream. **Flag from a comparison, or write "check this" and name what prompted it.**
 
+### ⚠️ And that rule is necessary, not sufficient: the comparer has to know what changed
+
+`17-response-detail` passed the 2026-09-10 audit and is stale anyway. The comparison genuinely
+happened — but the person doing it did not yet know the outstanding labels and the create-follow-up
+action existed, so they were comparing against an out-of-date idea of what the screen should contain.
+Everything they were looking for was present. Nothing they were not looking for registered.
+
+**An audit against a stale understanding returns a confident clean result**, and a clean result is
+harder to revisit than no result, because the file now says somebody checked.
+
+This is the week's failure one level up. Not a record nobody checked — a check nobody could have
+passed. The defence is to compare against *what changed since the capture*, named from the code or
+the release, and to re-audit anything whose feature area has moved since it was last looked at, even
+when it has a clean verdict against it.
+
 ---
 
 ## 1. `36-survey-thread.png` — NEW, highest value
@@ -96,17 +111,28 @@ what is still outstanding* section**, in the *Act on what comes back* group, alo
 feature. Frame enough of that section to show where it lives.
 **Lands in:** §3, under *Where follow up items go*.
 
-## 11. `33-followup-item.png` — NEW
+## 11. `17-response-detail.png` — ⚠️ RECAPTURE, was wrongly cleared
+**Shows:** one response with **the rating, the comment, the outstanding label, and the
+create-follow-up action, all in one frame**. The label and the action are what the existing capture
+is missing; a crop showing only the rating and comment reproduces the error.
+⚠️ Fabricated comment.
+**Why it is here again:** it was in *audited and correct* until 2026-09-11. See the note above — the
+comparison ran against an understanding that predated both features.
+**Lands in:** §6 Read your results. The figure is live in the page rather than commented, so the file
+drops straight in — but **update its alt text and caption when it does**, since both currently
+describe a frame with no label and no action in it.
+
+## 12. `33-followup-item.png` — NEW
 **Shows:** one follow up item on a board with its update open — rating and date, the outstanding
 label, the comment, the answers. The item name too, since it carries the ticket title.
 ⚠️ Fabricated comment. This is the frame most likely to publish a real customer's words.
 **Lands in:** §7, under *Follow up items*.
 
-## 12. `35-sidekick-skills.png` — NEW
+## 13. `35-sidekick-skills.png` — NEW
 **Shows:** the two Survey Flow skills in monday's Sidekick tools list, named as a user sees them.
 **Lands in:** §8.
 
-## 13. `01-marketplace-install.png` — NEW, blocked
+## 14. `01-marketplace-install.png` — NEW, blocked
 Referenced by §1 and not on disk, so the page carries one broken image today. It cannot be taken
 until the app is listed on the marketplace, because the listing is the subject. Unlike every item
 above, this `<img>` is live rather than commented, which is why the gap shows on the published page.
@@ -120,8 +146,12 @@ the content. `12-email-received` and `14-thank-you` already exist and are fine.
 
 ## Audited and correct — do not reflag
 Compared against the live app on 2026-09-10: `23-ticket-columns`, `03-authorize`, `05-board-picker`
-(image), `08-questions`, `17-response-detail`, `04-empty-state`, `11-activate`, `16-dashboard`,
-`29-agent-view`.
+(image), `08-questions`, `04-empty-state`, `11-activate`, `16-dashboard`, `29-agent-view`.
+
+⚠️ `17-response-detail` **was on this list and has been removed** — see item 11. It is the reason the
+list carries a date: a clean verdict is only as good as what the comparer knew to look for on the day,
+and these were cleared before the outstanding labels and the follow-up action were understood. If a
+feature has shipped into one of these screens since 2026-09-10, that verdict does not cover it.
 
 ⚠️ `13-survey-page` was **not** in that audit and is the one existing capture most likely to be
 wrong, because it is captioned as a page and the page is a thread. Compare it before trusting it; if
