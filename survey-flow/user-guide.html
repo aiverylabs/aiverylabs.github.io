@@ -29,6 +29,25 @@
   the labelling section, not inside it; and the How it runs strip has five steps, not four. A written
   account of the code is closer to the product than a ticket is, and still not the product.
 
+  CHECKED 2026-09-11 by the csat session against aiverylabs/csat master ee2ad49, with file:line
+  citations, for automatic follow-up item creation: where the rule lives, its four preconditions
+  (AI question mode, labelling on, rule on, destination board set), that a missing board blocks
+  creating but NOT labelling, that any non-empty label array qualifies, that it never repeats on a
+  response and skips a re-surveyed ticket, and that there is no backfill.
+
+  NOT ESTABLISHED, and deliberately absent from the prose rather than guessed:
+    whether anything on screen distinguishes an automatically created follow-up item from one made
+    by hand - do not write that you can tell them apart; what happens to labelling when an account
+    runs out of monday AI credits; how long after a submit an item actually appears, so the guide
+    says "shortly after" and names no number.
+
+  ⚠️ A DISAGREEMENT BETWEEN THE PRODUCT AND THE CODE, left as the code has it. The labelling card
+  says "It does not read the rating". The rating IS sent to the model as context (it is a slot in
+  the label prompt); what is true is that it does not DECIDE which responses are marked, and the
+  prompt spends a section insisting on exactly that. The guide says "goes to the model as context,
+  but it is not what decides". This is the second place the screen copy overstates - see the rating
+  band and the dashboard filter.
+
   ONE SENTENCE'S HISTORY, kept because the lesson generalises. "Where follow up items go" has now
   been wrong three times: CFM-154's plan said beside the board picker, and the guide inherited it;
   a correction read off a screenshot said it was its own block under Act on what comes back; the
@@ -357,7 +376,7 @@
     <p><strong>Topics to avoid</strong> is a list you supply, and it goes into both prompts. It is how you keep the AI off subjects you would rather it did not raise with your customers.</p>
     <p><strong>What it costs.</strong> Up to 0.9 of a monday AI credit for each question the AI writes. That is at most two questions in the second mode, and at most three in the third once the opening is counted, so budget by questions asked rather than by surveys sent.</p>
     <p>Nothing is redacted, shortened or summarised first. No recipient address or display name is sent as a field, but free text is free text: a customer who types their own phone number into a comment sends it along with everything else. monday.com states that it does not use this input to train models, and that it reaches the model through managed services at Microsoft Azure and AWS Bedrock, so the text does not stop at monday.com. The <a href="https://aiverylabs.github.io/survey-flow/privacy.html#ai">privacy policy</a> records where that statement is firm and where it is our reading of it, which is the part worth five minutes if you are the person deciding.</p>
-    <p>Labelling is a second AI switch, separate from this one and off by the same default. It runs after a survey is submitted rather than during it, and step 7 covers it.</p>
+    <p>Labelling is a second AI switch, but it is not independent of this one. It needs the board to be on one of the two AI modes above: with <em>Fixed questions</em> selected it reads as unavailable rather than off, because there is nothing reading the responses. It runs after a survey is submitted rather than during it, and step 7 covers it.</p>
 
     <p>Each pair below is one mode: the setting, and then the survey a customer gets under it.</p>
     <figure>
@@ -588,7 +607,8 @@
 
     <h3>Outstanding labels</h3>
     <p>Responses can be marked with labels saying what is still outstanding, which is what lets you separate the ones needing action from the ones that are merely low. There are two, and you do not write them yourself: a response can be marked as <strong>not resolved</strong>, or as <strong>left waiting</strong>.</p>
-    <p>Those labels come from labelling, the second AI switch mentioned in step 3, and it is off until an admin turns it on. It runs once a survey has been submitted, with nobody present, and it sends the ticket title, the days to close, the rating, the comment and every answer, all exactly as written. Leave it off and follow up items are simply something you create by hand from a response you have read.</p>
+    <p>Those labels come from labelling, the second AI switch mentioned in step 3. It is off until an admin turns it on, and it is only available at all if the board is on one of the two AI question modes — with <em>Fixed questions</em> selected the whole section reads as unavailable and says why. It runs once a survey has been submitted, with nobody present, and it sends the ticket title, the days to close, the rating, the comment and every answer, all exactly as written.</p>
+    <p>The rating goes to the model as context, but it is not what decides. A five star rating that mentions something still unresolved can be marked, and a one star rating with nothing outstanding in it is not. Leave labelling off and follow up items are simply something you create by hand from a response you have read.</p>
 
     <h3 id="followups">Follow up items</h3>
     <p>Three routes create one: a rule that fires on its own, a button on the Feedback tab, and the Sidekick skill in step 8. All three land in the destination you set in step 3.</p>
@@ -599,6 +619,23 @@
       <figcaption>A follow up item, with the response inside its update.</figcaption>
     </figure>
     <p>Who reads it is the destination board's membership, which is the choice made back in step 3 and the reason that setting deserves a moment.</p>
+
+    <h3>Create them automatically</h3>
+    <p>Rather than pressing the button on each response, you can have an item created whenever a response is marked. The switch is a rule inside <em>Mark what is still outstanding</em>, reading <em>When a response is marked, create an item automatically</em>. The <em>Add rule</em> button beside it is a placeholder for custom rules and does nothing yet.</p>
+    <p>Four things have to be true before anything is created:</p>
+    <ul>
+      <li>the board is on one of the two AI question modes, since labelling is what marks a response and it is unavailable on <em>Fixed questions</em>;</li>
+      <li>labelling is on;</li>
+      <li>the rule itself is on;</li>
+      <li>a destination board is chosen. The group is optional — leave it empty and items land in the board's first group.</li>
+    </ul>
+    <p>If the rule is on and no board is chosen, the rule says so where it sits and an alert appears at the top of the configuration screen. <strong>Labelling itself keeps working in that state.</strong> Responses are still marked, the Outstanding column still fills, the Feedback filter still works. Only the creating is stopped, so this is not something to go hunting for a broken feature over.</p>
+
+    <p><strong>Which responses get one.</strong> Any response carrying at least one outstanding label, and the two labels count equally — neither <em>Not resolved</em> nor <em>Left waiting</em> takes priority. A response the labeller read and found nothing outstanding in gets no item, which is the whole point of the arrangement. A response where the customer wrote nothing at all is never even read, since there is nothing to read.</p>
+    <p>The rating is not a threshold and there is no score to set.</p>
+    <p><strong>It will not run twice on the same response</strong>, and it leaves alone a response whose ticket has since been surveyed again, because those labels describe a round that no longer owns the ticket.</p>
+    <p><strong>It is not retrospective.</strong> Turning the rule on changes what happens from then on, and does nothing to the responses you have already collected — those keep the button on the Feedback tab. Nothing is created in a burst at the moment you switch it on, which is deliberate rather than a limitation.</p>
+    <p>An item appears shortly after the response is submitted, rather than on a schedule you can set or predict.</p>
 
     <h3>They stay after you uninstall</h3>
     <p>Nothing in Survey Flow deletes a follow up item, at uninstall or at any other time. They are items on your board, like a task somebody wrote by hand, and they stay there with the comment inside them until someone on your team removes them. See <a href="#uninstall">Before you uninstall</a>.</p>
