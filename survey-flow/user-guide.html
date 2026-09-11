@@ -1,4 +1,31 @@
 <!DOCTYPE html>
+<!--
+  PROVENANCE - what in this guide has been checked against the code, and what has not.
+  Keep this current. It exists because every error this page has carried came from writing
+  from a ticket or a conversation instead of from the product.
+
+  CHECKED 2026-09-11 against csat/docs/feature-behaviour.md, read from the backend that day:
+    the survey conversation and its turn order, Next vs Send, submit-on-turn-one and what is
+    required, editing a sent answer, the band-change discard, what Submit means, the nine end
+    states, the three AI modes and what each sends, the three question types, rating-band
+    targeting, the configuration screen's three groups and their contents, the master switch
+    persisting outside Save.
+
+  NOT CHECKED - flagged as unchecked rather than as wrong. No evidence against any of it; simply
+  nobody has compared it to the code. Do not cite these as verified, and do not quietly promote
+  them by repeating them:
+    the maximum of three conditions; the default column names CSAT score and CSAT comment; the
+    three email placeholders; the four dashboard tabs and what each holds; everything under
+    Plans and limits; everything in step 8 about the Sidekick skills; the claim that a skipped
+    ticket is never recorded.
+
+  ONE SENTENCE'S HISTORY, kept because the lesson generalises. "Where follow up items go" has now
+  been wrong three times: CFM-154's plan said beside the board picker, and the guide inherited it;
+  a correction read off a screenshot said it was its own block under Act on what comes back; the
+  code says it is inside the Mark what is still outstanding section, with the labelling feature.
+  Each version was closer and still wrong. A correction from someone who has not read the code is
+  not a correction - it is the next version of the same error.
+-->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -236,6 +263,8 @@
 
     <h2 id="configure"><span class="step-num">3</span>Build your first survey</h2>
     <p>This is the part worth slowing down for. Everything that follows depends on these choices. Open Survey Flow and click Set up surveys.</p>
+    <p>The screen is in three labelled groups. <em>Set up</em> is what the app reads from your board and is the only part you have to complete. <em>Refine your survey</em> is the survey itself, and everything in it ships with a sensible default. <em>Act on what comes back</em> is what happens once a response arrives.</p>
+    <p>Above those groups you may also see a banner or two, and they are worth reading rather than dismissing: one appears when the account's authorisation has lapsed and needs reconnecting, and another names a column your configuration points at that has since been deleted from the board. A four step <em>How it runs</em> strip sits there too, and marks itself when something is misconfigured.</p>
     <figure>
       <img class="screenshot" src="../images/survey-flow/04-empty-state.png" alt="Survey Flow with no configurations yet, showing the button to create the first survey">
       <figcaption>The empty state, before any survey exists.</figcaption>
@@ -274,10 +303,15 @@
       <figcaption>Mapping the email field.</figcaption>
     </figure>
 
+    <h3>Who handled it</h3>
+    <p>The third thing Survey Flow reads from your board is the people column holding whoever handled the ticket. That is what attributes a rating to an agent, and it is what the Team tab and the per agent views in step 6 are built from.</p>
+    <p>If your agent breakdown is not showing what you expect, this is the setting to check before anything else.</p>
+
     <h3>Write the questions</h3>
     <p>Every survey opens with a one to five star rating. That question is fixed, because it is the number every report is built from.</p>
-    <p>Below it you can add a few follow up questions. Keep the list short. Response rates fall away quickly past two or three questions, and a rating with no comment is still useful while an abandoned survey is not. A pattern that works well is one rating, then one open text box asking what would have made the experience better.</p>
-    <p>Each follow up question is one of two kinds. A free text box takes whatever the customer wants to say. <em>Choose multiple</em> offers a fixed set of options, which you type as a comma separated list. Pick the fixed set when you already know the answers you are sorting between and want to count them; pick free text when you do not, because it is the only kind that can tell you something you had not thought to ask about.</p>
+    <p>After the rating, every survey asks for a comment. That question comes with the survey rather than being one you add, and you can mark it required. It is the only thing besides the rating that a customer can be made to answer; everything else can be skipped, which is worth knowing before you design a survey that only pays off if somebody finishes it.</p>
+    <p>After the comment you can add a few follow up questions. Keep the list short. Response rates fall away quickly past two or three questions, and a rating with no comment is still useful while an abandoned survey is not. A pattern that works well is one rating, then one open text box asking what would have made the experience better.</p>
+    <p>Each follow up question is one of three kinds: <em>short answer</em>, which is a free text box, <em>choose one</em>, or <em>choose several</em>. The two choice kinds need a list of options from you. Reach for a choice kind when you already know the answers you are sorting between and want to count them, and for short answer when you do not, because it is the only kind that can tell you something you had not thought to ask about.</p>
     <figure>
       <img class="screenshot" src="../images/survey-flow/08-questions.png" alt="The question editor showing the fixed star rating and one follow up question">
       <figcaption>The question editor.</figcaption>
@@ -286,7 +320,8 @@
     <h3>Show a question only to some raters</h3>
     <p>Each follow up question carries a <em>Show this question to</em> setting with three bands: Positive for four and five stars, Neutral for three, and Negative for one and two. Only raters in the bands you tick are asked it.</p>
     <p>The obvious use is asking unhappy raters what went wrong without putting the same question to people who have just told you it went well.</p>
-    <p>It changes your reports as well as the survey, and this is the part worth remembering. A question shown to one band is scored against that band rather than against everyone, so its numbers are not comparable with a question every rater saw. That is the right behaviour, and it is easy to forget six weeks later when the two sit next to each other in the same view.</p>
+    <p>One thing it does not do, despite appearances. <strong>The band decides who is asked. The dashboard's sentiment filter decides what you look at afterwards.</strong> That filter is worked out from the score by itself, and nothing anywhere records which band a question was aimed at.</p>
+    <p>The two agree because they use the same thresholds, not because they are connected. Filtering the feedback list to negative does show you the responses that saw your negative-banded questions, and it will keep doing that — by arithmetic on the score. It is worth knowing which of those two it is the moment you want to count how many people were actually asked a particular question.</p>
 
     <h3 id="ai">Let AI write some of the questions</h3>
     <p>Survey Flow can have AI write questions for the ticket in front of the customer. <strong>It adds questions. It never replaces yours.</strong> The follow up questions you wrote are asked in every mode, last, whatever the survey asks before them.</p>
@@ -375,6 +410,7 @@
     <h3>Set the sender and the logo</h3>
     <p>The survey should look like it came from your team, not from a tool.</p>
     <p>Display name is what the recipient sees as the sender, and it appears on the survey page too. It defaults to your monday account name, so check that the default reads the way you want a customer to see it. The logo sits at the top of the survey page and is optional. With no logo the page shows your name on its own.</p>
+    <p>The message a customer sees after they submit is set here too, alongside the display name and the logo.</p>
     <p>Emails are sent from a fixed Survey Flow address, shown under the display name field. If your customers use strict spam filtering, that is the address to allow.</p>
     <figure>
       <img class="screenshot" src="../images/survey-flow/20-branding.png" alt="The logo upload and sender display name fields">
@@ -410,7 +446,7 @@
     </figure>
 
     <h3 id="destination">Where follow up items go</h3>
-    <p>Further down the configuration screen, under <em>Act on what comes back</em>, is a block naming the destination for follow up items. It is its own block, not part of any rule above it, and it holds a board and optionally a group on that board.</p>
+    <p>Further down the configuration screen, in the <em>Act on what comes back</em> group, the section headed <em>Mark what is still outstanding</em> holds two things: the labelling feature that step 7 covers, and the destination for follow up items — a board, and optionally a group on that board.</p>
     <p>A follow up item is how one response becomes a piece of work somebody owns. Step 7 covers what one carries. The decision here is only where they land, and it is bigger than it looks.</p>
     <p><strong>Whoever can see the destination board can read what your customer wrote.</strong> That audience is the board's membership in monday.com, set by whoever administers that board, and it has nothing to do with who can open Survey Flow. Choosing a destination board is choosing an audience, so choose it deliberately rather than picking the board already in front of you.</p>
     <p>Leave the group empty and items land in the destination board's first group. Leave the board empty and nothing can be created at all: every route that would create an item refuses, and says why.</p>
@@ -423,6 +459,7 @@
     -->
 
     <h3>Test once, then switch it on</h3>
+    <p><strong>The on/off switch is not part of Save.</strong> It takes effect the instant you toggle it, because it is a kill switch: an admin switching surveys off wants them to stop now, not after a Save that might be refused. Everything else on the screen waits for <em>Save changes</em>, which reads <em>Saved</em> when there is nothing left to save.</p>
     <p>Nothing sends while the configuration is off. Before you turn it on, run a single test. Put your own address on a ticket that belongs to you, move it into the trigger status, then watch the email arrive, click through, submit a rating, and confirm it lands on the dashboard. Five minutes there saves an awkward first impression with a real customer.</p>
     <figure>
       <img class="screenshot" src="../images/survey-flow/11-activate.png" alt="The configuration switched to active">
