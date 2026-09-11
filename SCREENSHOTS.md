@@ -84,6 +84,21 @@ itself rather than against what was requested. Where they differed, the words we
 renamed. A space in a filename does not fail loudly: the reference simply does not resolve and the
 page shows a broken image.
 
+## ⚠️ Pending a copy change — two recaptures, already identified
+
+The labelling hint **"It does not read the rating" is false** and is being fixed: the rating is sent
+to the model, it just does not decide. When the new wording lands, **two captures frame the old one**
+and both need retaking:
+
+- **`32-followup-destination`** — the *Mark what is still outstanding* card is the main subject, and
+  the sentence is the second line of its description.
+- **`35-sidekick-skills`** — less obvious. The Sidekick panel is the subject, but the configuration
+  screen behind it shows the same card and the same sentence, in full, on the left of frame.
+
+⚠️ `35` is the one that would be missed. Nobody recapturing a copy change goes looking in a
+screenshot of a chat panel — the stale text is in the background of a picture taken for something
+else entirely. Noted here now, while both are known, rather than left to be found.
+
 ## ⚠️ Three prose errors the pictures caught
 Recorded here because it is the argument for taking them at all, not just for publishing them.
 

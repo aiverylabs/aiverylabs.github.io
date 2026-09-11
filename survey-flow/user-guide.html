@@ -628,7 +628,7 @@
     <p>If the rule is on and no board is chosen, the rule says so where it sits and an alert appears at the top of the configuration screen. <strong>Labelling itself keeps working in that state.</strong> Responses are still marked, the Outstanding column still fills, the Feedback filter still works. Only the creating is stopped, so this is not something to go hunting for a broken feature over.</p>
 
     <p><strong>Which responses get one.</strong> Any response carrying at least one outstanding label, and the two labels count equally — neither <em>Not resolved</em> nor <em>Left waiting</em> takes priority. A response the labeller read and found nothing outstanding in gets no item, which is the whole point of the arrangement. A response where the customer wrote nothing at all is never even read, since there is nothing to read.</p>
-    <p>The rating is not a threshold and there is no score to set.</p>
+    <p>The rating is not a threshold and there is no score to set. A five star response that mentions something still unresolved can be marked, and a one star response with nothing outstanding in it is not. What the labeller reads is what the customer wrote.</p>
     <p><strong>It will not run twice on the same response</strong>, and it leaves alone a response whose ticket has since been surveyed again, because those labels describe a round that no longer owns the ticket.</p>
     <p><strong>It is not retrospective.</strong> Turning the rule on changes what happens from then on, and does nothing to the responses you have already collected — those keep the button on the Feedback tab. Nothing is created in a burst at the moment you switch it on, which is deliberate rather than a limitation.</p>
     <p>An item appears shortly after the response is submitted, rather than on a schedule you can set or predict.</p>
@@ -648,9 +648,9 @@
       <li><code>create a follow-up for &lt;ticket name&gt;</code></li>
     </ul>
     <p>The last one carries a behaviour worth knowing. <strong>You can name a ticket rather than look up its id</strong> — and if the name you give matches more than one ticket, the skill refuses and lists them instead of picking one. That refusal is what stops a follow up item being created against the wrong customer's words, so read the list rather than retrying with the same name.</p>
-    <p><strong>Sidekick asks you to confirm before it runs either skill, every time, including the one that only reads.</strong> That is monday.com's behaviour and not something we can switch off. It is also a real stop rather than a formality: decline and nothing reaches Survey Flow at all, so a question that came out wrong costs you nothing.</p>
-
     <p>The difference from everything else in this guide is worth stating plainly. <strong>These are not gated on a setting.</strong> There is no switch to leave off. Anyone who can invoke the skill reaches them, which means an account admin or a board owner.</p>
+
+    <p><strong>Sidekick asks you to confirm before it runs either skill, every time, including the one that only reads.</strong> That is monday.com's behaviour and not something we can switch off. It is also a real stop rather than a formality: decline and nothing reaches Survey Flow at all, so a question that came out wrong costs you nothing.</p>
     <p>The finding skill returns, for each response it matches, the customer's comment exactly as written, the follow up answers, the score, the ticket title, a date, and the display name of the agent who handled the ticket. Sidekick writes its reply out of that material, and the reply lands in a chat transcript. How long that transcript lives, and who else can read it, is monday.com's to answer rather than ours.</p>
     <p>If that is more exposure than suits your team, the lever is who holds admin and board owner rights, not a setting inside Survey Flow.</p>
     <figure>
