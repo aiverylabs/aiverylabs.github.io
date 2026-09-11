@@ -47,95 +47,61 @@ when it has a clean verdict against it.
 
 ---
 
-## 1. `36-survey-thread.png` — NEW, highest value
-**Shows:** the survey mid conversation — one answer already sent and sitting in the thread, the next
-question arriving below it. Take it in **mode 2 or 3** so an AI-written question is visible.
-**Why first:** the guide's biggest error was describing a form. No sentence conveys "it is a
-conversation" as fast as this frame does.
-**Lands in:** §5, under *It is a conversation, not a form*.
+## ⚠️ Outstanding — 2 of 15
 
-## 2. `37-next-vs-send.png` — NEW
-**Shows:** the same turn twice — empty answer box with the button reading **Next**, and a filled box
-with it reading **Send**. Two crops in one image is fine.
-**Why:** the distinction is behavioural (Next skips the question) and completely invisible in prose.
+### `37-next-vs-send.png` — RECAPTURE, the frame does not show what it needs to
+**What landed:** two panels of the same survey side by side, and **both show an empty box with the
+button reading Next.** The Send state is not in the frame, so the image does not demonstrate the
+distinction it exists for. Its figure is left commented out in the page rather than published.
+**What it needs:** the same turn twice — empty box reading **Next**, and something typed reading
+**Send**. Type a word into the composer for the second crop; that is the whole difference.
+**Note:** `38-band-change-warning` and `46-mode3-survey` both happen to catch a **Send** button, so
+the state is not unphotographable — it just is not in this file.
 **Lands in:** §5, under *Next and Send are different buttons*.
 
-## 3. `38-band-change-warning.png` — NEW
-**Shows:** the confirmation dialog when a customer re-rates across a band, **with the count of answers
-about to be lost visible**. The count is the part nobody believes without seeing it.
-**Setup:** answer two or three questions at 5 stars, then change the rating to 2.
-**Lands in:** §5, under *Changing the rating can discard answers*.
+### `01-marketplace-install.png` — blocked, not your fault
+Still the only broken image on the published page, and still blocked until the app is listed on the
+marketplace, because the listing is the subject.
 
-## 4. `39-config-groups.png` — NEW, ⚠️ placeholder pending
-**Shows:** the configuration screen with all three group headings visible — *Set up*, *Refine your
-survey*, *Act on what comes back* — sections collapsed. One frame, whole shape.
-**Why:** it is the only way to convey the screen's structure, and it fixes the two placements people
-get wrong: the AI modes live under *The opening question*, and Score/Comment live under *Show on the
-ticket* rather than in *Set up* with the other columns.
-**Lands in:** §3, near the top. **No figure in the page yet** — it goes in with the §3 corrections
-still to be agreed.
+---
 
-## 5–7. The three mode pairs — NEW, replacing `34-ai-question-mode`
-Six files, taken as three pairs. Each pair is **the setting, then the survey a customer gets under
-it**, so the connection is visible rather than asserted. `34-ai-question-mode.png` is retired: it
-showed only the off state, which is the one mode that needs no picture.
+## Landed and wired — 13 of 15
 
-**5.** `41-mode1-setting.png` + `42-mode1-survey.png` — *Fixed questions*. The survey shows the
-comment question then your configured questions, nothing generated.
-**6.** `43-mode2-setting.png` + `44-mode2-survey.png` — *Ask more when needed*. The survey shows a
-generated question following the customer's comment, then your questions. Capture the setting with
-its credit-cost line in frame.
-**7.** `45-mode3-setting.png` + `46-mode3-survey.png` — *Questions per ticket*. The survey shows an
-AI-written opening question, then the conversation, then your questions.
+All of these are uncommented in the page, with alt text and captions checked against the image
+itself rather than against what was requested. Where they differed, the words were changed.
 
-⚠️ In all three survey frames, **your configured questions must be visible at the end.** That is the
-fact the pairs exist to prove, and the one the guide got backwards.
-**Land in:** §3, under *Let AI write some of the questions*.
+| File | Lands in | Alt text |
+| --- | --- | --- |
+| `36-survey-thread` | §5, *It is a conversation* | rewritten — it is mode 3, so the opening question is AI written, and two answers are already sent |
+| `38-band-change-warning` | §5, *Changing the rating* | as written; the dialog names "the three answers you have given" |
+| `39-config-groups` | §3, after the three groups are named | **placed** — no restructuring needed, it sits with the paragraph describing the groups |
+| `41`+`42-mode1` | §3, *Let AI write some of the questions* | rewritten — 42 shows a Choose one question, which the old alt did not mention |
+| `43`+`44-mode2` | same | rewritten — 43 also shows topics to avoid and the one-or-two setting |
+| `45`+`46-mode3` | same | rewritten — 45 shows the fallback questions, which changed the prose too |
+| `40-question-editor` | §3, *Show a question only to some raters* | **placed** — the type dropdown and the bands are in one frame, as asked |
+| `31-connect-admin-only` | §2, *Only an admin can connect* | rewritten — the frame also carries a readiness checklist |
+| `32-followup-destination` | §3, *Where follow up items go* | rewritten — and it corrected the prose, see below |
+| `17-response-detail` | §6 | **both rewritten**; the figure was already live and described the old frame |
+| `33-followup-item` | §7, *Follow up items* | as written |
+| `35-sidekick-skills` | §8 | as written — both skills visible and toggled on |
 
-## 8. `40-question-editor.png` — NEW, ⚠️ placeholder pending
-**Shows:** the follow-up question editor with one question expanded — the type selector and the three
-band toggles together in one frame.
-**Why:** three question types and three bands, described in prose, read as six unrelated facts.
-**Lands in:** §3, under *Show a question only to some raters*. **No figure in the page yet** — it goes
-in with the §3 corrections.
+⚠️ **`43-mode2-setting` arrived as `43-mode2-setting .png`, with a space before the extension.** It was
+renamed. A space in a filename does not fail loudly: the reference simply does not resolve and the
+page shows a broken image.
 
-## 9. `31-connect-admin-only.png` — NEW
-**Shows:** the welcome screen as someone who is *not* an account admin sees it — no Connect button,
-and the line saying an admin needs to connect the account. Sign in as a board owner who is not an
-admin; an admin's own screen is the wrong picture.
-**Lands in:** §2, under *Only an admin can connect the account*.
+## ⚠️ Three prose errors the pictures caught
+Recorded here because it is the argument for taking them at all, not just for publishing them.
 
-## 10. `32-followup-destination.png` — NEW
-**Shows:** the follow-up item destination — board and optional group. ⚠️ It sits **inside the *Mark
-what is still outstanding* section**, in the *Act on what comes back* group, alongside the labelling
-feature. Frame enough of that section to show where it lives.
-**Lands in:** §3, under *Where follow up items go*.
+1. **Question types.** `feature-behaviour.md` gave the UI names as *short answer / choose one /
+   choose several*. The dropdown says **Short text / Choose one / Choose multiple**.
+2. **Where follow-up items go.** That file's group-3 line reads as though the destination sits inside
+   *Mark what is still outstanding*. The screenshot shows it is a block of its own, above it. This
+   was the fourth version of that sentence, and it settled back to the second.
+3. **The How it runs strip** has five steps, not four.
 
-## 11. `17-response-detail.png` — ⚠️ RECAPTURE, was wrongly cleared
-**Shows:** one response with **the rating, the comment, the outstanding label, and the
-create-follow-up action, all in one frame**. The label and the action are what the existing capture
-is missing; a crop showing only the rating and comment reproduces the error.
-⚠️ Fabricated comment.
-**Why it is here again:** it was in *audited and correct* until 2026-09-11. See the note above — the
-comparison ran against an understanding that predated both features.
-**Lands in:** §6 Read your results. The figure is live in the page rather than commented, so the file
-drops straight in — but **update its alt text and caption when it does**, since both currently
-describe a frame with no label and no action in it.
-
-## 12. `33-followup-item.png` — NEW
-**Shows:** one follow up item on a board with its update open — rating and date, the outstanding
-label, the comment, the answers. The item name too, since it carries the ticket title.
-⚠️ Fabricated comment. This is the frame most likely to publish a real customer's words.
-**Lands in:** §7, under *Follow up items*.
-
-## 13. `35-sidekick-skills.png` — NEW
-**Shows:** the two Survey Flow skills in monday's Sidekick tools list, named as a user sees them.
-**Lands in:** §8.
-
-## 14. `01-marketplace-install.png` — NEW, blocked
-Referenced by §1 and not on disk, so the page carries one broken image today. It cannot be taken
-until the app is listed on the marketplace, because the listing is the subject. Unlike every item
-above, this `<img>` is live rather than commented, which is why the gap shows on the published page.
+**A document read from the code is closer to the product than a ticket is, and still not the
+product.** Both `32` and `39` show the same thing and neither was taken to check it — the pictures
+were for the reader, and they audited the prose on the way past.
 
 ---
 

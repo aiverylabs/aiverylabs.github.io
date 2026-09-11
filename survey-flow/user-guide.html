@@ -23,12 +23,20 @@
     Plans and limits; everything in step 8 about the Sidekick skills; the claim that a skipped
     ticket is never recorded.
 
+  CHECKED 2026-09-11 against the screenshots themselves, which corrected three things the prose had
+  taken from feature-behaviour.md: the question types are Short text / Choose one / Choose multiple,
+  not the names that file's UI column gives; "Where follow-up items go" is a block of its own ABOVE
+  the labelling section, not inside it; and the How it runs strip has five steps, not four. A written
+  account of the code is closer to the product than a ticket is, and still not the product.
+
   ONE SENTENCE'S HISTORY, kept because the lesson generalises. "Where follow up items go" has now
   been wrong three times: CFM-154's plan said beside the board picker, and the guide inherited it;
   a correction read off a screenshot said it was its own block under Act on what comes back; the
   code says it is inside the Mark what is still outstanding section, with the labelling feature.
-  Each version was closer and still wrong. A correction from someone who has not read the code is
-  not a correction - it is the next version of the same error.
+  Version four came from this file's own authority document and was wrong too; the screenshot settled
+  it, and it settled it back to version two. Each version was closer and still wrong. A correction
+  from someone who has not read the code is not a correction - it is the next version of the same
+  error, and a document read FROM the code inherits that property one step removed.
 -->
 <html lang="en">
 <head>
@@ -257,18 +265,19 @@
     <h3>Only an admin can connect the account</h3>
     <p>Connecting is the one step a board owner cannot do for you. Someone who is not an account admin opens Survey Flow and sees the welcome screen with no Connect button and a line telling them an admin needs to connect this account before surveys can be set up. Nothing is broken and there is nothing for them to fix; it is a job for whoever administers the account.</p>
     <p>Worth knowing before you delegate the rollout, and worth knowing if a colleague reports that the app looks empty.</p>
-    <!-- SCREENSHOT NEEDED: 31-connect-admin-only.png. Drop the file into images/survey-flow/ and
-         delete the two comment markers around the figure below.
     <figure>
-      <img class="screenshot" src="../images/survey-flow/31-connect-admin-only.png" alt="The Survey Flow welcome screen as a board owner sees it, with no Connect button and a line saying an admin needs to connect the account">
+      <img class="screenshot" src="../images/survey-flow/31-connect-admin-only.png" alt="The Survey Flow welcome screen as a board owner sees it: a how it works strip, a checklist showing the board is ready, and a line saying an admin needs to connect the account. No Connect button">
       <figcaption>What someone who is not an admin sees before the account is connected.</figcaption>
     </figure>
-    -->
 
     <h2 id="configure"><span class="step-num">3</span>Build your first survey</h2>
     <p>This is the part worth slowing down for. Everything that follows depends on these choices. Open Survey Flow and click Set up surveys.</p>
     <p>The screen is in three labelled groups. <em>Set up</em> is what the app reads from your board and is the only part you have to complete. <em>Refine your survey</em> is the survey itself, and everything in it ships with a sensible default. <em>Act on what comes back</em> is what happens once a response arrives.</p>
-    <p>Above those groups you may also see a banner or two, and they are worth reading rather than dismissing: one appears when the account's authorisation has lapsed and needs reconnecting, and another names a column your configuration points at that has since been deleted from the board. A four step <em>How it runs</em> strip sits there too, and marks itself when something is misconfigured.</p>
+    <p>Above those groups you may also see a banner or two, and they are worth reading rather than dismissing: one appears when the account's authorisation has lapsed and needs reconnecting, and another names a column your configuration points at that has since been deleted from the board. A <em>How it runs</em> strip sits above them all, tracing the survey from the status that fires it to the person alerted about a low score, and it marks itself when something is misconfigured.</p>
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/39-config-groups.png" alt="The whole configuration screen: the How it runs strip, then the Set up, Refine your survey and Act on what comes back groups with their sections collapsed">
+      <figcaption>The configuration screen end to end, with the three groups and everything collapsed.</figcaption>
+    </figure>
     <figure>
       <img class="screenshot" src="../images/survey-flow/04-empty-state.png" alt="Survey Flow with no configurations yet, showing the button to create the first survey">
       <figcaption>The empty state, before any survey exists.</figcaption>
@@ -309,13 +318,13 @@
 
     <h3>Who handled it</h3>
     <p>The third thing Survey Flow reads from your board is the people column holding whoever handled the ticket. That is what attributes a rating to an agent, and it is what the Team tab and the per agent views in step 6 are built from.</p>
-    <p>If your agent breakdown is not showing what you expect, this is the setting to check before anything else.</p>
+    <p>It is optional, and it is the one setting here you cannot fix in hindsight. The agent is captured at the moment a survey is sent, so leaving it unset does not merely postpone the breakdown — those responses can never be attributed afterwards. If your agent reporting is empty, check this first, and know that setting it now only helps from now on.</p>
 
     <h3>Write the questions</h3>
     <p>Every survey opens with a one to five star rating. That question is fixed, because it is the number every report is built from.</p>
     <p>After the rating, every survey asks for a comment. That question comes with the survey rather than being one you add, and you can mark it required. It is the only thing besides the rating that a customer can be made to answer; everything else can be skipped, which is worth knowing before you design a survey that only pays off if somebody finishes it.</p>
     <p>After the comment you can add up to four follow up questions. Four is the ceiling, not the target: keep the list short. Response rates fall away quickly past two or three questions, and a rating with no comment is still useful while an abandoned survey is not. A pattern that works well is one rating, then one open text box asking what would have made the experience better.</p>
-    <p>Each follow up question is one of three kinds: <em>short answer</em>, which is a free text box, <em>choose one</em>, or <em>choose several</em>. The two choice kinds need a list of options from you. Reach for a choice kind when you already know the answers you are sorting between and want to count them, and for short answer when you do not, because it is the only kind that can tell you something you had not thought to ask about.</p>
+    <p>Each follow up question is one of three kinds: <em>Short text</em>, which is a free typing box, <em>Choose one</em>, or <em>Choose multiple</em>. The two choice kinds need a list of options from you. Reach for a choice kind when you already know the answers you are sorting between and want to count them, and for Short text when you do not, because it is the only kind that can tell you something you had not thought to ask about.</p>
     <figure>
       <img class="screenshot" src="../images/survey-flow/08-questions.png" alt="The question editor showing the fixed star rating and one follow up question">
       <figcaption>The question editor.</figcaption>
@@ -327,6 +336,11 @@
     <p>One thing it does not do, despite appearances. <strong>The band decides who is asked. The dashboard's sentiment filter decides what you look at afterwards.</strong> That filter is worked out from the score by itself, and nothing anywhere records which band a question was aimed at.</p>
     <p>The two agree because they use the same thresholds, not because they are connected. Filtering the feedback list to negative does show you the responses that saw your negative-banded questions, and it will keep doing that — by arithmetic on the score. It is worth knowing which of those two it is the moment you want to count how many people were actually asked a particular question.</p>
 
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/40-question-editor.png" alt="One follow up question expanded in the editor, with the type dropdown open on Short text, Choose one and Choose multiple, and the three rating band toggles below it">
+      <figcaption>One question, with its kind and its bands in the same frame.</figcaption>
+    </figure>
+
     <h3 id="ai">Let AI write some of the questions</h3>
     <p>Survey Flow can have AI write questions for the ticket in front of the customer. <strong>It adds questions. It never replaces yours.</strong> The follow up questions you wrote are asked in every mode, last, whatever the survey asks before them.</p>
     <p><strong>Where the setting is.</strong> Inside <em>The opening question</em>, in the <em>Refine your survey</em> group. There is no section called AI settings, and searching the screen for that phrase will not find it.</p>
@@ -337,6 +351,7 @@
       <li><strong>Questions per ticket.</strong> The opening question is written by AI for that particular ticket instead of being the same for everyone. After that it behaves exactly like the mode above.</li>
     </ul>
     <p>The third mode is the second one plus a generated opening, not a separate feature, and they fall back in that order — three to two to one — rather than failing outright. A customer sees a shorter conversation, not an error.</p>
+    <p>That fallback is worth understanding before you pick the third mode. Your own per-band questions do not disappear when the AI writes the opening; they become what the customer is asked if a call fails or the account is out of AI credit. Keep them good. They are the reason a failure is invisible from the customer's side.</p>
     <p><strong>The AI does not ask on every response.</strong> It only asks after the customer has typed something, and only when what they wrote is too thin to act on. A clear, detailed comment gets no extra question at all.</p>
     <p><strong>What each call sends.</strong> A question asked during the conversation sends the ticket title, how many days the ticket took to close, the score, the comment exactly as written, your topics-to-avoid list, and the conversation so far. In the third mode the opening question is a separate call and sends the same things without the comment, because there is not one yet.</p>
     <p><strong>Topics to avoid</strong> is a list you supply, and it goes into both prompts. It is how you keep the AI off subjects you would rather it did not raise with your customers.</p>
@@ -344,50 +359,31 @@
     <p>Nothing is redacted, shortened or summarised first. No recipient address or display name is sent as a field, but free text is free text: a customer who types their own phone number into a comment sends it along with everything else. monday.com states that it does not use this input to train models, and that it reaches the model through managed services at Microsoft Azure and AWS Bedrock, so the text does not stop at monday.com. The <a href="https://aiverylabs.github.io/survey-flow/privacy.html#ai">privacy policy</a> records where that statement is firm and where it is our reading of it, which is the part worth five minutes if you are the person deciding.</p>
     <p>Labelling is a second AI switch, separate from this one and off by the same default. It runs after a survey is submitted rather than during it, and step 7 covers it.</p>
 
-    <!-- SCREENSHOT NEEDED: 41-mode1-setting.png. Drop the file into images/survey-flow/ and delete
-         the two comment markers around the block below. The paragraph introduces all three pairs,
-         so keep it with whichever pair lands first.
     <p>Each pair below is one mode: the setting, and then the survey a customer gets under it.</p>
     <figure>
       <img class="screenshot" src="../images/survey-flow/41-mode1-setting.png" alt="The opening question setting with Fixed questions selected">
       <figcaption>Mode one, the setting.</figcaption>
     </figure>
-    -->
-    <!-- SCREENSHOT NEEDED: 42-mode1-survey.png. Drop the file into images/survey-flow/ and delete
-         the two comment markers around the figure below.
     <figure>
-      <img class="screenshot" src="../images/survey-flow/42-mode1-survey.png" alt="A survey under Fixed questions: the comment question and then the configured follow up questions, with nothing generated">
+      <img class="screenshot" src="../images/survey-flow/42-mode1-survey.png" alt="A survey under Fixed questions: the opening question you wrote, then your follow up questions, one of them a choice between Yes, Maybe and No. Nothing generated">
       <figcaption>Mode one, what the customer is asked.</figcaption>
     </figure>
-    -->
-    <!-- SCREENSHOT NEEDED: 43-mode2-setting.png. Drop the file into images/survey-flow/ and delete
-         the two comment markers around the figure below.
     <figure>
-      <img class="screenshot" src="../images/survey-flow/43-mode2-setting.png" alt="The opening question setting with Ask more when needed selected, showing the credit cost line">
+      <img class="screenshot" src="../images/survey-flow/43-mode2-setting.png" alt="The opening question setting with Ask more when needed selected, showing the credit cost line, the topics to avoid list, and how many times the AI may ask again">
       <figcaption>Mode two, the setting.</figcaption>
     </figure>
-    -->
-    <!-- SCREENSHOT NEEDED: 44-mode2-survey.png. Drop the file into images/survey-flow/ and delete
-         the two comment markers around the figure below.
     <figure>
-      <img class="screenshot" src="../images/survey-flow/44-mode2-survey.png" alt="A survey under Ask more when needed: a generated question following the customer's comment, with the configured questions after it">
+      <img class="screenshot" src="../images/survey-flow/44-mode2-survey.png" alt="A survey under Ask more when needed: the question you wrote, the customer's comment, a generated question following up on it, and then your remaining question">
       <figcaption>Mode two, what the customer is asked.</figcaption>
     </figure>
-    -->
-    <!-- SCREENSHOT NEEDED: 45-mode3-setting.png. Drop the file into images/survey-flow/ and delete
-         the two comment markers around the figure below.
     <figure>
-      <img class="screenshot" src="../images/survey-flow/45-mode3-setting.png" alt="The opening question setting with Questions per ticket selected, showing the credit cost line">
+      <img class="screenshot" src="../images/survey-flow/45-mode3-setting.png" alt="The opening question setting with Questions per ticket selected, showing the credit cost line and the fallback questions used when the AI cannot write one">
       <figcaption>Mode three, the setting.</figcaption>
     </figure>
-    -->
-    <!-- SCREENSHOT NEEDED: 46-mode3-survey.png. Drop the file into images/survey-flow/ and delete
-         the two comment markers around the figure below.
     <figure>
-      <img class="screenshot" src="../images/survey-flow/46-mode3-survey.png" alt="A survey under Questions per ticket: an AI written opening question, then the conversation, then the configured questions">
+      <img class="screenshot" src="../images/survey-flow/46-mode3-survey.png" alt="A survey under Questions per ticket: an AI written opening question about this ticket, the comment, a generated follow up, and then the configured questions, one skipped and one answered">
       <figcaption>Mode three, what the customer is asked.</figcaption>
     </figure>
-    -->
 
     <h3 id="columns">Choose what appears on the ticket</h3>
     <p>Every answer is stored either way. This setting only decides what gets written back onto the ticket itself.</p>
@@ -451,17 +447,14 @@
     </figure>
 
     <h3 id="destination">Where follow up items go</h3>
-    <p>Further down the configuration screen, in the <em>Act on what comes back</em> group, the section headed <em>Mark what is still outstanding</em> holds two things: the labelling feature that step 7 covers, and the destination for follow up items — a board, and optionally a group on that board.</p>
+    <p>In the <em>Act on what comes back</em> group, the first thing is a block of its own headed <em>Where follow-up items go</em>: a destination board, and a group on it. It sits above the labelling section rather than inside it, and its own hint says why — you can set a destination without turning anything else on.</p>
     <p>A follow up item is how one response becomes a piece of work somebody owns. Step 7 covers what one carries. The decision here is only where they land, and it is bigger than it looks.</p>
     <p><strong>Whoever can see the destination board can read what your customer wrote.</strong> That audience is the board's membership in monday.com, set by whoever administers that board, and it has nothing to do with who can open Survey Flow. Choosing a destination board is choosing an audience, so choose it deliberately rather than picking the board already in front of you.</p>
     <p>Leave the group empty and items land in the destination board's first group. Leave the board empty and nothing can be created at all: every route that would create an item refuses, and says why.</p>
-    <!-- SCREENSHOT NEEDED: 32-followup-destination.png. Drop the file into images/survey-flow/ and
-         delete the two comment markers around the figure below.
     <figure>
-      <img class="screenshot" src="../images/survey-flow/32-followup-destination.png" alt="The Where follow up items go block under Act on what comes back, showing the destination board and the optional group">
-      <figcaption>The destination for follow up items, under Act on what comes back.</figcaption>
+      <img class="screenshot" src="../images/survey-flow/32-followup-destination.png" alt="The Where follow-up items go block, with its destination board and group pickers, sitting above the separate Mark what is still outstanding section">
+      <figcaption>The destination block, and the labelling section that follows it.</figcaption>
     </figure>
-    -->
 
     <h3>Test once, then switch it on</h3>
     <p><strong>The on/off switch is not part of Save.</strong> It takes effect the instant you toggle it, because it is a kill switch: an admin switching surveys off wants them to stop now, not after a Save that might be refused. Everything else on the screen waits for <em>Save changes</em>, which reads <em>Saved</em> when there is nothing left to save.</p>
@@ -501,13 +494,10 @@
       <img class="screenshot" src="../images/survey-flow/13-survey-page.png" alt="The survey page with the star rating and follow up question, before submitting">
       <figcaption>The survey page before submission.</figcaption>
     </figure>
-    <!-- SCREENSHOT NEEDED: 36-survey-thread.png. Drop the file into images/survey-flow/ and delete
-         the two comment markers around the figure below.
     <figure>
-      <img class="screenshot" src="../images/survey-flow/36-survey-thread.png" alt="The survey mid conversation: one answer sent and showing in the thread, with the next question arriving below it">
+      <img class="screenshot" src="../images/survey-flow/36-survey-thread.png" alt="The survey mid conversation: an AI written opening question, two answers sent and showing as messages in the thread, and the next question arriving below them">
       <figcaption>Mid conversation. Answers stay in the thread as the next question arrives.</figcaption>
     </figure>
-    -->
 
     <h3>Next and Send are different buttons</h3>
     <p>The button under a turn reads <strong>Send</strong> when there is something to send, or when the question is required. It reads <strong>Next</strong> when the box is empty and the question is optional — and pressing Next skips that question.</p>
@@ -528,13 +518,10 @@
     <h3>Changing the rating can discard answers</h3>
     <p>Questions are chosen by rating band — positive is four and five stars, neutral is three, negative is one and two. If a customer changes their rating so that it crosses into a different band after they have answered things, the questions they were asked no longer apply to them, and those answers are cleared.</p>
     <p>They are warned before it happens. A dialog tells them how many answers they are about to lose and asks them to confirm. If they have answered nothing there is no dialog. In the mode where the AI writes the opening question, that question is regenerated for the new band.</p>
-    <!-- SCREENSHOT NEEDED: 38-band-change-warning.png. Drop the file into images/survey-flow/ and
-         delete the two comment markers around the figure below.
     <figure>
       <img class="screenshot" src="../images/survey-flow/38-band-change-warning.png" alt="The confirmation dialog shown when a customer changes their rating into a different band, naming how many answers will be lost">
       <figcaption>Crossing a band, with the count of answers about to go.</figcaption>
     </figure>
-    -->
 
     <h3 id="submit">What Submit actually means</h3>
     <p>It means the rating is stored with us, durably. <strong>It does not mean your ticket has been updated.</strong></p>
@@ -568,8 +555,8 @@
     </figure>
     <p>The written comments are usually where the value sits. A score tells you something changed. A comment tells you what to do about it.</p>
     <figure>
-      <img class="screenshot" src="../images/survey-flow/17-response-detail.png" alt="A single customer response including the rating and written comment">
-      <figcaption>One response, with the comment the customer left.</figcaption>
+      <img class="screenshot" src="../images/survey-flow/17-response-detail.png" alt="One response opened on the Feedback tab: a one star rating, the Left waiting label, the ticket and agent, the full thread of questions and answers, and a Create an item button">
+      <figcaption>One response opened out: the label it was given, the whole exchange, and the button that turns it into a follow up item.</figcaption>
     </figure>
     <p>A response on the Feedback tab can also be turned into a follow up item on a board, which is where step 7 picks up.</p>
     <p>Results can be read for the team as a whole and broken down by the agent who handled each ticket, so agents can see feedback on their own work.</p>
@@ -610,13 +597,10 @@
     <p>Three routes create one: a rule that fires on its own, a button on the Feedback tab, and the Sidekick skill in step 8. All three land in the destination you set in step 3.</p>
     <p>The item's name is the label followed by the ticket title, so the ticket title shows up in board views, in search and in notifications.</p>
     <p>The item's update carries the rating and the date it was given, the labels still outstanding, the customer's comment exactly as they wrote it, and every follow up question that was answered together with its answer. No customer email address is included anywhere in it.</p>
-    <!-- SCREENSHOT NEEDED: 33-followup-item.png. Drop the file into images/survey-flow/ and delete
-         the two comment markers around the figure below. Use a fabricated comment, not a real one.
     <figure>
       <img class="screenshot" src="../images/survey-flow/33-followup-item.png" alt="A follow up item on a monday board, its update showing the rating, the outstanding label, the customer comment and the answers">
       <figcaption>A follow up item, with the response inside its update.</figcaption>
     </figure>
-    -->
     <p>Who reads it is the destination board's membership, which is the choice made back in step 3 and the reason that setting deserves a moment.</p>
 
     <h3>They stay after you uninstall</h3>
@@ -627,13 +611,10 @@
     <p>The difference from everything else in this guide is worth stating plainly. <strong>These are not gated on a setting.</strong> There is no switch to leave off. Anyone who can invoke the skill reaches them, which means an account admin or a board owner.</p>
     <p>The finding skill returns, for each response it matches, the customer's comment exactly as written, the follow up answers, the score, the ticket title, a date, and the display name of the agent who handled the ticket. Sidekick writes its reply out of that material, and the reply lands in a chat transcript. How long that transcript lives, and who else can read it, is monday.com's to answer rather than ours.</p>
     <p>If that is more exposure than suits your team, the lever is who holds admin and board owner rights, not a setting inside Survey Flow.</p>
-    <!-- SCREENSHOT NEEDED: 35-sidekick-skills.png. Drop the file into images/survey-flow/ and delete
-         the two comment markers around the figure below.
     <figure>
       <img class="screenshot" src="../images/survey-flow/35-sidekick-skills.png" alt="The two Survey Flow skills listed among the available tools in monday.com's Sidekick">
       <figcaption>The two skills, in the Sidekick tools list.</figcaption>
     </figure>
-    -->
 
     <h2 id="plans">Plans and limits</h2>
     <p>Survey Flow is sold through monday, on four plans. What you are paying for is responses, not seats and not surveys sent. Starter includes 25 responses a month, Pro 150, Business 750, and Scale 3,000. There is a 14 day trial, metered against Starter's allowance of 25 responses, so whichever runs out first ends it.</p>
