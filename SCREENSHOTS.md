@@ -40,18 +40,43 @@ Everything they were looking for was present. Nothing they were not looking for 
 **An audit against a stale understanding returns a confident clean result**, and a clean result is
 harder to revisit than no result, because the file now says somebody checked.
 
+**And it has now happened twice, which is why it is a pattern and not bad luck.** The second is
+`11-activate`, cleared by the same audit on the same day. The app is titled **"CSAT Surveys"** in it;
+it is **"Surveys"** in every capture taken since. Nobody comparing it knew the product had been
+renamed, so the title read as correct — the same failure as `17-response-detail` with a different
+missing fact. One was a feature the comparer had not met; the other was a rename nobody had
+mentioned. Neither is a lapse of care, and no amount of looking harder would have caught either.
+
 This is the week's failure one level up. Not a record nobody checked — a check nobody could have
 passed. The defence is to compare against *what changed since the capture*, named from the code or
 the release, and to re-audit anything whose feature area has moved since it was last looked at, even
 when it has a clean verdict against it.
 
+⚠️ **Cheapest check first, before opening anything.** A collapsed section cannot carry stale copy; an
+expanded one can. `39-config-groups` survived the labelling copy change for exactly that reason, with
+its Act-on sections showing only summary lines. Sort captures by what is expanded in frame, and open
+those. It is the one test here that costs nothing and rules things out rather than in.
+
 ---
 
-## ⚠️ Outstanding — 1 of 15
+## ⚠️ Outstanding — 3
+
+### `11-activate.png` — RECAPTURE, wrongly cleared
+**Why:** the app is titled **CSAT Surveys** in it and **Surveys** in every capture taken since. It is
+also sitting in an *Unsaved changes* state with greyed steps in the How it runs strip, which is not
+the state the prose around it describes.
+**Shows:** the configuration saved and switched on — master toggle On, the title as it now reads, and
+the Saved button at rest rather than mid-edit.
+**Lands in:** §3, *Test once, then switch it on*. The figure is live in the page, so the file drops
+straight in; check the caption still fits.
+
+### `22-low-rating-alert.png` — RESHOOT with a seeded account
+Pulled for publishing a live personal address; see below. **Take it on a seeded account with a
+fabricated notify target**, then the figure goes back into §3, *Get told about unhappy customers*.
+No rush — the section reads fine without it.
 
 ### `01-marketplace-install.png` — blocked, not your fault
-The only broken image on the published page, and still blocked until the app is listed on the
-marketplace, because the listing is the subject. Everything else is in.
+Blocked until the app is listed on the marketplace, because the listing is the subject.
 
 ⚠️ `37-next-vs-send` was recaptured on 2026-09-11 and **is now correct**: same question, same rating,
 empty box reading Next on the left, "not great" typed and the button reading Send on the right. The
@@ -75,14 +100,15 @@ itself rather than against what was requested. Where they differed, the words we
 | `45`+`46-mode3` | same | rewritten — 45 shows the fallback questions, which changed the prose too |
 | `40-question-editor` | §3, *Show a question only to some raters* | **placed** — the type dropdown and the bands are in one frame, as asked |
 | `31-connect-admin-only` | §2, *Only an admin can connect* | rewritten — the frame also carries a readiness checklist |
-| `32-followup-destination` | §3, *Where follow up items go* | rewritten — and it corrected the prose, see below |
+| `32-outstanding-card` | §7, *Create them automatically* | rewritten, renamed, and moved — see below |
 | `17-response-detail` | §6 | **both rewritten**; the figure was already live and described the old frame |
 | `33-followup-item` | §7, *Follow up items* | as written |
 | `35-sidekick-skills` | §8 | as written — both skills visible and toggled on |
 
-⚠️ **`43-mode2-setting` arrived as `43-mode2-setting .png`, with a space before the extension.** It was
-renamed. A space in a filename does not fail loudly: the reference simply does not resolve and the
-page shows a broken image.
+⚠️ **Two files have now arrived with a space before the extension** — `43-mode2-setting .png` and
+then `35-sidekick-skills .png`. Both renamed. This one does not fail loudly: the reference stops
+resolving, git reports a delete plus an untracked file, and the page shows a broken image. Twice is
+enough to check for it on every drop: `ls images/survey-flow | grep " "` costs nothing.
 
 ## ✅ The copy change landed — both recaptures checked by looking
 
@@ -100,10 +126,11 @@ could be affected**, since reasoning is how `35` was nearly missed the first tim
   next time rather than opening every file.
 - `22-low-rating-alert`, `11-activate` — no labelling card in frame. Both turned up something else.
 
-## ⚠️ `32-followup-destination` is no longer what its name says
+## `32-outstanding-card` — renamed, and moved to match what it shows
 
-The recapture is cropped to the **labelling card alone**. The *Where follow-up items go* block, which
-was the point of the original and the reason for the filename, is out of frame.
+The recapture was cropped to the **labelling card alone**. The *Where follow-up items go* block, which
+was the point of the original and the reason for the old filename, is out of frame — so the file is
+now `32-outstanding-card.png`, and `32-followup-destination` is free for a real destination crop.
 
 - The figure has been **moved** out of §3's *Where follow up items go* and into §7's *Create them
   automatically*, where its content — the rule box — is exactly the subject. Alt text and caption
@@ -111,22 +138,23 @@ was the point of the original and the reason for the filename, is out of frame.
 - §3's *Where follow up items go* now carries no figure of its own. Not urgent: `39-config-groups`
   is in the same section and frames the destination block in context. A tighter crop would be better
   but nothing is broken.
-- ⚠️ **The filename now lies.** It says destination and shows labelling. Renaming it is the clean fix
-  and frees the name for a real destination capture — say the word. Left as-is rather than renamed
-  unasked, because a rename breaks any local copy or note that refers to it.
+- ⚠️ **The old name was a stale record of the same kind this file exists to catch**, just wearing a
+  filename instead of a sentence. A name that sounds accurate is worse than one that sounds vague,
+  because nobody opens the file to check it.
 
-## ⚠️ Two things found while looking, neither about the copy change
+## `22-low-rating-alert` — pulled, awaiting a seeded reshoot
 
-**`22-low-rating-alert` publishes a real personal email address.** The rule's notify target is a named
-person with `phamphuoc311093@gmail.com` beneath it, legible at full size, on a public page. It is not
-customer data — it appears to be your own — but it is a live address on a site scrapers read, and the
-guide's own callouts tell readers to treat this kind of thing carefully. Recapture with a seeded
-account, or say to pull the figure and I will.
+It published a live personal email address as the notify target, legible at full size. The figure is
+removed from §3 and **the file is deleted from the repository**, not merely unreferenced: GitHub Pages
+serves any file in the folder at its own URL whether or not a page links to it, so unreferencing alone
+would have left the address fetchable.
 
-**`11-activate` is stale.** It shows the app titled **"CSAT Surveys"**; `39` and `35` both show
-**"Surveys"**. It also sits in an *Unsaved changes* state with greyed steps in the How it runs strip.
-It was on the audited-and-correct list from 2026-09-10 — cleared before anyone knew the product name
-had moved, which is the same failure the rule above describes.
+⚠️ **It remains in git history**, which this cannot fix. If that matters, it needs a history rewrite,
+and that is a decision rather than a cleanup.
+
+*Test once, then switch it on* has no figure until the reshoot. That is fine and deliberate: a section
+without a picture costs a reader very little, and nothing should wait in a screenshot queue while a
+real address sits on a public page.
 
 ## ⚠️ Three prose errors the pictures caught
 Recorded here because it is the argument for taking them at all, not just for publishing them.
@@ -151,7 +179,7 @@ the content. `12-email-received` and `14-thank-you` already exist and are fine.
 
 ## Audited and correct — do not reflag
 Compared against the live app on 2026-09-10: `23-ticket-columns`, `03-authorize`, `05-board-picker`
-(image), `08-questions`, `04-empty-state`, `11-activate`, `16-dashboard`, `29-agent-view`.
+(image), `08-questions`, `04-empty-state`, `16-dashboard`, `29-agent-view`.
 
 ⚠️ `17-response-detail` **was on this list and has been removed** — see item 11. It is the reason the
 list carries a date: a clean verdict is only as good as what the comparer knew to look for on the day,
