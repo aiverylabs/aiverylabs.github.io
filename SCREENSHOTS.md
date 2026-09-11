@@ -47,25 +47,19 @@ when it has a clean verdict against it.
 
 ---
 
-## ⚠️ Outstanding — 2 of 15
-
-### `37-next-vs-send.png` — RECAPTURE, the frame does not show what it needs to
-**What landed:** two panels of the same survey side by side, and **both show an empty box with the
-button reading Next.** The Send state is not in the frame, so the image does not demonstrate the
-distinction it exists for. Its figure is left commented out in the page rather than published.
-**What it needs:** the same turn twice — empty box reading **Next**, and something typed reading
-**Send**. Type a word into the composer for the second crop; that is the whole difference.
-**Note:** `38-band-change-warning` and `46-mode3-survey` both happen to catch a **Send** button, so
-the state is not unphotographable — it just is not in this file.
-**Lands in:** §5, under *Next and Send are different buttons*.
+## ⚠️ Outstanding — 1 of 15
 
 ### `01-marketplace-install.png` — blocked, not your fault
-Still the only broken image on the published page, and still blocked until the app is listed on the
-marketplace, because the listing is the subject.
+The only broken image on the published page, and still blocked until the app is listed on the
+marketplace, because the listing is the subject. Everything else is in.
+
+⚠️ `37-next-vs-send` was recaptured on 2026-09-11 and **is now correct**: same question, same rating,
+empty box reading Next on the left, "not great" typed and the button reading Send on the right. The
+first attempt had Next in both panels. It is wired in.
 
 ---
 
-## Landed and wired — 13 of 15
+## Landed and wired — 14 of 15
 
 All of these are uncommented in the page, with alt text and captions checked against the image
 itself rather than against what was requested. Where they differed, the words were changed.
@@ -73,6 +67,7 @@ itself rather than against what was requested. Where they differed, the words we
 | File | Lands in | Alt text |
 | --- | --- | --- |
 | `36-survey-thread` | §5, *It is a conversation* | rewritten — it is mode 3, so the opening question is AI written, and two answers are already sent |
+| `37-next-vs-send` | §5, *Next and Send* | rewritten — names both states and the typed word, after a recapture |
 | `38-band-change-warning` | §5, *Changing the rating* | as written; the dialog names "the three answers you have given" |
 | `39-config-groups` | §3, after the three groups are named | **placed** — no restructuring needed, it sits with the paragraph describing the groups |
 | `41`+`42-mode1` | §3, *Let AI write some of the questions* | rewritten — 42 shows a Choose one question, which the old alt did not mention |
