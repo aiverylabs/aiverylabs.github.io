@@ -11,6 +11,10 @@
     targeting, the configuration screen's three groups and their contents, the master switch
     persisting outside Save.
 
+  CHECKED 2026-09-11, reported by Phuoc against the live product and NOT carried by
+  feature-behaviour.md - so re-derive it from the product rather than from that file:
+    the cap of four follow-up questions.
+
   NOT CHECKED - flagged as unchecked rather than as wrong. No evidence against any of it; simply
   nobody has compared it to the code. Do not cite these as verified, and do not quietly promote
   them by repeating them:
@@ -310,7 +314,7 @@
     <h3>Write the questions</h3>
     <p>Every survey opens with a one to five star rating. That question is fixed, because it is the number every report is built from.</p>
     <p>After the rating, every survey asks for a comment. That question comes with the survey rather than being one you add, and you can mark it required. It is the only thing besides the rating that a customer can be made to answer; everything else can be skipped, which is worth knowing before you design a survey that only pays off if somebody finishes it.</p>
-    <p>After the comment you can add a few follow up questions. Keep the list short. Response rates fall away quickly past two or three questions, and a rating with no comment is still useful while an abandoned survey is not. A pattern that works well is one rating, then one open text box asking what would have made the experience better.</p>
+    <p>After the comment you can add up to four follow up questions. Four is the ceiling, not the target: keep the list short. Response rates fall away quickly past two or three questions, and a rating with no comment is still useful while an abandoned survey is not. A pattern that works well is one rating, then one open text box asking what would have made the experience better.</p>
     <p>Each follow up question is one of three kinds: <em>short answer</em>, which is a free text box, <em>choose one</em>, or <em>choose several</em>. The two choice kinds need a list of options from you. Reach for a choice kind when you already know the answers you are sorting between and want to count them, and for short answer when you do not, because it is the only kind that can tell you something you had not thought to ask about.</p>
     <figure>
       <img class="screenshot" src="../images/survey-flow/08-questions.png" alt="The question editor showing the fixed star rating and one follow up question">
@@ -340,9 +344,10 @@
     <p>Nothing is redacted, shortened or summarised first. No recipient address or display name is sent as a field, but free text is free text: a customer who types their own phone number into a comment sends it along with everything else. monday.com states that it does not use this input to train models, and that it reaches the model through managed services at Microsoft Azure and AWS Bedrock, so the text does not stop at monday.com. The <a href="https://aiverylabs.github.io/survey-flow/privacy.html#ai">privacy policy</a> records where that statement is firm and where it is our reading of it, which is the part worth five minutes if you are the person deciding.</p>
     <p>Labelling is a second AI switch, separate from this one and off by the same default. It runs after a survey is submitted rather than during it, and step 7 covers it.</p>
 
-    <p>The pairs below are the same three modes, each shown as the setting and then as the survey a customer gets under it.</p>
     <!-- SCREENSHOT NEEDED: 41-mode1-setting.png. Drop the file into images/survey-flow/ and delete
-         the two comment markers around the figure below.
+         the two comment markers around the block below. The paragraph introduces all three pairs,
+         so keep it with whichever pair lands first.
+    <p>Each pair below is one mode: the setting, and then the survey a customer gets under it.</p>
     <figure>
       <img class="screenshot" src="../images/survey-flow/41-mode1-setting.png" alt="The opening question setting with Fixed questions selected">
       <figcaption>Mode one, the setting.</figcaption>
