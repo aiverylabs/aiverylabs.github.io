@@ -2,91 +2,127 @@
 
 Work through this with the app open. Files go in `images/survey-flow/`.
 
-Every item below has a `<figure>` waiting for it in `survey-flow/user-guide.html`, commented out with
-the alt text and caption already written. Drop the file in, delete the two comment markers around the
-figure, done — no prose to write.
+Most items have a `<figure>` waiting in `survey-flow/user-guide.html`, commented out with the alt text
+and caption already written: drop the file in, delete the two comment markers, done. Items marked
+**placeholder pending** have no figure yet — see the note on each.
 
-⚠️ **Anything a customer wrote is published the moment the file lands.** Use fabricated comments and
-fabricated names in every frame that shows feedback — item 3 especially.
+**Ranked by how much the prose struggles without the picture**, following
+`csat/docs/feature-behaviour.md` §6. The first three are not illustrations. They are the correction.
+
+⚠️ **The survey page renders the customer's own words.** Use a seeded test board, never a real
+response, and check the ticket title in frame — that is customer content too.
 
 Last updated 11 September 2026.
 
 ---
 
-## ⚠️ Stale means somebody looked
+## Stale means somebody looked
 
 **A capture is stale when a person compared it against the live app and it differed. A ticket saying
-the screen changed is a reason to look, and nothing more.** Those are different claims, and this file
-made the wrong one four times.
+the screen changed is a reason to look, and nothing more.**
 
-The first version of this checklist read CFM-154 and CFM-162 — both of which say a *screen* was
-restructured — and recorded five captures as stale. The 2026-09-10 audit compared all five. Four were
-fine: `23-ticket-columns` was cropped tightly enough that whatever moved beside it was out of frame,
-`03-authorize` is monday's own screen and CFM-162 changed who reaches it rather than what it shows,
-and `08-questions` and `17-response-detail` were unchanged. Four comparisons spent disproving claims
-this file should never have made.
+The first version of this file read CFM-154 and CFM-162 — both of which say a *screen* changed — and
+recorded five captures as stale. The 2026-09-10 audit compared all five. Four were fine. The fifth,
+`05-board-picker`, had a correct image and wrong words around it, so the flag pointed at the wrong
+artifact entirely. Four comparisons spent disproving claims this file should not have made.
 
-The fifth, `05-board-picker`, was a real defect — but not the one recorded. **The image was correct
-and the words around it were wrong**, describing a board picker that does not exist. The stale flag
-pointed at the wrong artifact entirely.
-
-⚠️ **This is the same shape as the errors this codebase kept turning up all week: a confident record
-that nobody had checked.** A ticket describing a change is evidence about the code at the moment it
-was written. It is not evidence about a screenshot, a document, or anything else downstream — and
-writing it down as though it were converts a reason to look into a fact that gets acted on.
-
-**So: flag from a comparison, or write "check this" and say what prompted it.** Never write "stale"
-from a ticket alone.
+⚠️ **Same shape as the rest of the week: a confident record nobody had checked.** A ticket describes
+the code at the moment it was written. It is not evidence about a screenshot, a document, or anything
+else downstream. **Flag from a comparison, or write "check this" and name what prompted it.**
 
 ---
 
-## The captures
+## 1. `36-survey-thread.png` — NEW, highest value
+**Shows:** the survey mid conversation — one answer already sent and sitting in the thread, the next
+question arriving below it. Take it in **mode 2 or 3** so an AI-written question is visible.
+**Why first:** the guide's biggest error was describing a form. No sentence conveys "it is a
+conversation" as fast as this frame does.
+**Lands in:** §5, under *It is a conversation, not a form*.
 
-### 1. `31-connect-admin-only.png` — NEW
-**Shows:** the Survey Flow welcome screen as someone who is *not* an account admin sees it — no
-Connect button, and the line saying an admin needs to connect this account before surveys can be set
-up. Sign in as a board owner who is not an admin; an admin's own screen is the wrong picture.
-**Lands in:** §2 Authorize access, under *Only an admin can connect the account* (last thing in the
-section).
+## 2. `37-next-vs-send.png` — NEW
+**Shows:** the same turn twice — empty answer box with the button reading **Next**, and a filled box
+with it reading **Send**. Two crops in one image is fine.
+**Why:** the distinction is behavioural (Next skips the question) and completely invisible in prose.
+**Lands in:** §5, under *Next and Send are different buttons*.
 
-### 2. `32-followup-destination.png` — NEW
-**Shows:** the *Where follow up items go* block, under **Act on what comes back** on the configuration
-screen. Frame the whole block including its heading, so someone hunting for it on screen recognises
-where it sits. Both fields visible: destination board, and the optional group.
-**Lands in:** §3 Build your first survey, under *Where follow up items go* (between the low rating
-alert and *Test once, then switch it on*).
+## 3. `38-band-change-warning.png` — NEW
+**Shows:** the confirmation dialog when a customer re-rates across a band, **with the count of answers
+about to be lost visible**. The count is the part nobody believes without seeing it.
+**Setup:** answer two or three questions at 5 stars, then change the rating to 2.
+**Lands in:** §5, under *Changing the rating can discard answers*.
 
-### 3. `33-followup-item.png` — NEW
-**Shows:** one follow up item on a monday board with its update open — the rating and date, the
-outstanding label, the customer's comment, and the answers. The item name should be visible too, since
-it carries the ticket title.
+## 4. `39-config-groups.png` — NEW, ⚠️ placeholder pending
+**Shows:** the configuration screen with all three group headings visible — *Set up*, *Refine your
+survey*, *Act on what comes back* — sections collapsed. One frame, whole shape.
+**Why:** it is the only way to convey the screen's structure, and it fixes the two placements people
+get wrong: the AI modes live under *The opening question*, and Score/Comment live under *Show on the
+ticket* rather than in *Set up* with the other columns.
+**Lands in:** §3, near the top. **No figure in the page yet** — it goes in with the §3 corrections
+still to be agreed.
+
+## 5–7. The three mode pairs — NEW, replacing `34-ai-question-mode`
+Six files, taken as three pairs. Each pair is **the setting, then the survey a customer gets under
+it**, so the connection is visible rather than asserted. `34-ai-question-mode.png` is retired: it
+showed only the off state, which is the one mode that needs no picture.
+
+**5.** `41-mode1-setting.png` + `42-mode1-survey.png` — *Fixed questions*. The survey shows the
+comment question then your configured questions, nothing generated.
+**6.** `43-mode2-setting.png` + `44-mode2-survey.png` — *Ask more when needed*. The survey shows a
+generated question following the customer's comment, then your questions. Capture the setting with
+its credit-cost line in frame.
+**7.** `45-mode3-setting.png` + `46-mode3-survey.png` — *Questions per ticket*. The survey shows an
+AI-written opening question, then the conversation, then your questions.
+
+⚠️ In all three survey frames, **your configured questions must be visible at the end.** That is the
+fact the pairs exist to prove, and the one the guide got backwards.
+**Land in:** §3, under *Let AI write some of the questions*.
+
+## 8. `40-question-editor.png` — NEW, ⚠️ placeholder pending
+**Shows:** the follow-up question editor with one question expanded — the type selector and the three
+band toggles together in one frame.
+**Why:** three question types and three bands, described in prose, read as six unrelated facts.
+**Lands in:** §3, under *Show a question only to some raters*. **No figure in the page yet** — it goes
+in with the §3 corrections.
+
+## 9. `31-connect-admin-only.png` — NEW
+**Shows:** the welcome screen as someone who is *not* an account admin sees it — no Connect button,
+and the line saying an admin needs to connect the account. Sign in as a board owner who is not an
+admin; an admin's own screen is the wrong picture.
+**Lands in:** §2, under *Only an admin can connect the account*.
+
+## 10. `32-followup-destination.png` — NEW
+**Shows:** the follow-up item destination — board and optional group. ⚠️ It sits **inside the *Mark
+what is still outstanding* section**, in the *Act on what comes back* group, alongside the labelling
+feature. Frame enough of that section to show where it lives.
+**Lands in:** §3, under *Where follow up items go*.
+
+## 11. `33-followup-item.png` — NEW
+**Shows:** one follow up item on a board with its update open — rating and date, the outstanding
+label, the comment, the answers. The item name too, since it carries the ticket title.
 ⚠️ Fabricated comment. This is the frame most likely to publish a real customer's words.
-**Lands in:** §7 Act on what comes back, under *Follow up items*.
+**Lands in:** §7, under *Follow up items*.
 
-### 4. `34-ai-question-mode.png` — NEW
-**Shows:** the AI question setting **in its off state**. Off-by-default is the claim the picture is
-there to support, so capture it before switching anything on. If the setting names its three modes,
-frame them — the guide now lists all three and a reader will look for them here.
-**Lands in:** §3 Build your first survey, under *Add an AI question*.
-
-### 5. `35-sidekick-skills.png` — NEW
+## 12. `35-sidekick-skills.png` — NEW
 **Shows:** the two Survey Flow skills in monday's Sidekick tools list, named as a user sees them.
-**Lands in:** §8 Ask Sidekick about your feedback.
+**Lands in:** §8.
 
-### 6. `01-marketplace-install.png` — NEW, blocked
-Referenced by §1 and **not on disk**, so the page carries one broken image today. It cannot be taken
-until the app is listed on the marketplace, because the listing is the subject. Unlike the five above,
-this `<img>` is live rather than commented, which is why the gap is visible on the published page.
-Leave it until the listing exists, or comment the figure out if a broken image is worse than no image.
+## 13. `01-marketplace-install.png` — NEW, blocked
+Referenced by §1 and not on disk, so the page carries one broken image today. It cannot be taken
+until the app is listed on the marketplace, because the listing is the subject. Unlike every item
+above, this `<img>` is live rather than commented, which is why the gap shows on the published page.
 
 ---
+
+## Lower value — prose already carries these
+From `feature-behaviour.md` §6: the invitation email, the thank-you screen, and the individual end
+states (expired, already rated, withdrawn, superseded, paused). Each is a short page whose words are
+the content. `12-email-received` and `14-thank-you` already exist and are fine.
 
 ## Audited and correct — do not reflag
-
 Compared against the live app on 2026-09-10: `23-ticket-columns`, `03-authorize`, `05-board-picker`
 (image), `08-questions`, `17-response-detail`, `04-empty-state`, `11-activate`, `16-dashboard`,
-`29-agent-view`. The four prose errors that audit turned up are fixed in the guide as of
-11 September 2026.
+`29-agent-view`.
 
-The remaining captures in the guide were never in question: no ticket names them and none of the text
-around them has changed.
+⚠️ `13-survey-page` was **not** in that audit and is the one existing capture most likely to be
+wrong, because it is captioned as a page and the page is a thread. Compare it before trusting it; if
+it shows a static form, it predates the conversation UI and item 1 replaces it rather than joining it.

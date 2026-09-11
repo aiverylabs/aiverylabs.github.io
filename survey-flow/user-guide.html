@@ -288,23 +288,64 @@
     <p>The obvious use is asking unhappy raters what went wrong without putting the same question to people who have just told you it went well.</p>
     <p>It changes your reports as well as the survey, and this is the part worth remembering. A question shown to one band is scored against that band rather than against everyone, so its numbers are not comparable with a question every rater saw. That is the right behaviour, and it is easy to forget six weeks later when the two sit next to each other in the same view.</p>
 
-    <h3 id="ai">Add an AI question</h3>
-    <p>Survey Flow can also ask a question generated for the ticket in front of the customer. <strong>It adds a question. It never replaces yours.</strong> The follow up questions you wrote above are asked in every mode, at the end, whatever the survey asks before them.</p>
-    <p>It is off until an admin turns it on, and leaving it off is a perfectly good answer. There are three modes, and what separates them is what the customer is asked:</p>
+    <h3 id="ai">Let AI write some of the questions</h3>
+    <p>Survey Flow can have AI write questions for the ticket in front of the customer. <strong>It adds questions. It never replaces yours.</strong> The follow up questions you wrote are asked in every mode, last, whatever the survey asks before them.</p>
+    <p><strong>Where the setting is.</strong> Inside <em>The opening question</em>, in the <em>Refine your survey</em> group. There is no section called AI settings, and searching the screen for that phrase will not find it.</p>
+    <p>There are three modes, and the first is the default, so a board sends nothing to any model until somebody changes it.</p>
     <ul>
-      <li><strong>Off.</strong> The questions you wrote, and nothing else. Nothing is generated and nothing is sent to a model.</li>
-      <li><strong>A probe question.</strong> The customer leaves a comment, one question is generated from what they have just written, and then your questions follow.</li>
-      <li><strong>An opening question as well.</strong> A generated question before they have typed anything, then the probe as above, then your questions.</li>
+      <li><strong>Fixed questions.</strong> The comment question, then the questions you wrote. Nothing is generated and nothing leaves your account.</li>
+      <li><strong>Ask more when needed.</strong> After the customer comments, the AI may ask one or two questions of its own. Then your questions.</li>
+      <li><strong>Questions per ticket.</strong> The opening question is written by AI for that particular ticket instead of being the same for everyone. After that it behaves exactly like the mode above.</li>
     </ul>
-    <p>The two generated questions do not send the same thing. An <strong>opening question</strong> is built from the ticket title, how many days the ticket took to close, and the rating they have just given; no comment exists yet, so no comment is sent. A <strong>probe question</strong> sends the ticket title, the days to close, the rating, the comment exactly as written, and the conversation so far.</p>
-    <p>What you get is a survey that asks about the thing the person raised rather than the thing you guessed at in advance. What it costs is that their words leave your account while they are still typing them.</p>
+    <p>The third mode is the second one plus a generated opening, not a separate feature, and they fall back in that order — three to two to one — rather than failing outright. A customer sees a shorter conversation, not an error.</p>
+    <p><strong>The AI does not ask on every response.</strong> It only asks after the customer has typed something, and only when what they wrote is too thin to act on. A clear, detailed comment gets no extra question at all.</p>
+    <p><strong>What each call sends.</strong> A question asked during the conversation sends the ticket title, how many days the ticket took to close, the score, the comment exactly as written, your topics-to-avoid list, and the conversation so far. In the third mode the opening question is a separate call and sends the same things without the comment, because there is not one yet.</p>
+    <p><strong>Topics to avoid</strong> is a list you supply, and it goes into both prompts. It is how you keep the AI off subjects you would rather it did not raise with your customers.</p>
+    <p><strong>What it costs.</strong> Up to 0.9 of a monday AI credit for each question the AI writes. That is at most two questions in the second mode, and at most three in the third once the opening is counted, so budget by questions asked rather than by surveys sent.</p>
     <p>Nothing is redacted, shortened or summarised first. No recipient address or display name is sent as a field, but free text is free text: a customer who types their own phone number into a comment sends it along with everything else. monday.com states that it does not use this input to train models, and that it reaches the model through managed services at Microsoft Azure and AWS Bedrock, so the text does not stop at monday.com. The <a href="https://aiverylabs.github.io/survey-flow/privacy.html#ai">privacy policy</a> records where that statement is firm and where it is our reading of it, which is the part worth five minutes if you are the person deciding.</p>
     <p>Labelling is a second AI switch, separate from this one and off by the same default. It runs after a survey is submitted rather than during it, and step 7 covers it.</p>
-    <!-- SCREENSHOT NEEDED: 34-ai-question-mode.png. Drop the file into images/survey-flow/ and delete
+
+    <p>The pairs below are the same three modes, each shown as the setting and then as the survey a customer gets under it.</p>
+    <!-- SCREENSHOT NEEDED: 41-mode1-setting.png. Drop the file into images/survey-flow/ and delete
          the two comment markers around the figure below.
     <figure>
-      <img class="screenshot" src="../images/survey-flow/34-ai-question-mode.png" alt="The AI question setting, switched off by default">
-      <figcaption>The AI question setting, which starts off.</figcaption>
+      <img class="screenshot" src="../images/survey-flow/41-mode1-setting.png" alt="The opening question setting with Fixed questions selected">
+      <figcaption>Mode one, the setting.</figcaption>
+    </figure>
+    -->
+    <!-- SCREENSHOT NEEDED: 42-mode1-survey.png. Drop the file into images/survey-flow/ and delete
+         the two comment markers around the figure below.
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/42-mode1-survey.png" alt="A survey under Fixed questions: the comment question and then the configured follow up questions, with nothing generated">
+      <figcaption>Mode one, what the customer is asked.</figcaption>
+    </figure>
+    -->
+    <!-- SCREENSHOT NEEDED: 43-mode2-setting.png. Drop the file into images/survey-flow/ and delete
+         the two comment markers around the figure below.
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/43-mode2-setting.png" alt="The opening question setting with Ask more when needed selected, showing the credit cost line">
+      <figcaption>Mode two, the setting.</figcaption>
+    </figure>
+    -->
+    <!-- SCREENSHOT NEEDED: 44-mode2-survey.png. Drop the file into images/survey-flow/ and delete
+         the two comment markers around the figure below.
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/44-mode2-survey.png" alt="A survey under Ask more when needed: a generated question following the customer's comment, with the configured questions after it">
+      <figcaption>Mode two, what the customer is asked.</figcaption>
+    </figure>
+    -->
+    <!-- SCREENSHOT NEEDED: 45-mode3-setting.png. Drop the file into images/survey-flow/ and delete
+         the two comment markers around the figure below.
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/45-mode3-setting.png" alt="The opening question setting with Questions per ticket selected, showing the credit cost line">
+      <figcaption>Mode three, the setting.</figcaption>
+    </figure>
+    -->
+    <!-- SCREENSHOT NEEDED: 46-mode3-survey.png. Drop the file into images/survey-flow/ and delete
+         the two comment markers around the figure below.
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/46-mode3-survey.png" alt="A survey under Questions per ticket: an AI written opening question, then the conversation, then the configured questions">
+      <figcaption>Mode three, what the customer is asked.</figcaption>
     </figure>
     -->
 
@@ -398,20 +439,72 @@
     <p>Delivery is normally quick, though the message passes through an email provider and ordinary email delays apply.</p>
 
     <h2 id="customer"><span class="step-num">5</span>What your customer sees</h2>
-    <p>They receive your email and click through to a plain page showing the ticket and the star rating. They choose a rating, answer your follow up questions, and submit. Where you have turned on an AI question, one or two generated questions appear before yours. No account, no signup, nothing to install.</p>
+    <p>They receive your email and click through. No account, no signup, nothing to install.</p>
     <figure>
       <img class="screenshot" src="../images/survey-flow/12-email-received.png" alt="The survey invitation email as it appears in a mail client">
       <figcaption>The invitation as it arrives.</figcaption>
     </figure>
+
+    <h3>It is a conversation, not a form</h3>
+    <p>This is the part most people picture wrongly, including us until recently. The survey is not a page of fields with a Submit button at the bottom. It is a thread. One question arrives, the customer answers it, their answer appears as a sent message, and the next question arrives.</p>
+    <p>The star rating comes first, and nothing else appears until there is one. If they clicked a star in your email, it is already filled in and the thread starts straight away.</p>
+    <p>After the rating, the turns come in a fixed order, and it is the same order in every mode:</p>
+    <ol>
+      <li>the comment question</li>
+      <li>any questions the AI asks, if you have turned that on</li>
+      <li>the follow up questions you configured</li>
+    </ol>
+    <p><strong>Your questions are always last.</strong> They are never first, and an AI question never arrives after them.</p>
     <figure>
       <img class="screenshot" src="../images/survey-flow/13-survey-page.png" alt="The survey page with the star rating and follow up question, before submitting">
       <figcaption>The survey page before submission.</figcaption>
     </figure>
-    <p>After they submit, a short confirmation appears and the link stops accepting answers, so a forwarded email cannot be used to rate the same ticket twice.</p>
+    <!-- SCREENSHOT NEEDED: 36-survey-thread.png. Drop the file into images/survey-flow/ and delete
+         the two comment markers around the figure below.
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/36-survey-thread.png" alt="The survey mid conversation: one answer sent and showing in the thread, with the next question arriving below it">
+      <figcaption>Mid conversation. Answers stay in the thread as the next question arrives.</figcaption>
+    </figure>
+    -->
+
+    <h3>Next and Send are different buttons</h3>
+    <p>The button under a turn reads <strong>Send</strong> when there is something to send, or when the question is required. It reads <strong>Next</strong> when the box is empty and the question is optional — and pressing Next skips that question.</p>
+    <p>On a required question it always reads Send. Next is a promise that the customer can move on without answering, and on a required question that promise would be false.</p>
+    <!-- SCREENSHOT NEEDED: 37-next-vs-send.png. Drop the file into images/survey-flow/ and delete
+         the two comment markers around the figure below.
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/37-next-vs-send.png" alt="The same survey turn twice: an empty answer box with the button reading Next, and a filled one with the button reading Send">
+      <figcaption>Empty box, Next. Something typed, Send.</figcaption>
+    </figure>
+    -->
+
+    <h3>They can stop whenever they like</h3>
+    <p>A <em>Submit survey</em> button is there from the first turn. The conversation is skippable, and only two things are ever required: the star rating, always, and the comment, if you ticked it required. Everything else can be left.</p>
+    <p>Design your questions on that basis. A survey that only pays off if somebody answers all of it will mostly not pay off.</p>
+    <p>An answer already sent can be reopened and changed while the survey is still open.</p>
+
+    <h3>Changing the rating can discard answers</h3>
+    <p>Questions are chosen by rating band — positive is four and five stars, neutral is three, negative is one and two. If a customer changes their rating so that it crosses into a different band after they have answered things, the questions they were asked no longer apply to them, and those answers are cleared.</p>
+    <p>They are warned before it happens. A dialog tells them how many answers they are about to lose and asks them to confirm. If they have answered nothing there is no dialog. In the mode where the AI writes the opening question, that question is regenerated for the new band.</p>
+    <!-- SCREENSHOT NEEDED: 38-band-change-warning.png. Drop the file into images/survey-flow/ and
+         delete the two comment markers around the figure below.
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/38-band-change-warning.png" alt="The confirmation dialog shown when a customer changes their rating into a different band, naming how many answers will be lost">
+      <figcaption>Crossing a band, with the count of answers about to go.</figcaption>
+    </figure>
+    -->
+
+    <h3 id="submit">What Submit actually means</h3>
+    <p>It means the rating is stored with us, durably. <strong>It does not mean your ticket has been updated.</strong></p>
+    <p>The response is written to our database and to a lock first. If both of those fail, the customer is not shown a thank-you, because thanking somebody for feedback that was lost is worse than showing them an error. Only once it is safely stored does everything else happen: the score onto your board column, the comment onto its column, each follow up answer onto its column, and the low rating notification. Those are deliberately best effort and cannot fail the submit.</p>
+    <p>So a customer can be thanked while a write to your board quietly failed. That is the trade, chosen on purpose, and a reconcile job is the backstop. If a rating shows in Survey Flow but never reached the ticket, this is one of the two reasons; the other is a column that no longer exists, in <a href="#columns">Choose what appears on the ticket</a>.</p>
     <figure>
       <img class="screenshot" src="../images/survey-flow/14-thank-you.png" alt="The confirmation page shown after a customer submits a rating">
       <figcaption>Confirmation after submission.</figcaption>
     </figure>
+
+    <h3>Where a link can land instead</h3>
+    <p>The thank-you is one of nine endings. A customer can also reach: expired, past the lifetime you set; already rated; withdrawn; superseded, meaning a newer survey exists for that ticket; unavailable; paused, because surveys are switched off; an invalid link; and a general error. Each is its own screen with its own wording rather than a shrug.</p>
 
     <h3 id="repeat">Repeat protection</h3>
     <p>Repeat protection starts when somebody rates. Until then there is none, and that is worth knowing before you design a workflow around it.</p>
