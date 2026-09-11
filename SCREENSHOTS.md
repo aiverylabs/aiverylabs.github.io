@@ -114,6 +114,8 @@ list carries a date: a clean verdict is only as good as what the comparer knew t
 and these were cleared before the outstanding labels and the follow-up action were understood. If a
 feature has shipped into one of these screens since 2026-09-10, that verdict does not cover it.
 
-⚠️ `13-survey-page` was **not** in that audit and is the one existing capture most likely to be
-wrong, because it is captioned as a page and the page is a thread. Compare it before trusting it; if
-it shows a static form, it predates the conversation UI and item 1 replaces it rather than joining it.
+⚠️ `13-survey-page` **has been deleted**, image and reference both. It was never in that audit, it
+showed the old static form, and `36-survey-thread` covers the ground. It was removed from disk rather
+than just unreferenced: a capture of a UI that no longer exists, sitting in the folder under a name
+that sounds current, is the next person's stale source — and this folder is the kind of place someone
+goes looking for "the survey page".
