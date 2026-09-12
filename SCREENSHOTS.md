@@ -64,7 +64,18 @@ those. It is the one test here that costs nothing and rules things out rather th
 
 ---
 
-## ⚠️ Outstanding — 1
+## ⚠️ Outstanding — 2
+
+### `24-plan-usage.png` — RECAPTURE, stale allowance (CFM-170)
+**Why:** it shows **56 of 150** with the plan panel reading **Pro · 150 responses a month**, and the
+derived line **37% used, 94 left**. Pro's allowance is now 400, so all three numbers are wrong
+together.
+**Shows:** the same screen on the new allowance. Any Pro figure works; what must be consistent is the
+count, the cap, the percentage and the "left" figure, since a reader checks them against each other.
+**Lands in:** §3 *Plan and usage*. The figure is live in the page, so the file drops straight in.
+
+⚠️ **Take it after the code allowances ship, not before.** The screen prints the live cap, so a
+capture taken today would show 150 whatever the pricing page says.
 
 ### `01-marketplace-install.png` — blocked, not your fault
 The only broken image on the published page. Blocked until the app is listed on the marketplace,
@@ -185,6 +196,24 @@ were for the reader, and they audited the prose on the way past.
 From `feature-behaviour.md` §6: the invitation email, the thank-you screen, and the individual end
 states (expired, already rated, withdrawn, superseded, paused). Each is a short page whose words are
 the content. `12-email-received` and `14-thank-you` already exist and are fine.
+
+## Allowance change — what was checked, and what was clean
+
+CFM-170 moves Pro to 400 and Business to 1,000. **Every capture that could carry an allowance was
+opened**, not reasoned about — the file's own rule, and it earned itself again here:
+
+- `24-plan-usage` — **stale**, see above.
+- `25-held-surveys` — **clean, and this is the one reasoning would have got wrong.** It frames a cap
+  in red, at cap, with a plan panel — every signal of staleness. But the plan is **Starter**, and
+  Starter's 25 has not moved.
+- `26-usage-warning` — **clean.** The banner reads "82% of this period's responses". A percentage
+  carries no allowance, so it survives any cap change.
+- `16-dashboard`, `29-agent-view`, `27-delivery-tab`, `04-empty-state`, `02-install-confirm` — clean.
+  Counts and rates (162 sent, 112 rated, 50 responses) are measurements, not caps.
+
+**The lesson for next time:** what goes stale is an **absolute cap** and anything derived from one.
+Percentages, counts of real events, and tiers whose number did not move are all immune. "Anything
+framing a usage meter" would have flagged three files and been wrong about two of them.
 
 ## Audited and correct — do not reflag
 Compared against the live app on 2026-09-10: `23-ticket-columns`, `03-authorize`, `05-board-picker`
