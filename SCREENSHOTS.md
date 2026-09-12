@@ -64,33 +64,26 @@ those. It is the one test here that costs nothing and rules things out rather th
 
 ---
 
-## ⚠️ Outstanding — 2
-
-### `24-plan-usage.png` — RECAPTURE, stale allowance (CFM-170)
-**Why:** it shows **56 of 150** with the plan panel reading **Pro · 150 responses a month**, and the
-derived line **37% used, 94 left**. Pro's allowance is now 400, so all three numbers are wrong
-together.
-**Shows:** the same screen on the new allowance. Any Pro figure works; what must be consistent is the
-count, the cap, the percentage and the "left" figure, since a reader checks them against each other.
-**Lands in:** §3 *Plan and usage*. The figure is live in the page, so the file drops straight in.
-
-⚠️ **Take it after the code allowances ship, not before.** The screen prints the live cap, so a
-capture taken today would show 150 whatever the pricing page says.
+## ⚠️ Outstanding — 1
 
 ### `01-marketplace-install.png` — blocked, not your fault
 The only broken image on the published page. Blocked until the app is listed on the marketplace,
 because the listing is the subject. Nothing else is waiting on anything.
 
-⚠️ `11-activate` and `22-low-rating-alert` were both recaptured on 2026-09-11 and checked by opening
-them. `11` now reads **Surveys** with a Live badge, the master toggle On, the Saved button at rest
-and the confirmation line — no *Unsaved changes*. `22` is reshot with a different account. Alt text
-and captions were rewritten for both rather than carried over: `22` had been out of the page for two
-commits, and `11`'s old alt said only "the configuration switched to active", which describes less
-than a third of what is now in frame.
+⚠️ `24-plan-usage` was recaptured on 2026-09-12, after the allowance change shipped, and **all four
+numbers were checked against each other before it was cleared**: 56 of 400, 14% used, 344 left, plan
+panel reading Pro · 400 responses a month. 56/400 is 14%, 400−56 is 344. A capture taken a minute
+early would have read 150 and looked entirely plausible.
+
+⚠️ Its alt text no longer names any number. The old one said "responses used this period" against a
+frame whose figures have now moved twice; the new one describes the **shape** of the screen — a count
+against an allowance, a bar marked at the warning point, a plan panel. **Alt text that names a number
+goes stale with the number.** Describing what kind of thing is in frame survives a re-shoot, and this
+capture has now been re-shot for a reason that had nothing to do with its words.
 
 ---
 
-## Landed and wired — 16 of 17
+## Landed and wired — 17 of 18
 
 All of these are uncommented in the page, with alt text and captions checked against the image
 itself rather than against what was requested. Where they differed, the words were changed.
@@ -112,6 +105,7 @@ itself rather than against what was requested. Where they differed, the words we
 | `35-sidekick-skills` | §8 | as written — both skills visible and toggled on |
 | `11-activate` | §3, *Test once, then switch it on* | rewritten after recapture — the old alt covered under a third of the frame |
 | `22-low-rating-alert` | §3, *Get told about unhappy customers* | rewritten after reshoot; see the note on its address below |
+| `24-plan-usage` | §3, *Plan and usage* | rewritten after the CFM-170 recapture — now names no figures at all |
 
 ⚠️ **Two files have now arrived with a space before the extension** — `43-mode2-setting .png` and
 then `35-sidekick-skills .png`. Both renamed. This one does not fail loudly: the reference stops
@@ -202,7 +196,7 @@ the content. `12-email-received` and `14-thank-you` already exist and are fine.
 CFM-170 moves Pro to 400 and Business to 1,000. **Every capture that could carry an allowance was
 opened**, not reasoned about — the file's own rule, and it earned itself again here:
 
-- `24-plan-usage` — **stale**, see above.
+- `24-plan-usage` — **was stale, recaptured 2026-09-12** once the caps shipped.
 - `25-held-surveys` — **clean, and this is the one reasoning would have got wrong.** It frames a cap
   in red, at cap, with a plan panel — every signal of staleness. But the plan is **Starter**, and
   Starter's 25 has not moved.
