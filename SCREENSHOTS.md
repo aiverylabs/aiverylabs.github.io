@@ -12,6 +12,9 @@ and caption already written: drop the file in, delete the two comment markers, d
 ⚠️ **The survey page renders the customer's own words.** Use a seeded test board, never a real
 response, and check the ticket title in frame — that is customer content too.
 
+Other ways this repo goes wrong silently — stale cross-references, a commitment written twice on
+two clocks, facts copied from a source nothing links to — are in [`HAZARDS.md`](HAZARDS.md).
+
 Last updated 11 September 2026.
 
 ---
