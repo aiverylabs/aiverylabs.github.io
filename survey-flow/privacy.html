@@ -299,6 +299,7 @@
     <h2 id="cookies">Cookies and tracking</h2>
     <p>Survey Flow sets no cookies. Not in the app, not on the survey page, not on the unsubscribe page. There is no analytics, no tracking pixel, no advertising technology, and no third party script of any kind.</p>
     <p>Authentication inside monday.com uses a session token supplied by monday.com rather than a cookie. The survey page authenticates through a signed token in its own link.</p>
+    <p>Our backend is hosted on monday.com&rsquo;s infrastructure, which uses Cloudflare. Cloudflare may set its own <code>__cf_bm</code> bot-management cookie on responses from that host. It is set by the hosting layer, not by Survey Flow, and our code neither sets nor reads it. Cloudflare classifies it as strictly necessary; it expires after 30 minutes of inactivity.</p>
     <p>Our emails contain no tracking pixel. We know that a message was delivered, bounced or reported as spam because the email provider tells us. We do not track whether it was opened.</p>
 
     <h2 id="links">Links to other sites</h2>
