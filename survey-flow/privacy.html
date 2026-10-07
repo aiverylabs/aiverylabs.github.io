@@ -254,7 +254,7 @@
     <p>If you want it gone sooner, ask us and we will delete it immediately. There is no in-product control we can point you at for this, because by then the app has been removed from your account, so the route is to write to us. See section 14.</p>
     <p><strong>Suppression entries.</strong> When someone unsubscribes, or their mailbox hard bounces, or they report a message as spam, we record that against a one way cryptographic hash of their address. We keep it after you uninstall, and it is shared across all Survey Flow customers, because every customer sends through the same email domain and a complaint against that domain has to be honored for everyone. Deleting it would let a later installation email somebody who has already asked us to stop.</p>
     <p>We want to be precise about what hashing does here. A hashed email address is pseudonymous data under the GDPR, not anonymous data. Somebody who already holds a candidate address can hash it and check for a match. Hashing means we cannot read the list to recover addresses, and it does not put the data outside the scope of data protection law. We do not claim otherwise.</p>
-    <p><strong>Completion markers.</strong> A small record noting that a given survey was answered, so the same person is not asked twice about the same ticket. It is stored against an opaque identifier and expires by itself within 92 days.</p>
+    <p><strong>Completion markers.</strong> A small record noting that a given survey was answered, so the same person is not asked twice about the same ticket. It is stored against an opaque identifier in monday.com&rsquo;s storage inside your account, and it is deleted when you uninstall, together with the per item working data described above. It is not kept for the seven day window. The only case in which one outlives the uninstall is the one in section 9 where your authorization is already gone, and then it expires by itself within 92 days.</p>
     <p>We should be equally precise about what that marker holds. Almost always it holds the identifier and nothing else. The exception is when our database is unreachable at the moment somebody submits a rating. The marker then carries the rating itself, including the score, the comment and any answers, because for that period it is the only copy of what the person told you. It is shrunk back to the identifier once the record is written. So there are windows in which a completion marker does hold personal data, and we would rather describe them than call the marker empty and be wrong some of the time.</p>
 
     <h2 id="uninstall">What happens when you uninstall</h2>
@@ -266,9 +266,10 @@
     <ul>
       <li>Survey records in our external database are deleted first, because that is the part held outside monday.com and it must not depend on anything that could fail.</li>
       <li>Any uploaded logo in monday.com storage is swept next.</li>
-      <li>We confirm the result by searching for what remains rather than by counting successful delete calls, because a delete call reports success even for something that was never there.</li>
+      <li>Your board configuration goes last, because it is the only record of which boards to look for a logo on.</li>
     </ul>
-    <p>Aside from the suppression entries and completion markers described in section 8, and the follow-up items described next, this removes your data.</p>
+    <p>What was deleted on the day you uninstalled, in monday.com&rsquo;s storage, is confirmed by searching for what remains rather than by counting successful delete calls, because a delete call reports success even for something that was never there.</p>
+    <p>Aside from the suppression entries described in section 8, and the follow-up items described next, this removes your data.</p>
 
     <h3>Follow-up items on your boards stay</h3>
     <p>Nothing in the product deletes or archives a follow-up item. There is no delete call and no archive call anywhere in it. Items created from your responses stay on your board after you uninstall, with the comment, the answers, the rating and the ticket title in them, and they stay there permanently unless somebody on your team removes them. Deleting our own survey records, which we do, does not touch them, because the copy inside the item is a second copy and it lives on your board rather than on our systems.</p>
@@ -276,11 +277,11 @@
     <p>If you want them gone, they are yours to remove. They are ordinary monday.com items on a board you control, and what your customer wrote is in the item's updates.</p>
 
     <h3>One case where a little survives</h3>
-    <p>If your monday.com authorization has already expired or been revoked by the time that sequence runs, we can no longer authenticate to the storage inside your account. Rather less turns on that than it used to, because your board configuration now lives in our own database rather than in yours. When it happens:</p>
+    <p>If your monday.com authorization has already expired or been revoked by the time you uninstall, we can no longer authenticate to the storage inside your account, so the items listed in section 8 as deleted at once cannot all be deleted. Rather less turns on that than it used to, because your board configuration now lives in our own database rather than in yours. When it happens:</p>
     <ul>
       <li>All survey records in our external database are still deleted in full.</li>
       <li>Your board configuration is still deleted in full, using our own credentials. That covers your exclusion list, which holds email addresses in plain form, the labels of any conditions you set on a people column, which are the names of your own staff, and the identifier of anyone nominated for a low rating alert. None of it depends on your authorization still being valid.</li>
-      <li>Per item survey state expires by itself within 92 days.</li>
+      <li>Per item survey state, including completion markers, expires by itself within 92 days.</li>
       <li>A webhook registration record remains. It holds no personal data.</li>
     </ul>
     <p>What is left in this case sits in monday.com's own storage inside your own account rather than on our systems, and we attempt the deletion regardless in case the stored token is still accepted. It is a shorter list than it once was, but we would still rather state the limitation plainly than describe deletion as complete when it is not.</p>
