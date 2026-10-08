@@ -376,7 +376,7 @@
     <p><strong>What each call sends.</strong> A question asked during the conversation sends the ticket title, how many days the ticket took to close, the score, the comment exactly as written, your topics-to-avoid list, and the conversation so far. In the third mode the opening question is a separate call and sends the same things without the comment, because there is not one yet.</p>
     <p><strong>Topics to avoid</strong> is a list you supply, and it goes into both prompts. It is how you keep the AI off subjects you would rather it did not raise with your customers.</p>
     <p><strong>What it costs.</strong> Up to 0.9 of a monday AI credit for each question the AI writes. That is at most two questions in the second mode, and at most three in the third once the opening is counted, so budget by questions asked rather than by surveys sent.</p>
-    <p>Nothing is redacted, shortened or summarised first. No recipient address or display name is sent as a field, but free text is free text: a customer who types their own phone number into a comment sends it along with everything else. monday.com states that it does not use this input to train models, and that it reaches the model through managed services at Microsoft Azure and AWS Bedrock, so the text does not stop at monday.com. The <a href="https://aiverylabs.github.io/survey-flow/privacy.html#ai">privacy policy</a> records where that statement is firm and where it is our reading of it, which is the part worth five minutes if you are the person deciding.</p>
+    <p>Nothing is redacted, shortened or summarised first. No recipient address or display name is sent as a field, but free text is free text: a customer who types their own phone number into a comment sends it along with everything else. monday.com states that it does not use this input to train models, and that it reaches the model through managed services at Microsoft Azure and AWS Bedrock, so the text does not stop at monday.com. The <a href="https://docs.aiverylabs.com/survey-flow/privacy.html#ai">privacy policy</a> records where that statement is firm and where it is our reading of it, which is the part worth five minutes if you are the person deciding.</p>
     <p>Labelling is a second AI switch, but it is not independent of this one. It needs the board to be on one of the two AI modes above: with <em>Fixed questions</em> selected it reads as unavailable rather than off, because there is nothing reading the responses. It runs after a survey is submitted rather than during it, and step 7 covers it.</p>
 
     <p>Each pair below is one mode: the setting, and then the survey a customer gets under it.</p>
@@ -705,18 +705,18 @@
     <p><strong>A Sidekick answer lands in a chat transcript.</strong> It is composed from customer comments and the agent's display name, and where it goes afterwards is governed by monday.com rather than by us. Any admin or board owner can ask for one. See <a href="#sidekick">step 8</a>.</p>
 
     <h2 id="privacy">Privacy in brief</h2>
-    <p>Survey Flow handles your customers' email addresses and whatever they write in a survey, so here is the short version. The full detail, including every sub processor, retention period, and what happens when you uninstall, is in the <a href="https://aiverylabs.github.io/survey-flow/privacy.html">privacy policy</a>.</p>
+    <p>Survey Flow handles your customers' email addresses and whatever they write in a survey, so here is the short version. The full detail, including every sub processor, retention period, and what happens when you uninstall, is in the <a href="https://docs.aiverylabs.com/survey-flow/privacy.html">privacy policy</a>.</p>
     <p>Survey data is stored outside monday.com in a managed Postgres database, encrypted at rest and in transit. Email is sent through a third party email provider.</p>
     <p>Four points sit here rather than buried in the policy, because they tend to surprise people.</p>
     <ul>
       <li>Agents can see customer identities on their own tickets, and admins and board owners across the board, including raw email addresses where no display name exists, as described above.</li>
       <li>When someone unsubscribes, Survey Flow keeps a scrambled version of their address so it can keep honoring that request. Deleting it outright would mean forgetting that they asked you to stop.</li>
-      <li>If you turn on <a href="#ai">AI questions</a> or <a href="#act">labelling</a>, comments are sent to monday.com's AI. If you leave them off, they are not. The <a href="https://aiverylabs.github.io/survey-flow/privacy.html#ai">policy</a> sets out what each one sends.</li>
+      <li>If you turn on <a href="#ai">AI questions</a> or <a href="#act">labelling</a>, comments are sent to monday.com's AI. If you leave them off, they are not. The <a href="https://docs.aiverylabs.com/survey-flow/privacy.html#ai">policy</a> sets out what each one sends.</li>
       <li>A <a href="#followups">follow up item</a> copies the comment onto a board of your choosing, where a different set of people can read it and where it stays after you uninstall.</li>
     </ul>
 
     <h2 id="uninstall">Before you uninstall</h2>
-    <p>Uninstalling does not delete your data that day. It starts a seven day clock. Your configuration and the responses you have collected are kept for those seven days, and if you reinstall inside the window they come back: your questions, your branding, your exclusion list, and the ratings and comments already collected. Let the window close and they are deleted. A few things do go immediately, and <a href="https://aiverylabs.github.io/survey-flow/privacy.html#retention">the policy</a> lists them.</p>
+    <p>Uninstalling does not delete your data that day. It starts a seven day clock. Your configuration and the responses you have collected are kept for those seven days, and if you reinstall inside the window they come back: your questions, your branding, your exclusion list, and the ratings and comments already collected. Let the window close and they are deleted. A few things do go immediately, and <a href="https://docs.aiverylabs.com/survey-flow/privacy.html#retention">the policy</a> lists them.</p>
     <p>Export anyway, before you uninstall rather than after. Seven days is not long, and an export is yours to keep regardless of what happens to the account. Open Survey Flow from the board and use the CSV export on the Delivery tab.</p>
     <p>Three things stay behind, all on purpose.</p>
     <ul>
@@ -724,7 +724,7 @@
       <li><strong>What Survey Flow wrote onto your tickets</strong>, such as a rating column. The board is yours; uninstalling clears what Survey Flow holds, not what it wrote to monday.</li>
       <li><strong>Follow up items</strong>, permanently. Nothing deletes them, and the customer's comment is inside the item's update. They are work created on your own board, so they are yours to remove if you want them gone. See <a href="#followups">Follow up items</a>.</li>
     </ul>
-    <p>The <a href="https://aiverylabs.github.io/survey-flow/privacy.html#uninstall">privacy policy</a> gives the full account, including the case where some of your configuration can survive inside your own monday account.</p>
+    <p>The <a href="https://docs.aiverylabs.com/survey-flow/privacy.html#uninstall">privacy policy</a> gives the full account, including the case where some of your configuration can survive inside your own monday account.</p>
 
     <h2 id="help">Get help</h2>
     <p>Email <a href="mailto:support@aiverylabs.com">support@aiverylabs.com</a>, or open a request at <a href="https://aiverylabs.atlassian.net/servicedesk/customer/portal">our support portal</a>.</p>
