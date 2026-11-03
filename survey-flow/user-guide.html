@@ -36,6 +36,22 @@
   creating but NOT labelling, that any non-empty label array qualifies, that it never repeats on a
   response and skips a re-surveyed ticket, and that there is no backfill.
 
+  CHECKED 2026-11-03 against aiverylabs/csat master c1d770d (v21 per-user OAuth, CFM-202 AI timing),
+  read from the code: each person authorizes for themselves and acts with their own permissions;
+  only a board owner can save a setup or take over (boardConfig.js, boardAdminGate.js); background
+  sends, write-back, alerts, follow-ups and resends run on the config owner's grant; members see only
+  their own tickets, nothing without an agent column, guests nothing; me:read is used at the callback
+  (identity check, refuse + revoke on mismatch) and by the daily owner-grant check; uninstall revokes
+  and deletes every person's grant; the opening question's 5 s typing indicator then the configured
+  question; the probe's 8 s bound, skipped on timeout, configured questions always follow; one
+  immediate retry of a transient failure. UI copy quoted from ownerLine.jsx, pausedNotice.jsx,
+  parts.jsx and packages/shared/src/scopeApproval.js.
+  MEASURED 2026-11-03 by Phuoc on a test account, v21 (csat PROJECT.md, production checks register, row 48): the
+  permissions banner, its admin and member copy, and that approving it is enough without a
+  reinstall. Row 59: Reopen then Resolved on a previously surveyed item sends again.
+  Deliberately NOT stated: what happens to the deletion clock when one person revokes their own
+  authorization (not measured), and the Sidekick token probe (log-only).
+
   NOT ESTABLISHED, and deliberately absent from the prose rather than guessed:
     whether anything on screen distinguishes an automatically created follow-up item from one made
     by hand - do not write that you can tell them apart; what happens to labelling when an account
@@ -238,7 +254,7 @@
     <a class="back" href="./">Back to Survey Flow</a>
 
     <h1>Getting started with Survey Flow</h1>
-    <p class="meta">Last updated 12 September 2026.</p>
+    <p class="meta">Last updated 3 November 2026.</p>
     <p class="lede">Survey Flow sends a short satisfaction survey when a ticket reaches the status you choose, then collects the ratings and comments where your team can read them. This guide takes you from installing the app to reading your first results. Setup runs about ten minutes, and most of that is deciding what to ask rather than clicking through screens.</p>
 
     <div class="callout">
@@ -249,7 +265,7 @@
     <h2 id="start">Before you begin</h2>
     <p>Survey Flow works alongside a board you already run. Three things need to be true before it can do anything useful.</p>
     <ul>
-      <li><strong>Admin rights on your monday.com account.</strong> Only account admins can install apps, and only an admin can connect the account once it is installed. A board owner can use Survey Flow afterwards, but cannot make that first connection.</li>
+      <li><strong>An admin to install, a board owner to set up.</strong> Only account admins can install apps. Setting up surveys on a board, and switching them on, takes an owner of that board. Everyone else who opens Survey Flow authorizes it for themselves and sees what their role allows.</li>
       <li><strong>A status column that marks work as finished.</strong> Most boards already have one, usually with a label like Done, Resolved, or Closed.</li>
       <li><strong>A field holding the recipient's email address.</strong> Normally an email column, or the requester on tickets that arrive by form or email intake.</li>
     </ul>
@@ -272,6 +288,8 @@
 
     <h2 id="authorize"><span class="step-num">2</span>Authorize access</h2>
     <p>The first time you open Survey Flow, monday.com shows you exactly what the app is asking for. Survey Flow requests the narrowest set of permissions that lets it work. It reads board and item data so it can tell when a ticket changed status and who the customer is, and it writes back so results appear where you expect them.</p>
+    <p>Each person authorizes Survey Flow for themselves, the first time they open it, and it then acts in monday.com with that person's own permissions. The one exception is background work, covered in <a href="#runs-as">Who the survey runs as</a>.</p>
+    <p>One permission lets Survey Flow read your own user identity. It uses it when you authorize, to confirm that the token monday.com returns belongs to you: if it does not, it is refused, revoked and never stored. It also uses it once a day, to check that the authorization a board runs on still works.</p>
     <figure>
       <img class="screenshot" src="../images/survey-flow/03-authorize.png" alt="The monday.com authorization screen listing the permission scopes Survey Flow requests">
       <figcaption>The authorization screen with the full scope list.</figcaption>
@@ -281,19 +299,43 @@
       <h3>Worth a moment</h3>
       <p>Read the list before approving. If anything on it looks wider than what is described here, stop and write to us rather than approving and asking afterwards.</p>
     </div>
-    <p>Click Authorize and you land back in Survey Flow, ready to build a survey. If you later revoke this authorization, Survey Flow stops working straight away, and your data goes onto the same seven day clock an uninstall starts. See <a href="#uninstall">Before you uninstall</a>.</p>
-    <h3>Only an admin can connect the account</h3>
-    <p>Connecting is the one step a board owner cannot do for you. Someone who is not an account admin opens Survey Flow and sees the welcome screen with no Connect button and a line telling them an admin needs to connect this account before surveys can be set up. Nothing is broken and there is nothing for them to fix; it is a job for whoever administers the account.</p>
-    <p>Worth knowing before you delegate the rollout, and worth knowing if a colleague reports that the app looks empty.</p>
+    <p>Click Authorize and you land back in Survey Flow, ready to build a survey. If you revoke your own authorization, Survey Flow stops working for you until you authorize again. If a board runs on your authorization, surveys on it pause until you authorize again and save, or another board owner takes over.</p>
+    <p>A colleague who has not authorized yet sees a banner on the board view, <em>Authorize Survey Flow to use this board</em>, with an Authorize button. Nothing is broken and nothing stops for anyone else: surveys keep running as whoever the board runs as.</p>
+    <!-- SCREENSHOT NEEDED: 47-member-authorize. See SCREENSHOTS.md.
     <figure>
-      <img class="screenshot" src="../images/survey-flow/31-connect-admin-only.png" alt="The Survey Flow welcome screen as a board owner sees it: a how it works strip, a checklist showing the board is ready, and a line saying an admin needs to connect the account. No Connect button">
-      <figcaption>What someone who is not an admin sees before the account is connected.</figcaption>
+      <img class="screenshot" src="../images/survey-flow/47-member-authorize.png" alt="Survey Flow on a board, opened by a member who has not authorized yet: a banner reading Authorize Survey Flow to use this board, explaining that each person authorizes the app for themselves, with an Authorize button">
+      <figcaption>What a colleague sees before they authorize for themselves.</figcaption>
     </figure>
+    -->
+    <h3 id="permissions">When Survey Flow asks for updated permissions</h3>
+    <p>When a new version of Survey Flow needs a permission your account has not approved yet, monday.com shows a banner at the top of the app's board view. Survey Flow says the same thing if you try to authorize first: <em>Survey Flow needs updated permissions before you can authorize. Approve them from the banner at the top of the app. If you don't see it or can't approve, ask an account admin.</em></p>
+    <p><strong>If you are an account admin,</strong> the banner reads <em>This app requires additional permissions to run</em>, with a <em>Review permissions</em> link. It opens <em>Update Survey Flow permissions</em>, which lists what is being added (at present, <em>Read your profile information</em>). Click <em>Update Permissions</em>. There is no need to reinstall, and nothing you set up is touched.</p>
+    <!-- SCREENSHOT NEEDED: 48-permissions-banner-admin. See SCREENSHOTS.md.
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/48-permissions-banner-admin.png" alt="The top of Survey Flow's board view as an account admin sees it: monday's banner reading This app requires additional permissions to run, with a Review permissions link">
+      <figcaption>The banner an account admin sees.</figcaption>
+    </figure>
+    -->
+    <!-- SCREENSHOT NEEDED: 49-update-permissions. See SCREENSHOTS.md.
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/49-update-permissions.png" alt="monday's Update Survey Flow permissions page listing Read your profile information as the added permission, with an Update Permissions button">
+      <figcaption>Approving the added permission.</figcaption>
+    </figure>
+    -->
+    <p><strong>If you are not an admin,</strong> the banner says that an admin needs to review permissions for this app, and has no button. Ask an account admin to approve it. Approving from the update page yourself does not work: monday.com refuses it.</p>
+    <!-- SCREENSHOT NEEDED: 50-permissions-banner-member. See SCREENSHOTS.md.
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/50-permissions-banner-member.png" alt="The top of Survey Flow's board view as a member sees it: monday's banner saying an admin needs to review permissions for this app, with no button">
+      <figcaption>The same banner as a member sees it. There is nothing to click.</figcaption>
+    </figure>
+    -->
+    <p>Then go back to your board and press Authorize again.</p>
 
     <h2 id="configure"><span class="step-num">3</span>Build your first survey</h2>
     <p>This is the part worth slowing down for. Everything that follows depends on these choices. Open Survey Flow and click Set up surveys.</p>
+    <p>Only an owner of the board can save the setup or switch surveys on, because the trigger runs with that person's monday.com permissions. Anyone else sees the screen with a line saying so.</p>
     <p>The screen is in three labelled groups. <em>Set up</em> is what the app reads from your board and is the only part you have to complete. <em>Refine your survey</em> is the survey itself, and everything in it ships with a sensible default. <em>Act on what comes back</em> is what happens once a response arrives.</p>
-    <p>Above those groups you may also see a banner or two, and they are worth reading rather than dismissing: one appears when the account's authorisation has lapsed and needs reconnecting, and another names a column your configuration points at that has since been deleted from the board. A <em>How it runs</em> strip sits above them all, tracing the survey from the status that fires it to the person alerted about a low score, and it marks itself when something is misconfigured.</p>
+    <p>Above those groups you may also see a banner or two, and they are worth reading rather than dismissing: one appears when your own authorization has expired and asks you to authorize again, and another names a column your configuration points at that has since been deleted from the board. A <em>How it runs</em> strip sits above them all, tracing the survey from the status that fires it to the person alerted about a low score, and it marks itself when something is misconfigured.</p>
     <figure>
       <img class="screenshot" src="../images/survey-flow/39-config-groups.png" alt="The whole configuration screen: the How it runs strip, then the Set up, Refine your survey and Act on what comes back groups with their sections collapsed">
       <figcaption>The configuration screen end to end, with the three groups and everything collapsed.</figcaption>
@@ -372,8 +414,16 @@
     </ul>
     <p>The third mode is the second one plus a generated opening, not a separate feature, and they fall back in that order — three to two to one — rather than failing outright. A customer sees a shorter conversation, not an error.</p>
     <p>That fallback is worth understanding before you pick the third mode. Your own per-band questions do not disappear when the AI writes the opening; they become what the customer is asked if a call fails or the account is out of AI credit. Keep them good. They are the reason a failure is invisible from the customer's side.</p>
+    <p><strong>How long the customer waits.</strong> While the AI writes the opening question, the customer sees a typing indicator, and can still pick a rating or start typing. If the question is not ready within five seconds, or the call fails, they get your configured question instead and the conversation carries on. A question the AI asks after the comment gets up to eight seconds; if it is not ready by then it is skipped, and your own questions follow as they always do. A failure that looks temporary is retried once, straight away, if there is time left.</p>
+    <!-- SCREENSHOT NEEDED: 51-opening-typing. See SCREENSHOTS.md.
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/51-opening-typing.png" alt="The survey page on a Questions per ticket board just after it opens: the rating, and a typing indicator where the AI written opening question will appear">
+      <figcaption>The typing indicator while the opening question is written. After five seconds it gives way to your own question.</figcaption>
+    </figure>
+    -->
+
     <p><strong>The AI does not ask on every response.</strong> It only asks after the customer has typed something, and only when what they wrote is too thin to act on. A clear, detailed comment gets no extra question at all.</p>
-    <p><strong>What each call sends.</strong> A question asked during the conversation sends the ticket title, how many days the ticket took to close, the score, the comment exactly as written, your topics-to-avoid list, and the conversation so far. In the third mode the opening question is a separate call and sends the same things without the comment, because there is not one yet.</p>
+    <p><strong>What each call sends.</strong> A question asked during the conversation sends the ticket title, how many days the ticket took to close, the score, the comment exactly as written, your topics-to-avoid list, and the conversation so far. In the third mode the opening question is a separate call and sends the same things without the comment, because there is not one yet. These calls run on the authorization of the person the board runs as.</p>
     <p><strong>Topics to avoid</strong> is a list you supply, and it goes into both prompts. It is how you keep the AI off subjects you would rather it did not raise with your customers.</p>
     <p><strong>What it costs.</strong> Up to 0.9 of a monday AI credit for each question the AI writes. That is at most two questions in the second mode, and at most three in the third once the opening is counted, so budget by questions asked rather than by surveys sent.</p>
     <p>Nothing is redacted, shortened or summarised first. No recipient address or display name is sent as a field, but free text is free text: a customer who types their own phone number into a comment sends it along with everything else. monday.com states that it does not use this input to train models, and that it reaches the model through managed services at Microsoft Azure and AWS Bedrock, so the text does not stop at monday.com. The <a href="https://docs.aiverylabs.com/survey-flow/privacy.html#ai">privacy policy</a> records where that statement is firm and where it is our reading of it, which is the part worth five minutes if you are the person deciding.</p>
@@ -471,6 +521,30 @@
     <p>A follow up item is how one response becomes a piece of work somebody owns. Step 7 covers what one carries. The decision here is only where they land, and it is bigger than it looks.</p>
     <p><strong>Whoever can see the destination board can read what your customer wrote.</strong> That audience is the board's membership in monday.com, set by whoever administers that board, and it has nothing to do with who can open Survey Flow. Choosing a destination board is choosing an audience, so choose it deliberately rather than picking the board already in front of you.</p>
     <p>Leave the group empty and items land in the destination board's first group. Leave the board empty and nothing can be created at all: every route that would create an item refuses, and says why.</p>
+
+    <h3 id="runs-as">Who the survey runs as</h3>
+    <p>Everything you do in Survey Flow runs as you. The work nobody is present for runs as one person per board: whoever saved the setup. Sending the survey when a ticket reaches the trigger status, writing the score and comment back to the ticket, alerting someone about a low rating, creating follow up items, resending and sending held surveys all run with that person's monday.com authorization.</p>
+    <p>Next to the save button a line names them: <em>Background actions run as</em> followed by their name, or <em>you</em>. If there is nobody yet, it says <em>Background actions have no one to run as. Save to run them as you.</em></p>
+    <!-- SCREENSHOT NEEDED: 52-owner-line. See SCREENSHOTS.md.
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/52-owner-line.png" alt="The bottom of the configuration screen with the line Background actions run as you next to the Saved button">
+      <figcaption>The owner line, when the board runs as you.</figcaption>
+    </figure>
+    -->
+    <p><strong>If that person's authorization stops working,</strong> because they left the account, were deactivated, or revoked it, surveys on the board pause. Nothing is sent and nothing is written back until it is fixed. The dashboard shows <em>Surveys are paused on this board.</em>, names the person and why, and ends <em>Any board owner can take over: open Survey setup and save.</em> with a <em>Take over</em> button.</p>
+    <!-- SCREENSHOT NEEDED: 53-paused-take-over. See SCREENSHOTS.md.
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/53-paused-take-over.png" alt="The Survey Flow board view with the notice Surveys are paused on this board, the line Any board owner can take over: open Survey setup and save, and a Take over button">
+      <figcaption>Paused, as a board owner sees it.</figcaption>
+    </figure>
+    -->
+    <p>Taking over means saving the setup as you, and the button on the configuration screen says so: <em>Save and run as you</em>. From then on the board runs as you. If the board already runs as you and your own authorization is the one that stopped working, authorize again and press <em>Save to resume</em>: authorizing alone does not restart the trigger. An agent, who cannot change the setup, sees only <em>Surveys are paused on this board. Ask a board owner to check Survey setup.</em></p>
+    <!-- SCREENSHOT NEEDED: 54-save-and-run-as-you. See SCREENSHOTS.md.
+    <figure>
+      <img class="screenshot" src="../images/survey-flow/54-save-and-run-as-you.png" alt="The configuration screen on a paused board, opened by a different board owner: the owner line naming the previous person and saying their authorization is not usable, and the save button reading Save and run as you">
+      <figcaption>Taking over a paused board from the configuration screen.</figcaption>
+    </figure>
+    -->
 
     <h3>Test once, then switch it on</h3>
     <p><strong>The on/off switch is not part of Save.</strong> It takes effect the instant you toggle it, because it is a kill switch: an admin switching surveys off wants them to stop now, not after a Save that might be refused. Everything else on the screen waits for <em>Save changes</em>, which reads <em>Saved</em> when there is nothing left to save.</p>
@@ -574,7 +648,7 @@
       <figcaption>Ratings by agent.</figcaption>
     </figure>
     <p>Delivery is the tab to open when you are chasing one particular survey rather than reading the numbers. Two actions live there, and both are limited to account admins and board owners.</p>
-    <p>A survey nobody has answered can be resent. That is the one to reach for when the address was wrong at the time, or the mail never arrived.</p>
+    <p>A survey nobody has answered can be resent. That is the one to reach for when the address was wrong at the time, or the mail never arrived. A resend goes out as the person the board runs as, so while surveys on the board are paused, nothing is resent.</p>
     <p>A survey that has been answered can have its feedback deleted. That clears the rating, the comment and the answers from the dashboard and from the ticket, and it returns the ticket to unsurveyed, so it can be surveyed again the next time it resolves.</p>
     <p>If one of those columns is no longer where the setup expects it, the delete still goes through and the dashboard is cleared, but some of what was written to the ticket may remain. The confirmation tells you when that has happened, so open the board and check, since an old column may still be holding the text. See <a href="#columns">Choose what appears on the ticket</a>, which covers the same missing column and how to stop it happening again.</p>
     <figure>
@@ -600,7 +674,7 @@
 
     <h3>Outstanding labels</h3>
     <p>Responses can be marked with labels saying what is still outstanding, which is what lets you separate the ones needing action from the ones that are merely low. There are two, and you do not write them yourself: a response can be marked as <strong>not resolved</strong>, or as <strong>left waiting</strong>.</p>
-    <p>Those labels come from labelling, the second AI switch mentioned in step 3. It is off until an admin turns it on, and it is only available at all if the board is on one of the two AI question modes — with <em>Fixed questions</em> selected the whole section reads as unavailable and says why. It runs once a survey has been submitted, with nobody present, and it sends the ticket title, the days to close, the rating, the comment and every answer, all exactly as written.</p>
+    <p>Those labels come from labelling, the second AI switch mentioned in step 3. It is off until a board owner turns it on, and it is only available at all if the board is on one of the two AI question modes — with <em>Fixed questions</em> selected the whole section reads as unavailable and says why. It runs once a survey has been submitted, with nobody present, and it sends the ticket title, the days to close, the rating, the comment and every answer, all exactly as written. If a labelling call times out or fails in a way a second try could fix, it is retried once.</p>
     <p>The rating goes to the model as context, but it is not what decides. A five star rating that mentions something still unresolved can be marked, and a one star rating with nothing outstanding in it is not. Leave labelling off and follow up items are simply something you create by hand from a response you have read.</p>
 
     <h3 id="followups">Follow up items</h3>
@@ -694,7 +768,7 @@
 
     <h2 id="visibility">Who can see what</h2>
     <p>Decide this before you switch a configuration on rather than after, because it changes who inside your company sees customer contact details.</p>
-    <p><strong>Agents see which customer left a response on the tickets they handled.</strong> Account admins and board owners see it for the whole board. Where a display name exists, the display name appears. Where Survey Flow holds only an email address, the email address appears.</p>
+    <p><strong>Agents see which customer left a response on the tickets they handled.</strong> Account admins and board owners see it for the whole board. Each person sees this through their own authorization: other members see only the tickets where they are the assigned agent, and nothing if the board has no agent column set. Guests see nothing. Where a display name exists, the display name appears. Where Survey Flow holds only an email address, the email address appears.</p>
     <figure>
       <img class="screenshot" src="../images/survey-flow/29-agent-view.png" alt="The agent view, showing one agent the ratings and comments left on the tickets they handled">
       <figcaption>What an agent sees of their own work.</figcaption>
@@ -716,7 +790,7 @@
     </ul>
 
     <h2 id="uninstall">Before you uninstall</h2>
-    <p>Uninstalling does not delete your data that day. It starts a seven day clock. Your configuration and the responses you have collected are kept for those seven days, and if you reinstall inside the window they come back: your questions, your branding, your exclusion list, and the ratings and comments already collected. Let the window close and they are deleted. A few things do go immediately, and <a href="https://docs.aiverylabs.com/survey-flow/privacy.html#retention">the policy</a> lists them.</p>
+    <p>Uninstalling does not delete your data that day. It starts a seven day clock. Your configuration and the responses you have collected are kept for those seven days, and if you reinstall inside the window they come back: your questions, your branding, your exclusion list, and the ratings and comments already collected. Let the window close and they are deleted. A few things go immediately, including every person's authorization, which is revoked and deleted. <a href="https://docs.aiverylabs.com/survey-flow/privacy.html#retention">The policy</a> lists the rest.</p>
     <p>Export anyway, before you uninstall rather than after. Seven days is not long, and an export is yours to keep regardless of what happens to the account. Open Survey Flow from the board and use the CSV export on the Delivery tab.</p>
     <p>Three things stay behind, all on purpose.</p>
     <ul>

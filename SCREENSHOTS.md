@@ -15,7 +15,7 @@ response, and check the ticket title in frame — that is customer content too.
 Other ways this repo goes wrong silently — stale cross-references, a commitment written twice on
 two clocks, facts copied from a source nothing links to — are in [`HAZARDS.md`](HAZARDS.md).
 
-Last updated 11 September 2026.
+Last updated 3 November 2026.
 
 ---
 
@@ -67,6 +67,26 @@ those. It is the one test here that costs nothing and rules things out rather th
 
 ---
 
+## ⚠️ v21 per-user OAuth and CFM-202 — 1 retake, 1 removal, 8 new (2026-11-03)
+
+Prompted by a code change (csat `c1d770d`), not by a comparison, so these are reasons to capture,
+not verdicts on the old images. New figures are commented out in `user-guide.html` under
+`SCREENSHOT NEEDED`; drop the file in and delete the two comment markers. Use a test account,
+never a review account or a customer.
+
+| File | Lands in | Screen and state |
+|---|---|---|
+| `03-authorize` (RETAKE) | §2 | monday's authorize screen for Survey Flow v21, full scope list visible, 11 scopes including *Read your profile information* (`me:read`) |
+| `31-connect-admin-only` (DELETE) | — | Section removed: there is no admin-only connect step any more. Delete the file |
+| `47-member-authorize` | §2 | Board view opened by a MEMBER (not admin, not board owner) who has never authorized: banner *Authorize Survey Flow to use this board* with the Authorize button |
+| `48-permissions-banner-admin` | §2, *When Survey Flow asks for updated permissions* | Board view as an ACCOUNT ADMIN while `me:read` is unapproved: monday's banner *This app requires additional permissions to run · Review permissions* |
+| `49-update-permissions` | same | monday's *Update Survey Flow permissions* page listing *Read your profile information*, *Update Permissions* button visible |
+| `50-permissions-banner-member` | same | Same board view as a MEMBER: *…An admin needs to review permissions for this app*, no button |
+| `51-opening-typing` | §3, AI | Survey page on a *Questions per ticket* board, inside the first 5 s: rating shown, typing indicator in the opening slot. Seeded ticket title only |
+| `52-owner-line` | §3, *Who the survey runs as* | Survey setup as a board owner who saved it: *Background actions run as you* beside *Saved* |
+| `53-paused-take-over` | same | Board dashboard as a DIFFERENT board owner after the config owner's grant stopped working (e.g. revoke on a second test user): *Surveys are paused on this board.* with the name line and the *Take over* button |
+| `54-save-and-run-as-you` | same | Survey setup in the same paused state, same viewer: owner line naming the previous person as not usable, save button reading *Save and run as you* |
+
 ## ⚠️ Outstanding — 1
 
 ### `01-marketplace-install.png` — blocked, not your fault
@@ -101,7 +121,7 @@ itself rather than against what was requested. Where they differed, the words we
 | `43`+`44-mode2` | same | rewritten — 43 also shows topics to avoid and the one-or-two setting |
 | `45`+`46-mode3` | same | rewritten — 45 shows the fallback questions, which changed the prose too |
 | `40-question-editor` | §3, *Show a question only to some raters* | **placed** — the type dropdown and the bands are in one frame, as asked |
-| `31-connect-admin-only` | §2, *Only an admin can connect* | rewritten — the frame also carries a readiness checklist |
+| ~~`31-connect-admin-only`~~ | removed 2026-11-03 (v21) | the section it illustrated no longer exists |
 | `32-outstanding-card` | §7, *Create them automatically* | rewritten, renamed, and moved — see below |
 | `17-response-detail` | §6 | **both rewritten**; the figure was already live and described the old frame |
 | `33-followup-item` | §7, *Follow up items* | as written |
