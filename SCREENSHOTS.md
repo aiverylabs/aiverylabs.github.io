@@ -67,7 +67,7 @@ those. It is the one test here that costs nothing and rules things out rather th
 
 ---
 
-## ⚠️ v21 per-user OAuth and CFM-202 — 1 retake, 1 removal, 5 new: 1 landed, 2 optional (2026-11-03)
+## ⚠️ v21 per-user OAuth and CFM-202 — 1 retake (landed), 1 removal (done), 5 new: 2 landed, 1 optional, 2 outstanding (2026-11-03)
 
 Prompted by a code change (csat `c1d770d`), not by a comparison, so these are reasons to capture,
 not verdicts on the old images. New figures are commented out in `user-guide.html` under
@@ -76,14 +76,14 @@ never a review account or a customer.
 
 | File | Lands in | Screen and state |
 |---|---|---|
-| `03-authorize` (RETAKE) | §2 | monday's authorize screen for Survey Flow v21, full scope list visible, 11 scopes including *Read your profile information* (`me:read`) |
+| ~~`03-authorize`~~ (RETAKE, landed 2026-11-03, see below) | §2 | monday's authorize screen for Survey Flow v21, full scope list visible, 11 scopes including *Read your profile information* (`me:read`) |
 | ~~`31-connect-admin-only`~~ (DELETE, done: file removed in 5664096) | — | Section removed: there is no admin-only connect step any more. Delete the file |
 | `47-member-authorize` | §2 | Board view opened by a MEMBER (not admin, not board owner) who has never authorized: banner *Authorize Survey Flow to use this board* with the Authorize button |
 | ~~`48`, `49`, `50`~~ (permissions banner) | — | Removed: not needed. New installs approve all scopes at install; the section covers future scope additions, so it stays version-neutral with no figures |
 | `51-opening-typing` (optional, skipped: the typing indicator shows for only 3–5 s on the first open of a link; the guide text covers it) | §3, AI | Survey page on a *Questions per ticket* board, inside the first 5 s: rating shown, typing indicator in the opening slot. Seeded ticket title only |
 | ~~`52-owner-line`~~ | — | Landed 2026-11-03, see below |
-| `53-paused-take-over` (optional, skipped for now: needs a dead owner grant) | §3, *Who the survey runs as* | Board dashboard as a DIFFERENT board owner after the config owner's grant stopped working (e.g. revoke on a second test user): *Surveys are paused on this board.* with the name line and the *Take over* button |
-| `54-save-and-run-as-you` (optional, skipped for now: needs a dead owner grant) | same | Survey setup in the same paused state, same viewer: owner line naming the previous person as not usable, save button reading *Save and run as you* |
+| ~~`53-paused-take-over`~~ (landed 2026-11-03, see below) | §3, *Who the survey runs as* | Board dashboard as a DIFFERENT board owner after the config owner's grant stopped working (e.g. revoke on a second test user): *Surveys are paused on this board.* with the name line and the *Take over* button |
+| `54-save-and-run-as-you` (outstanding: blocked on CFM-208, after a reinstall the button reads *Save changes*) | §3, *Who the survey runs as* | Survey setup in the same paused state, same viewer: owner line naming the previous person as not usable, save button reading *Save and run as you* |
 
 ## ⚠️ Outstanding — 1
 
@@ -104,7 +104,7 @@ capture has now been re-shot for a reason that had nothing to do with its words.
 
 ---
 
-## Landed and wired — 18 of 19
+## Landed and wired — 20 of 21
 
 All of these are uncommented in the page, with alt text and captions checked against the image
 itself rather than against what was requested. Where they differed, the words were changed.
@@ -128,6 +128,8 @@ itself rather than against what was requested. Where they differed, the words we
 | `22-low-rating-alert` | §3, *Get told about unhappy customers* | rewritten after reshoot; see the note on its address below |
 | `24-plan-usage` | §3, *Plan and usage* | rewritten after the CFM-170 recapture — now names no figures at all |
 | `52-owner-line` | §3, *Who the survey runs as* | rewritten — taken as a second board owner, so it shows *Save and run as you* and the line names the other owner, not *you* |
+| `53-paused-take-over` | §3, *Who the survey runs as* | rewritten — quotes the whole notice as a second board owner sees it, including the not-usable sentence |
+| `03-authorize` (retake) | §2 | as written — v21, all 11 scopes visible, including *Read your profile information* |
 
 ⚠️ **Two files have now arrived with a space before the extension** — `43-mode2-setting .png` and
 then `35-sidekick-skills .png`. Both renamed. This one does not fail loudly: the reference stops
