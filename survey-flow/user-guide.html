@@ -317,7 +317,16 @@
     <p>This is the part worth slowing down for. Everything that follows depends on these choices. Open Survey Flow and click Set up surveys.</p>
     <p>Only an owner of the board can save the setup or switch surveys on, because the trigger runs with that person's monday.com permissions. Anyone else sees the screen with a line saying so.</p>
     <p>The screen is in three labelled groups. <em>Set up</em> is what the app reads from your board and is the only part you have to complete. <em>Refine your survey</em> is the survey itself, and everything in it ships with a sensible default. <em>Act on what comes back</em> is what happens once a response arrives.</p>
-    <p>Above those groups you may also see a banner or two, and they are worth reading rather than dismissing: one appears when your own authorization has expired and asks you to authorize again, and another names a column your configuration points at that has since been deleted from the board. A <em>How it runs</em> strip sits above them all, tracing the survey from the status that fires it to the person alerted about a low score, and it marks itself when something is misconfigured.</p>
+    <p>A <em>How it runs</em> strip sits above the groups, tracing the survey from the status that fires it to the person alerted about a low score, and it marks itself when something is misconfigured. A banner appears above the groups only when you have to act there: your own authorization has expired and you need to authorize again, or the trigger itself broke because its status column was removed or its resolved status was removed or renamed. A renamed status comes with a <em>Keep this status</em> button.</p>
+    <p>Everything else is one sentence next to the save button, and it only ever shows one message. When several things are true at once, the most urgent one wins:</p>
+    <ol>
+      <li><strong>You are not a board owner.</strong> An account admin who does not own the board sees <em>Only a board owner can save this setup.</em> and the save button stays off.</li>
+      <li><strong>The trigger broke.</strong> <em>Fix the survey trigger above, then Save. Surveys are not reliably live until you do.</em></li>
+      <li><strong>Required fields are empty.</strong> <em>Still need</em> followed by what is missing, ending <em>before this can go live.</em></li>
+      <li><strong>Surveys are paused</strong> because the person the board runs as can no longer act. See <a href="#runs-as">Who the survey runs as</a>.</li>
+      <li><strong>Saved, but not switched on.</strong> <em>Saved, but not activated on this board. No surveys are sent until it succeeds. Save again to retry.</em></li>
+    </ol>
+    <p>When none of those applies, it says <em>Everything's set. Surveys are live on this board.</em>, or <em>You have unsaved changes. Save to apply them.</em> while you are editing.</p>
     <figure>
       <img class="screenshot" src="../images/survey-flow/39-config-groups.png" alt="The whole configuration screen: the How it runs strip, then the Set up, Refine your survey and Act on what comes back groups with their sections collapsed">
       <figcaption>The configuration screen end to end, with the three groups and everything collapsed.</figcaption>
@@ -506,7 +515,7 @@
 
     <h3 id="runs-as">Who the survey runs as</h3>
     <p>Everything you do in Survey Flow runs as you. The work nobody is present for runs as one person per board: whoever saved the setup. Sending the survey when a ticket reaches the trigger status, writing the score and comment back to the ticket, alerting someone about a low rating, creating follow up items, resending and sending held surveys all run with that person's monday.com authorization.</p>
-    <p>Under the save button a line names them: <em>Background actions run as</em> followed by their name, or <em>you</em>. If there is nobody yet, it says <em>Background actions have no one to run as. Save to run them as you.</em></p>
+    <p>Under the save button a line names them: <em>Background actions run as</em> followed by their name, or <em>you</em>. If there is nobody yet, it says <em>Background actions have no one to run as. Save to run them as you.</em> An account admin who does not own the board reads <em>A board owner can fix this by saving this setup.</em> in place of <em>Save to run them as you.</em></p>
     <figure>
       <img class="screenshot" src="../images/survey-flow/52-owner-line.png" alt="The bottom of the configuration screen as a second board owner sees it: Everything's set. Surveys are live on this board., a Save and run as you button, and under them the line Background actions run as David Park">
       <figcaption>The line under the save button names who the board runs as. Another board owner sees <em>Save and run as you</em>.</figcaption>
@@ -516,13 +525,12 @@
       <img class="screenshot" src="../images/survey-flow/53-paused-take-over.png" alt="The Survey Flow Overview as a second board owner sees it, with a red notice: Surveys are paused on this board. Survey Flow cannot act as David Park: their authorization is not usable. Any board owner can take over: open Survey setup and save. A Take over button sits at the right of the notice">
       <figcaption>Paused, as a board owner sees it.</figcaption>
     </figure>
-    <p>Taking over means saving the setup as you, and the button on the configuration screen says so: <em>Save and run as you</em>. From then on the board runs as you. If the board already runs as you and your own authorization is the one that stopped working, authorize again and press <em>Save to resume</em>: authorizing alone does not restart the trigger. An agent, who cannot change the setup, sees only <em>Surveys are paused on this board. Ask a board owner to check Survey setup.</em></p>
-    <!-- SCREENSHOT NEEDED: 54-save-and-run-as-you. See SCREENSHOTS.md.
+    <p>Taking over means saving the setup as you. On the configuration screen the board shows as <em>Paused</em>, and the one message beside the save button says why and what to do, for example <em>Surveys are paused on this board. Survey Flow cannot act as David Park: their authorization is not usable. Save to take over, and surveys will run as you.</em> There is no separate paused banner on this screen. The line under the button goes quiet and only names who the board is set to run as: <em>Background actions are set to run as David Park</em>. The button reads <em>Save and run as you</em>, and you can press it without changing anything, even when the screen also says the board is not activated: the same save switches surveys back on. From then on the board runs as you, and the screen reads <em>Everything's set. Surveys are live on this board.</em> with <em>Background actions run as you</em>.</p>
     <figure>
-      <img class="screenshot" src="../images/survey-flow/54-save-and-run-as-you.png" alt="The configuration screen on a paused board, opened by a different board owner: the owner line naming the previous person and saying their authorization is not usable, and the save button reading Save and run as you">
-      <figcaption>Taking over a paused board from the configuration screen.</figcaption>
+      <img class="screenshot" src="../images/survey-flow/54-save-and-run-as-you.png" alt="The bottom of the configuration screen on a paused board as a second board owner sees it: a red message reading Surveys are paused on this board. Survey Flow cannot act as David Park: their authorization is not usable. Save to take over, and surveys will run as you., a Save and run as you button at the right, and under them the quiet line Background actions are set to run as David Park">
+      <figcaption>Taking over a paused board from the configuration screen: one message, one button.</figcaption>
     </figure>
-    -->
+    <p>If the board already runs as you and your own authorization is the one that stopped working, the message reads <em>Authorize again, then save to resume.</em> and the button <em>Save to resume</em>: authorizing alone does not restart the trigger. An account admin who does not own the board still sees the paused notice on the dashboard, but without the <em>Take over</em> button, and on the configuration screen reads <em>Only a board owner can save this setup.</em> An agent, who cannot change the setup, sees only <em>Surveys are paused on this board. Ask a board owner to check Survey setup.</em></p>
 
     <h3>Test once, then switch it on</h3>
     <p><strong>The on/off switch is not part of Save.</strong> It takes effect the instant you toggle it, because it is a kill switch: an admin switching surveys off wants them to stop now, not after a Save that might be refused. Everything else on the screen waits for <em>Save changes</em>, which reads <em>Saved</em> when there is nothing left to save.</p>

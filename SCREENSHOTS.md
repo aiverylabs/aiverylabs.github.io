@@ -67,7 +67,7 @@ those. It is the one test here that costs nothing and rules things out rather th
 
 ---
 
-## ⚠️ v21 per-user OAuth and CFM-202 — 1 retake (landed), 1 removal (done), 5 new: 3 landed, 1 optional, 1 outstanding (2026-11-03)
+## ⚠️ v21 per-user OAuth and CFM-202 — 1 retake (landed), 1 removal (done), 5 new: 4 landed, 1 optional (2026-11-03)
 
 Prompted by a code change (csat `c1d770d`), not by a comparison, so these are reasons to capture,
 not verdicts on the old images. New figures are commented out in `user-guide.html` under
@@ -83,7 +83,7 @@ never a review account or a customer.
 | `51-opening-typing` (optional, skipped: the typing indicator shows for only 3–5 s on the first open of a link; the guide text covers it) | §3, AI | Survey page on a *Questions per ticket* board, inside the first 5 s: rating shown, typing indicator in the opening slot. Seeded ticket title only |
 | ~~`52-owner-line`~~ | — | Landed 2026-11-03, see below |
 | ~~`53-paused-take-over`~~ (landed 2026-11-03, see below) | §3, *Who the survey runs as* | Board dashboard as a DIFFERENT board owner after the config owner's grant stopped working (e.g. revoke on a second test user): *Surveys are paused on this board.* with the name line and the *Take over* button |
-| `54-save-and-run-as-you` (outstanding: blocked on CFM-208, after a reinstall the button reads *Save changes*) | §3, *Who the survey runs as* | Survey setup in the same paused state, same viewer: owner line naming the previous person as not usable, save button reading *Save and run as you* |
+| ~~`54-save-and-run-as-you`~~ (landed 2026-11-03, after CFM-208) | §3, *Who the survey runs as* | Survey setup in the same paused state, same viewer: the one paused message, quiet owner line *Background actions are set to run as …*, save button reading *Save and run as you* |
 
 ## ⚠️ Outstanding — 1
 
@@ -104,7 +104,7 @@ capture has now been re-shot for a reason that had nothing to do with its words.
 
 ---
 
-## Landed and wired — 21 of 22
+## Landed and wired — 22 of 23
 
 All of these are uncommented in the page, with alt text and captions checked against the image
 itself rather than against what was requested. Where they differed, the words were changed.
@@ -131,6 +131,7 @@ itself rather than against what was requested. Where they differed, the words we
 | `53-paused-take-over` | §3, *Who the survey runs as* | rewritten — quotes the whole notice as a second board owner sees it, including the not-usable sentence |
 | `03-authorize` (retake) | §2 | as written — v21, all 11 scopes visible, including *Read your profile information* |
 | `47-member-authorize` | §2 | rewritten — quotes the banner's whole text, taken as a member after another person had authorized |
+| `54-save-and-run-as-you` | §3, *Who the survey runs as* | rewritten — a footer crop after a reinstall, as a second board owner: quotes the one paused message, the button and the quiet owner line, not the old *not usable* owner line |
 
 ⚠️ **Two files have now arrived with a space before the extension** — `43-mode2-setting .png` and
 then `35-sidekick-skills .png`. Both renamed. This one does not fail loudly: the reference stops
