@@ -77,10 +77,10 @@ never a review account or a customer.
 | File | Lands in | Screen and state |
 |---|---|---|
 | `03-authorize` (RETAKE) | §2 | monday's authorize screen for Survey Flow v21, full scope list visible, 11 scopes including *Read your profile information* (`me:read`) |
-| `31-connect-admin-only` (DELETE) | — | Section removed: there is no admin-only connect step any more. Delete the file |
+| ~~`31-connect-admin-only`~~ (DELETE, done: file removed in 5664096) | — | Section removed: there is no admin-only connect step any more. Delete the file |
 | `47-member-authorize` | §2 | Board view opened by a MEMBER (not admin, not board owner) who has never authorized: banner *Authorize Survey Flow to use this board* with the Authorize button |
 | ~~`48`, `49`, `50`~~ (permissions banner) | — | Removed: not needed. New installs approve all scopes at install; the section covers future scope additions, so it stays version-neutral with no figures |
-| `51-opening-typing` | §3, AI | Survey page on a *Questions per ticket* board, inside the first 5 s: rating shown, typing indicator in the opening slot. Seeded ticket title only |
+| `51-opening-typing` (optional, skipped: the typing indicator shows for only 3–5 s on the first open of a link; the guide text covers it) | §3, AI | Survey page on a *Questions per ticket* board, inside the first 5 s: rating shown, typing indicator in the opening slot. Seeded ticket title only |
 | ~~`52-owner-line`~~ | — | Landed 2026-11-03, see below |
 | `53-paused-take-over` (optional, skipped for now: needs a dead owner grant) | §3, *Who the survey runs as* | Board dashboard as a DIFFERENT board owner after the config owner's grant stopped working (e.g. revoke on a second test user): *Surveys are paused on this board.* with the name line and the *Take over* button |
 | `54-save-and-run-as-you` (optional, skipped for now: needs a dead owner grant) | same | Survey setup in the same paused state, same viewer: owner line naming the previous person as not usable, save button reading *Save and run as you* |
