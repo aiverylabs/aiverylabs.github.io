@@ -49,6 +49,8 @@
   MEASURED 2026-11-03 by Phuoc on a test account, v21 (csat PROJECT.md, production checks register, row 48): the
   permissions banner, its admin and member copy, and that approving it is enough without a
   reinstall. Row 59: Reopen then Resolved on a previously surveyed item sends again.
+  The permissions section is version-neutral and has no figures: new installs approve every scope
+  at install, so it only covers scopes a future version adds.
   Deliberately NOT stated: what happens to the deletion clock when one person revokes their own
   authorization (not measured), and the Sidekick token probe (log-only).
 
@@ -309,26 +311,8 @@
     -->
     <h3 id="permissions">When Survey Flow asks for updated permissions</h3>
     <p>When a new version of Survey Flow needs a permission your account has not approved yet, monday.com shows a banner at the top of the app's board view. Survey Flow says the same thing if you try to authorize first: <em>Survey Flow needs updated permissions before you can authorize. Approve them from the banner at the top of the app. If you don't see it or can't approve, ask an account admin.</em></p>
-    <p><strong>If you are an account admin,</strong> the banner reads <em>This app requires additional permissions to run</em>, with a <em>Review permissions</em> link. It opens <em>Update Survey Flow permissions</em>, which lists what is being added (at present, <em>Read your profile information</em>). Click <em>Update Permissions</em>. There is no need to reinstall, and nothing you set up is touched.</p>
-    <!-- SCREENSHOT NEEDED: 48-permissions-banner-admin. See SCREENSHOTS.md.
-    <figure>
-      <img class="screenshot" src="../images/survey-flow/48-permissions-banner-admin.png" alt="The top of Survey Flow's board view as an account admin sees it: monday's banner reading This app requires additional permissions to run, with a Review permissions link">
-      <figcaption>The banner an account admin sees.</figcaption>
-    </figure>
-    -->
-    <!-- SCREENSHOT NEEDED: 49-update-permissions. See SCREENSHOTS.md.
-    <figure>
-      <img class="screenshot" src="../images/survey-flow/49-update-permissions.png" alt="monday's Update Survey Flow permissions page listing Read your profile information as the added permission, with an Update Permissions button">
-      <figcaption>Approving the added permission.</figcaption>
-    </figure>
-    -->
+    <p><strong>If you are an account admin,</strong> the banner reads <em>This app requires additional permissions to run</em>, with a <em>Review permissions</em> link. It opens <em>Update Survey Flow permissions</em>, which lists what is being added. Click <em>Update Permissions</em>. There is no need to reinstall, and nothing you set up is touched.</p>
     <p><strong>If you are not an admin,</strong> the banner says that an admin needs to review permissions for this app, and has no button. Ask an account admin to approve it. Approving from the update page yourself does not work: monday.com refuses it.</p>
-    <!-- SCREENSHOT NEEDED: 50-permissions-banner-member. See SCREENSHOTS.md.
-    <figure>
-      <img class="screenshot" src="../images/survey-flow/50-permissions-banner-member.png" alt="The top of Survey Flow's board view as a member sees it: monday's banner saying an admin needs to review permissions for this app, with no button">
-      <figcaption>The same banner as a member sees it. There is nothing to click.</figcaption>
-    </figure>
-    -->
     <p>Then go back to your board and press Authorize again.</p>
 
     <h2 id="configure"><span class="step-num">3</span>Build your first survey</h2>
@@ -524,13 +508,11 @@
 
     <h3 id="runs-as">Who the survey runs as</h3>
     <p>Everything you do in Survey Flow runs as you. The work nobody is present for runs as one person per board: whoever saved the setup. Sending the survey when a ticket reaches the trigger status, writing the score and comment back to the ticket, alerting someone about a low rating, creating follow up items, resending and sending held surveys all run with that person's monday.com authorization.</p>
-    <p>Next to the save button a line names them: <em>Background actions run as</em> followed by their name, or <em>you</em>. If there is nobody yet, it says <em>Background actions have no one to run as. Save to run them as you.</em></p>
-    <!-- SCREENSHOT NEEDED: 52-owner-line. See SCREENSHOTS.md.
+    <p>Under the save button a line names them: <em>Background actions run as</em> followed by their name, or <em>you</em>. If there is nobody yet, it says <em>Background actions have no one to run as. Save to run them as you.</em></p>
     <figure>
-      <img class="screenshot" src="../images/survey-flow/52-owner-line.png" alt="The bottom of the configuration screen with the line Background actions run as you next to the Saved button">
-      <figcaption>The owner line, when the board runs as you.</figcaption>
+      <img class="screenshot" src="../images/survey-flow/52-owner-line.png" alt="The bottom of the configuration screen as a second board owner sees it: Everything's set. Surveys are live on this board., a Save and run as you button, and under them the line Background actions run as David Park">
+      <figcaption>The line under the save button names who the board runs as. Another board owner sees <em>Save and run as you</em>.</figcaption>
     </figure>
-    -->
     <p><strong>If that person's authorization stops working,</strong> because they left the account, were deactivated, or revoked it, surveys on the board pause. Nothing is sent and nothing is written back until it is fixed. The dashboard shows <em>Surveys are paused on this board.</em>, names the person and why, and ends <em>Any board owner can take over: open Survey setup and save.</em> with a <em>Take over</em> button.</p>
     <!-- SCREENSHOT NEEDED: 53-paused-take-over. See SCREENSHOTS.md.
     <figure>
