@@ -85,7 +85,7 @@ never a review account or a customer.
 | ~~`53-paused-take-over`~~ (landed 2026-11-03, see below) | §3, *Who the survey runs as* | Board dashboard as a DIFFERENT board owner after the config owner's grant stopped working (e.g. revoke on a second test user): *Surveys are paused on this board.* with the name line and the *Take over* button |
 | ~~`54-save-and-run-as-you`~~ (landed 2026-11-03, after CFM-208) | §3, *Who the survey runs as* | Survey setup in the same paused state, same viewer: the one paused message, quiet owner line *Background actions are set to run as …*, save button reading *Save and run as you* |
 
-## ⚠️ Hard delete of one response — 1 retake (2026-11-05)
+## Hard delete of one response — 1 retake, landed (2026-11-05)
 
 Prompted by a code change, not a comparison: a per-response delete now removes the whole record
 (csat `deleteFeedback`, reviewer follow-up 2026-11-05), so the dialog copy changed. The old `28`
@@ -96,11 +96,16 @@ account or a customer.
 
 | File | Lands in | Screen and state |
 |---|---|---|
-| `28-delete-confirm` (RETAKE) | §6, Delivery, after the *Deleting feedback cannot be undone* callout | Delivery tab, Delete on a rated row, dialog *Delete this feedback?* open: the ticket line (*…, rated N out of 5 on …*), then *The whole response is deleted: the rating, comment and answers, and our record that the survey was sent. It is removed from your dashboard and from the ticket. This cannot be undone.*, then *A new survey will be sent the next time the ticket is resolved.*, with Cancel and Delete feedback. **Press Cancel only**: Delete feedback really deletes. Seeded ticket title only. Text source: `DELETE_FEEDBACK_COPY` in csat `apps/admin/src/dashboard/ds/team.jsx` |
+| ~~`28-delete-confirm`~~ (RETAKE, landed 2026-11-05, see below) | §6, Delivery, after the *Deleting feedback cannot be undone* callout | Delivery tab, Delete on a rated row, dialog *Delete this feedback?* open: the ticket line (*…, rated N out of 5 on …*), then *The whole response is deleted: the rating, comment and answers, and our record that the survey was sent. It is removed from your dashboard and from the ticket. This cannot be undone.*, then *A new survey will be sent the next time the ticket is resolved.*, with Cancel and Delete feedback. **Press Cancel only**: Delete feedback really deletes. Seeded ticket title only. Text source: `DELETE_FEEDBACK_COPY` in csat `apps/admin/src/dashboard/ds/team.jsx` |
 
-## ⚠️ Outstanding — 2
+**Landed 2026-11-05.** Rendered from the csat admin harness, not captured from a test account:
+`DashboardApp` on the Delivery tab with seeded made-up rows (no data from any real account), the
+dialog opened on a rated row and never confirmed. Playwright, deviceScaleFactor 2 at a 1184×670
+viewport (at 947 CSS px the header wraps), downscaled to 1894×1072 to match the old file and crop.
+The dialog text was read back from the page and matches the current `DELETE_FEEDBACK_COPY`. The
+figure in `user-guide.html` is uncommented.
 
-- `28-delete-confirm` — retake, see the section above. Not blocked.
+## ⚠️ Outstanding — 1
 
 
 ### `01-marketplace-install.png` — blocked, not your fault
