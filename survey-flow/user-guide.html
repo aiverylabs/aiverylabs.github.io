@@ -636,7 +636,7 @@
     <p>Delivery is the tab to open when you are chasing one particular survey rather than reading the numbers. Two actions live there, and both are limited to account admins and board owners.</p>
     <p>A survey nobody has answered can be resent. That is the one to reach for when the address was wrong at the time, or the mail never arrived. A resend goes out as the person the board runs as, so while surveys on the board are paused, nothing is resent.</p>
     <p>A survey that has been answered can have its feedback deleted. The whole response is deleted: the rating, comment and answers, and our record that the survey was sent. It is removed from your dashboard and from the ticket, so it also disappears from the Delivery tab and from the sent and delivery counts.</p>
-    <p>Because the record of the send is gone too, a deleted survey cannot be resent; there is no row left to resend from. A new survey will be sent the next time the ticket is resolved.</p>
+    <p>Because the record of the send is gone too, a deleted survey cannot be resent; there is no row left to resend from. If the ticket reaches the trigger status again, it gets a new survey with a new link. Until then, the old link tells the customer their response was withdrawn rather than offering a fresh form. A small marker inside your monday account, holding the link's identifier and nothing the customer wrote, is what lets it say so, and it goes when you uninstall.</p>
     <p>If one of those columns is no longer where the setup expects it, the delete still goes through and the dashboard is cleared, but some of what was written to the ticket may remain. The confirmation tells you when that has happened, so open the board and check, since an old column may still be holding the text. See <a href="#columns">Choose what appears on the ticket</a>, which covers the same missing column and how to stop it happening again.</p>
     <figure>
       <img class="screenshot" src="../images/survey-flow/27-delivery-tab.png" alt="The Delivery tab listing sent surveys, with the resend and delete buttons on a row">
@@ -782,10 +782,11 @@
     <h2 id="uninstall">Before you uninstall</h2>
     <p>Uninstalling does not delete your data that day. It starts a seven day clock. Your configuration and the responses you have collected are kept for those seven days, and if you reinstall inside the window they come back: your questions, your branding, your exclusion list, and the ratings and comments already collected. Let the window close and they are deleted. A few things go immediately, including every person's authorization, which is revoked and deleted. <a href="https://docs.aiverylabs.com/survey-flow/privacy.html#retention">The policy</a> lists the rest.</p>
     <p>Export anyway, before you uninstall rather than after. Seven days is not long, and an export is yours to keep regardless of what happens to the account. Open Survey Flow from the board and use the CSV export on the Delivery tab.</p>
-    <p>Three things stay behind, all on purpose.</p>
+    <p>Four things stay behind. Three are there on purpose, and the fourth is not ours to delete.</p>
     <ul>
       <li><strong>The scrambled version of an unsubscribed address</strong>, because forgetting it would mean emailing somebody who has already asked you to stop. That is the record described in Privacy in brief above.</li>
       <li><strong>What Survey Flow wrote onto your tickets</strong>, such as a rating column. The board is yours; uninstalling clears what Survey Flow holds, not what it wrote to monday.</li>
+      <li><strong>Our email provider's own copy of each survey email</strong>, for 30 days. It is held by the provider, not by us, so deleting our records does not reach it. The <a href="https://docs.aiverylabs.com/survey-flow/privacy.html#retention">policy</a> describes it.</li>
       <li><strong>Follow up items</strong>, permanently. Nothing deletes them, and the customer's comment is inside the item's update. They are work created on your own board, so they are yours to remove if you want them gone. See <a href="#followups">Follow up items</a>.</li>
     </ul>
     <p>The <a href="https://docs.aiverylabs.com/survey-flow/privacy.html#uninstall">privacy policy</a> gives the full account, including the case where some of your configuration can survive inside your own monday account.</p>
