@@ -544,7 +544,7 @@
     <p>Once a configuration is active the sequence runs without anyone touching it. An agent moves a ticket into the trigger status, Survey Flow notices, finds the address, runs its checks, and sends. Agents have no button to press and nothing to remember. That is the point.</p>
     <h3>When Survey Flow does not send</h3>
     <p>Survey Flow runs a few checks before every send, and each one is deliberate. When a survey you expected never arrived, this is the list to walk.</p>
-    <p><strong>Something about the ticket.</strong> It was deleted, or it moved to another board, or it does not match the conditions you set. A ticket that has already been rated is never surveyed again either, which is <a href="#repeat">repeat protection</a>.</p>
+    <p><strong>Something about the ticket.</strong> It was deleted, or it moved to another board, or it does not match the conditions you set. A ticket that has already been rated is never surveyed again either, unless its feedback was deleted, which is <a href="#repeat">repeat protection</a>.</p>
     <p><strong>Something about the address.</strong> The mapped field is empty on that ticket, or the column you mapped no longer exists on the board at all. The address is on your exclusion list, or the customer unsubscribed. Earlier mail to that address bounced or was marked as spam, so Survey Flow stopped writing to it.</p>
     <p><strong>Something about your plan.</strong> You reached your monthly response limit. This one behaves differently from the rest. The survey is held rather than skipped, and you can send it once there is room. See <a href="#plans">Plans and limits</a>.</p>
     <p>Delivery is normally quick, though the message passes through an email provider and ordinary email delays apply.</p>
@@ -607,7 +607,7 @@
     <h3 id="repeat">Repeat protection</h3>
     <p>Repeat protection starts when somebody rates. Until then there is none, and that is worth knowing before you design a workflow around it.</p>
     <p>A ticket nobody has rated is surveyed again every time it reaches the trigger status. Move it from Done to Reopened and back to Done twice in an afternoon and the customer gets two emails. If your team reopens tickets often, either use a status that only gets set once or expect the extra sends.</p>
-    <p>Once a customer has rated, that ticket is never surveyed again, with no time limit at all.</p>
+    <p>Once a customer has rated, that ticket is never surveyed again, with no time limit at all, unless that feedback is deleted from the Delivery tab. After a delete, the ticket is surveyed again the next time it reaches the trigger status.</p>
 
     <h3>Opting out</h3>
     <p>Every survey email carries an unsubscribe link. A customer who uses it receives no further surveys from you, on any board.</p>
@@ -646,13 +646,10 @@
       <h3>Deleting feedback cannot be undone</h3>
       <p>There is no recovery step. The rating and whatever the customer wrote are gone from the dashboard and from the ticket, and the only way to hear from that customer again is for the ticket to resolve and be surveyed afresh. Restricting it to account admins and board owners is the whole safeguard, so be sure before you confirm.</p>
     </div>
-    <!-- SCREENSHOT NEEDED: 28-delete-confirm (RETAKE). The old capture still says "You can then resend
-         the survey", which the hard delete made wrong. See SCREENSHOTS.md.
     <figure>
       <img class="screenshot" src="../images/survey-flow/28-delete-confirm.png" alt="The dialog asking for confirmation before feedback is deleted">
       <figcaption>The confirmation shown before feedback is deleted.</figcaption>
     </figure>
-    -->
     <p>The CSV export sits on the same tab. It is how you take your history out of Survey Flow, whether for a report of your own or before uninstalling.</p>
     <div class="callout">
       <h3>Reading small numbers</h3>
@@ -714,7 +711,7 @@
       <li><code>create a follow-up for &lt;ticket name&gt;</code></li>
     </ul>
     <p>The last one carries a behaviour worth knowing. <strong>You can name a ticket rather than look up its id</strong> — and if the name you give matches more than one ticket, the skill refuses and lists them instead of picking one. That refusal is what stops a follow up item being created against the wrong customer's words, so read the list rather than retrying with the same name.</p>
-    <p>The difference from everything else in this guide is worth stating plainly. <strong>These are not gated on a setting.</strong> There is no switch to leave off. Anyone who can invoke the skill reaches them, which means an account admin or a board owner.</p>
+    <p>The difference from everything else in this guide is worth stating plainly. <strong>These are not gated on a setting.</strong> There is no switch to leave off. They answer only an active account admin, limited to the boards set up for Survey Flow that the admin can access, or the owner of a board set up for Survey Flow, limited to the boards they own. Anyone else who calls them is refused.</p>
 
     <p><strong>Sidekick asks you to confirm before it runs either skill, every time, including the one that only reads.</strong> That is monday.com's behaviour and not something we can switch off. It is also a real stop rather than a formality: decline and nothing reaches Survey Flow at all, so a question that came out wrong costs you nothing.</p>
     <p>The finding skill returns, for each response it matches, the customer's comment exactly as written, the follow up answers, the score, the ticket title, a date, and the display name of the agent who handled the ticket. Sidekick writes its reply out of that material, and the reply lands in a chat transcript. How long that transcript lives, and who else can read it, is monday.com's to answer rather than ours.</p>
@@ -766,7 +763,7 @@
     <p>That is what makes per agent feedback useful, and it is also more exposure than some teams want. If it does not suit yours, raise it with us before rolling Survey Flow out to the whole desk.</p>
     <p>The same applies to low rating alerts. Whoever you nominate receives the customer's identity in a monday notification, whether or not they ever open Survey Flow.</p>
     <p><strong>A follow up item is read by the destination board's members.</strong> That audience is set on the board, by whoever administers it, and is unrelated to who can open Survey Flow. The comment goes onto the board word for word. See <a href="#followups">Follow up items</a> in step 7.</p>
-    <p><strong>A Sidekick answer lands in a chat transcript.</strong> It is composed from customer comments and the agent's display name, and where it goes afterwards is governed by monday.com rather than by us. Any admin or board owner can ask for one. See <a href="#sidekick">step 8</a>.</p>
+    <p><strong>A Sidekick answer lands in a chat transcript.</strong> It is composed from customer comments and the agent's display name, and where it goes afterwards is governed by monday.com rather than by us. Any account admin, or the owner of a board set up for Survey Flow, can ask for one. See <a href="#sidekick">step 8</a>.</p>
 
     <h2 id="privacy">Privacy in brief</h2>
     <p>Survey Flow handles your customers' email addresses and whatever they write in a survey, so here is the short version. The full detail, including every sub processor, retention period, and what happens when you uninstall, is in the <a href="https://docs.aiverylabs.com/survey-flow/privacy.html">privacy policy</a>.</p>
