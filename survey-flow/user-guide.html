@@ -635,7 +635,8 @@
     </figure>
     <p>Delivery is the tab to open when you are chasing one particular survey rather than reading the numbers. Two actions live there, and both are limited to account admins and board owners.</p>
     <p>A survey nobody has answered can be resent. That is the one to reach for when the address was wrong at the time, or the mail never arrived. A resend goes out as the person the board runs as, so while surveys on the board are paused, nothing is resent.</p>
-    <p>A survey that has been answered can have its feedback deleted. That clears the rating, the comment and the answers from the dashboard and from the ticket, and it returns the ticket to unsurveyed, so it can be surveyed again the next time it resolves.</p>
+    <p>A survey that has been answered can have its feedback deleted. The whole response is deleted: the rating, comment and answers, and our record that the survey was sent. It is removed from your dashboard and from the ticket, so it also disappears from the Delivery tab and from the sent and delivery counts.</p>
+    <p>Because the record of the send is gone too, a deleted survey cannot be resent; there is no row left to resend from. A new survey will be sent the next time the ticket is resolved.</p>
     <p>If one of those columns is no longer where the setup expects it, the delete still goes through and the dashboard is cleared, but some of what was written to the ticket may remain. The confirmation tells you when that has happened, so open the board and check, since an old column may still be holding the text. See <a href="#columns">Choose what appears on the ticket</a>, which covers the same missing column and how to stop it happening again.</p>
     <figure>
       <img class="screenshot" src="../images/survey-flow/27-delivery-tab.png" alt="The Delivery tab listing sent surveys, with the resend and delete buttons on a row">
@@ -645,10 +646,13 @@
       <h3>Deleting feedback cannot be undone</h3>
       <p>There is no recovery step. The rating and whatever the customer wrote are gone from the dashboard and from the ticket, and the only way to hear from that customer again is for the ticket to resolve and be surveyed afresh. Restricting it to account admins and board owners is the whole safeguard, so be sure before you confirm.</p>
     </div>
+    <!-- SCREENSHOT NEEDED: 28-delete-confirm (RETAKE). The old capture still says "You can then resend
+         the survey", which the hard delete made wrong. See SCREENSHOTS.md.
     <figure>
       <img class="screenshot" src="../images/survey-flow/28-delete-confirm.png" alt="The dialog asking for confirmation before feedback is deleted">
       <figcaption>The confirmation shown before feedback is deleted.</figcaption>
     </figure>
+    -->
     <p>The CSV export sits on the same tab. It is how you take your history out of Survey Flow, whether for a report of your own or before uninstalling.</p>
     <div class="callout">
       <h3>Reading small numbers</h3>
