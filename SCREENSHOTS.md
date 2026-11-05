@@ -85,7 +85,23 @@ never a review account or a customer.
 | ~~`53-paused-take-over`~~ (landed 2026-11-03, see below) | §3, *Who the survey runs as* | Board dashboard as a DIFFERENT board owner after the config owner's grant stopped working (e.g. revoke on a second test user): *Surveys are paused on this board.* with the name line and the *Take over* button |
 | ~~`54-save-and-run-as-you`~~ (landed 2026-11-03, after CFM-208) | §3, *Who the survey runs as* | Survey setup in the same paused state, same viewer: the one paused message, quiet owner line *Background actions are set to run as …*, save button reading *Save and run as you* |
 
-## ⚠️ Outstanding — 1
+## ⚠️ Hard delete of one response — 1 retake (2026-11-05)
+
+Prompted by a code change, not a comparison: a per-response delete now removes the whole record
+(csat `deleteFeedback`, reviewer follow-up 2026-11-05), so the dialog copy changed. The old `28`
+still says *"You can then resend the survey…"*, which is now wrong: a deleted survey has no row
+left to resend from. The figure is commented out in `user-guide.html` under `SCREENSHOT NEEDED`;
+drop the new file in and delete the two comment markers. Use a test account, never a review
+account or a customer.
+
+| File | Lands in | Screen and state |
+|---|---|---|
+| `28-delete-confirm` (RETAKE) | §6, Delivery, after the *Deleting feedback cannot be undone* callout | Delivery tab, Delete on a rated row, dialog *Delete this feedback?* open: the ticket line (*…, rated N out of 5 on …*), then *The whole response is deleted: the rating, comment and answers, and our record that the survey was sent. It is removed from your dashboard and from the ticket. This cannot be undone.*, then *A new survey will be sent the next time the ticket is resolved.*, with Cancel and Delete feedback. **Press Cancel only**: Delete feedback really deletes. Seeded ticket title only. Text source: `DELETE_FEEDBACK_COPY` in csat `apps/admin/src/dashboard/ds/team.jsx` |
+
+## ⚠️ Outstanding — 2
+
+- `28-delete-confirm` — retake, see the section above. Not blocked.
+
 
 ### `01-marketplace-install.png` — blocked, not your fault
 The only broken image on the published page. Blocked until the app is listed on the marketplace,
