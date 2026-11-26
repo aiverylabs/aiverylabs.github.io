@@ -46,6 +46,10 @@
   question; the probe's 8 s bound, skipped on timeout, configured questions always follow; one
   immediate retry of a transient failure. UI copy quoted from ownerLine.jsx, pausedNotice.jsx,
   parts.jsx and packages/shared/src/scopeApproval.js.
+  CHECKED 2026-11-26 against aiverylabs/csat master ca894bd (CFM-139): exclusion-list addresses are
+  trimmed and lowercased on save (apps/admin/src/config/schema.js:46-54, :227) and kept until removed
+  or uninstall + 7 days; the Slack lifecycle notice carries user_country, the installing user's
+  country, not an account field (apps/backend/src/lib/slackNotify.js:44-48).
   MEASURED 2026-11-03 by Phuoc on a test account, v21 (csat PROJECT.md, production checks register, row 48): the
   permissions banner, its admin and member copy, and that approving it is enough without a
   reinstall. Row 59: Reopen then Resolved on a previously surveyed item sends again.
@@ -256,7 +260,7 @@
     <a class="back" href="./">Back to Survey Flow</a>
 
     <h1>Getting started with Survey Flow</h1>
-    <p class="meta">Last updated 12 November 2026.</p>
+    <p class="meta">Last updated 26 November 2026.</p>
     <p class="lede">Survey Flow sends a short satisfaction survey when a ticket reaches the status you choose, then collects the ratings and comments where your team can read them. This guide takes you from installing the app to reading your first results. Setup runs about ten minutes, and most of that is deciding what to ask rather than clicking through screens.</p>
 
     <div class="callout">
@@ -483,7 +487,7 @@
     <p>Some addresses should never receive a survey. Internal staff who file tickets for other people, shared inboxes, monitoring systems, and any customer who has asked you to stop. Click Skip certain addresses in the conditions block above to add them, and Survey Flow checks the list before every send.</p>
     <div class="callout">
       <h3>How to treat this list</h3>
-      <p>Addresses on the exclusion list are stored as you typed them, not scrambled, so the list itself counts as customer data. Add addresses you are already holding for other reasons, and nothing more.</p>
+      <p>Addresses on the exclusion list are stored in plain form, trimmed and in lower case, not scrambled, so the list itself counts as customer data. They stay until you remove them and save, or until you uninstall and the seven day window in the policy closes. Add addresses you are already holding for other reasons, and nothing more.</p>
     </div>
     <figure>
       <img class="screenshot" src="../images/survey-flow/10-exclusions.png" alt="The per board exclusion list with a few sample addresses">
@@ -786,7 +790,7 @@
       <li><strong>Our email provider's own copy of each survey email</strong>, for 30 days. It is held by the provider, not by us, so deleting our records does not reach it. The <a href="https://docs.aiverylabs.com/survey-flow/privacy.html#retention">policy</a> describes it.</li>
       <li><strong>Follow up items</strong>, permanently. Nothing deletes them, and the customer's comment is inside the item's update. They are work created on your own board, so they are yours to remove if you want them gone. See <a href="#followups">Follow up items</a>.</li>
     </ul>
-    <p>Separately, our own staff are notified in Slack when an account installs, uninstalls or changes plan, and those notices stay in our Slack workspace. They hold account-level details only, listed under <a href="https://docs.aiverylabs.com/survey-flow/privacy.html#third-party-domains">Third-party domains</a> in the policy, and nothing from your boards or your survey recipients.</p>
+    <p>Separately, our own staff are notified in Slack when an account installs, uninstalls or changes plan, and those notices stay in our Slack workspace. They hold details of your account and the country of whoever triggered them, and nothing about your customers, listed under <a href="https://docs.aiverylabs.com/survey-flow/privacy.html#third-party-domains">Third-party domains</a> in the policy, and nothing from your boards or your survey recipients.</p>
     <p>The <a href="https://docs.aiverylabs.com/survey-flow/privacy.html#uninstall">privacy policy</a> gives the full account, including the case where some of your configuration can survive inside your own monday account.</p>
 
     <h2 id="help">Get help</h2>
